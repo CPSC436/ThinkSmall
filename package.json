@@ -1,0 +1,8 @@
+{
+  "name": "ThinkSmall",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:CPSC436/ThinkSmall.git",
+  "author": "Alice Kim <aliceykim0828@gmail.com>",
+  "license": "MIT"
+}
