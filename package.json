@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:CPSC436/ThinkSmall.git",
   "author": "Alice Kim <aliceykim0828@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "cd client && yarn start"
+  }
 }
