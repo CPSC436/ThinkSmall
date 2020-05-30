@@ -18,3 +18,12 @@ code {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media only screen and (max-width: 926px) {
+  #root {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+  }
+}

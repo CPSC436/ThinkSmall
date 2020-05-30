@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'arrow-parens': [ERROR, 'as-needed'],
     'no-case-declarations': OFF,
     'no-irregular-whitespace': OFF,
     'no-param-reassign': OFF,
