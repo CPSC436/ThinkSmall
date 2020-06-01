@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'arrow-parens': [ERROR, 'as-needed'],
     'no-case-declarations': OFF,
     'no-irregular-whitespace': OFF,
     'no-param-reassign': OFF,
@@ -34,7 +35,7 @@ module.exports = {
     'react/jsx-indent': [ON, 4],
     'react/jsx-indent-props': OFF,
     'react/jsx-filename-extension': OFF,
-    'react/jsx-max-props-per-line': [ON, { maximum: 5, when: 'multiline' }],
+    'react/jsx-max-props-per-line': [ON],
     'react/jsx-props-no-spreading': OFF,
     'react/no-array-index-key': OFF,
     'react/no-unescaped-entities': OFF,
