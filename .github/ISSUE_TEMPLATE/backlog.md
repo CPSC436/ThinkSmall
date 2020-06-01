@@ -8,7 +8,6 @@ assignees: ''
 ---
 
 **User story**
-<br>
 As a user/developer, I want to be able to ... so that ...
 
 **Acceptance criteria**
