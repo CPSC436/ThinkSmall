@@ -6,6 +6,8 @@
   "author": "Alice Kim <aliceykim0828@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cd client && yarn start"
+    "start": "cd client && yarn start",
+    "lint": "cd client && yarn lint",
+    "lint:fix": "cd client && yarn lint:fix"
   }
 }
