@@ -26,7 +26,7 @@ export default function Chips() {
   return (
       <div className={classes.root}>
           {tags.map(({ label, color }, i) => (
-              <Chip label={label} clickable color={color} />
+              <Chip key={i} label={label} clickable color={color} />
       ))}
       </div>
   );
