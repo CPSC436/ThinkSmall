@@ -18,7 +18,7 @@ const tags = [
   { label: 'Urgent', color: 'primary' },
   { label: 'Call for designers', color: 'primary' },
   { label: 'Call for developers', color: 'primary' },
-  { label: 'call for teanslators', color: 'secondary' },
+  { label: 'call for translators', color: 'secondary' },
 ];
 
 export default function Chips() {
