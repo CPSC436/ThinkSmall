@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import UserTags from './UserTags';
 
 const useStyles = makeStyles({
     root: {
@@ -50,6 +51,9 @@ const BusinessCard = props => {
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h6">
                         {props.store}
+                    </Typography>
+                    <Typography variant="subtitle1" component="h6">
+                        <UserTags tags={props.tags} />
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {props.description}

@@ -39,6 +39,7 @@ const BusinessList = () => {
         description: 'Tenth & Proper, a unique fashion and lifestyle boutique specializing in beautifully crafted '
             + 'casual wear for women. ',
         needsHelp: true,
+        tags: [{ label: 'Call for Designers' }, { label: 'Clothing', color: 'secondary' }],
     }, {
         id: 422,
         storeName: 'Hunter and Hare',
@@ -48,6 +49,7 @@ const BusinessList = () => {
         description: 'Boutique for women\'s clothing & accessories on consignment, plus jewelry, stationery & '
             + 'beauty items.',
         needsHelp: true,
+        tags: [{ label: 'Call for Logo Design' }, { label: 'Clothing', color: 'secondary' }],
     }, {
         id: 909,
         storeName: 'Kosoo',
@@ -56,6 +58,7 @@ const BusinessList = () => {
         location: 'Vancouver, BC',
         description: 'High-end place with a warm feel providing Korean fusion small & large plates, a raw bar & cocktails.',
         needsHelp: true,
+        tags: [{ label: 'Call for Delivery Personnel' }, { label: 'Food', color: 'secondary' }],
     }, {
         id: 433,
         storeName: 'Red Cat Records',
@@ -64,6 +67,7 @@ const BusinessList = () => {
         location: 'Vancouver, BC',
         description: 'Red Cat Records is an independent record store in Vancouver, voted one of the top ten indie stores in Canada by our customers (CBC 3 Searchlight).',
         needsHelp: true,
+        tags: [{ label: 'Call for Translators' }, { label: 'Music Retail', color: 'secondary' }],
     }, {
         id: 522,
         storeName: 'Viet House',
@@ -72,6 +76,7 @@ const BusinessList = () => {
         location: 'Vancouver, BC',
         description: 'Traditional Vietnamese menu & chef specials in a casual setting with dark wood interior details.',
         needsHelp: false,
+        tags: [{ label: 'Call for Translators' }, { label: 'Food', color: 'secondary' }],
     }];
 
     const classes = useStyles();
@@ -92,6 +97,7 @@ const BusinessList = () => {
                             key={business.id} store={business.storeName} name={business.storeOwner}
                             location={business.location} description={business.description}
                             needsHelp={business.needsHelp} avatar={business.avatar}
+                            tags={business.tags}
                                     />
                                 </Grid>
                             ))}
