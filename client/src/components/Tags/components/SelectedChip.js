@@ -13,13 +13,13 @@ const SelectedChip = withStyles({
             color: '#fafafa!important',
             background: 'salmon!important',
             borderColor: 'transparent!important',
-        }
+        },
     },
     clickableColorPrimary: {
         color: '#fafafa',
         background: 'salmon',
         borderColor: 'transparent',
-    }
+    },
 })(Chip);
 
 export default ({ label, onClick }) => (

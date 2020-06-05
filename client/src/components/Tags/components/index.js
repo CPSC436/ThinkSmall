@@ -6,4 +6,4 @@ export {
     SelectedChip,
     UnselectedChip,
     DottedChip,
-}
+};

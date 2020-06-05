@@ -16,25 +16,23 @@ const Square = ({ title, subtitle, to }) => (
     </Link>
 );
 
-const Home = () => {
-    return (
-        <>
-            <h1 className={classes.header}>Are you...</h1>
-            <div className={classes.container}>
-                <Square
+const Home = () => (
+    <>
+        <h1 className={classes.header}>Are you...</h1>
+        <div className={classes.container}>
+            <Square
                     title="Business Owner"
                     subtitle="We need a nice logo for our website!"
                     to="/businesses"
-                />
-                <Square
+            />
+            <Square
                     title="Volunteer"
                     subtitle="Looking to get involved in the community!"
                     to="/volunteers"
-                />
-            </div>
-            <Form />
-        </>
+            />
+        </div>
+        <Form />
+    </>
     );
-};
 
 export default Home;

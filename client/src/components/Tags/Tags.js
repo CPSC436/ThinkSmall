@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 export default function Tags() {
     const classes = useStyles();
     const [tags, setTags] = useState(defaultTags);
-    const selectTag = (i) => {
+    const selectTag = i => {
         tags[i].selected = !tags[i].selected;
         setTags([...tags]);
     };
@@ -28,8 +28,7 @@ export default function Tags() {
                 <div key={i}>
                     {selected
                         ? <SelectedChip label={label} onClick={() => selectTag(i)} />
-                        : <UnselectedChip label={label} onClick={() => selectTag(i)} />
-                    }
+                        : <UnselectedChip label={label} onClick={() => selectTag(i)} />}
                 </div>
             ))}
             <DottedChip />

@@ -11,13 +11,13 @@ const UnselectedChip = withStyles({
         '&:hover, &:focus': {
             background: '#fafafa!important',
             borderColor: 'rgba(0, 0, 0, 0.23)!important',
-        }
+        },
     },
     clickableColorPrimary: {
         color: '#fafafa',
         background: 'salmon',
         borderColor: 'transparent',
-    }
+    },
 })(Chip);
 
 export default ({ label, onClick }) => (
