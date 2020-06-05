@@ -38,24 +38,24 @@ const VolunteerCard = props => {
             />
             <CardHeader className={classes.header} titleTypographyProps={{ variant: 'h5' }} title={props.name} />
             <CardActionArea>
-            <CardContent>
-                <Typography variant="subtitle1" component="h6">
-                    <UserTags tags={props.tags} />
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {props.description}
-                </Typography>
-                <Divider className="MuiDivider-root" light />
-            </CardContent>
+                <CardContent>
+                    <Typography variant="subtitle1" component="h6">
+                        <UserTags tags={props.tags} />
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {props.description}
+                    </Typography>
+                    <Divider className="MuiDivider-root" light />
+                </CardContent>
             </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary" target="_blank">
-                        Read More
+            <CardActions>
+                <Button size="small" color="primary" target="_blank">
+                    Read More
                     </Button>
-                    <Button size="small" color="primary" target="_blank">
-                        Start Conversation
+                <Button size="small" color="primary" target="_blank">
+                    Start Conversation
                     </Button>
-                </CardActions>
+            </CardActions>
         </Card>
     );
 };

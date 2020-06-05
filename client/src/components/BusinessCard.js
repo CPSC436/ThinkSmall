@@ -54,17 +54,17 @@ const BusinessCard = props => {
                 Read More
             </Button>
             <CardActions>
-            <div>
-                {props.needsHelp
-                && <span>
-                    <Button size="small" color="primary" target="_blank">
-                        I need help!
+                <div>
+                    {props.needsHelp
+                        && <span>
+                            <Button size="small" color="primary" target="_blank">
+                                I need help!
                     </Button>
-                    <Button size="small" color="primary" target="_blank">
-                        Contact Owner
+                            <Button size="small" color="primary" target="_blank">
+                                Contact Owner
                     </Button>
-                   </span>}
-            </div>
+                        </span>}
+                </div>
             </CardActions>
         </Card>
     );
