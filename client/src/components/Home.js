@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import src from '../assets/hug.jpg';
-import Form from './Form/Form';
 import classes from '../modules/home.module.css';
 
 const Square = ({ title, subtitle, to }) => (
@@ -31,7 +30,6 @@ const Home = () => (
                 to="/volunteers"
             />
         </div>
-        <Form />
     </div>
 );
 
