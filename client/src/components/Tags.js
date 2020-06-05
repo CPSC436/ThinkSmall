@@ -44,11 +44,12 @@ export default function Tags() {
                 size="small"
                 label={label} 
                 clickable
-                style={{ background: selected ? 'salmon' : 'white', fontFamily: '\'PT Serif Caption\', serif'}} 
+                style={{ background: selected ? 'salmon' : 'white', fontFamily: '\'Baloo 2\', cursive'}} 
                 onClick={() => selectTag(i)}
                 />
             ))}
-            <DottedChip icon={<AddCircleIcon />} size="small" label='Add a new tag' clickable />
+            <DottedChip icon={<AddCircleIcon />} size="small" label='Add a new tag' clickable 
+            style={{background:'white', fontFamily: '\'Baloo 2\', cursive'}} />
         </div>
     );
 }
