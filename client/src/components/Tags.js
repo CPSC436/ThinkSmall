@@ -44,7 +44,7 @@ export default function Tags() {
                 size="small"
                 label={label} 
                 clickable
-                style={{ background: selected ? 'salmon' : 'white'}} 
+                style={{ background: selected ? 'salmon' : 'white', fontFamily: '\'PT Serif Caption\', serif'}} 
                 onClick={() => selectTag(i)}
                 />
             ))}
