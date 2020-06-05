@@ -42,6 +42,9 @@ const VolunteerCard = props => {
                     <Typography variant="subtitle1" component="h6">
                         <UserTags tags={props.tags} />
                     </Typography>
+                    <Typography variant="subtitle1" component="h6">
+                        <UserTags tags={props.tags} />
+                    </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {props.description}
                     </Typography>
