@@ -5,7 +5,7 @@ import {
     Route,
 } from 'react-router-dom';
 import Home from './components/Home';
-import List from './components/List';
+import BusinessList from './components/BusinessList';
 import './App.css';
 import NavBar from './components/navBar';
 
