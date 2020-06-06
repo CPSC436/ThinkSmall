@@ -25,22 +25,6 @@ const useStyles = makeStyles({
 const BusinessCard = props => {
     const classes = useStyles();
 
-    // const showNeedsHelp = needsHelp => (
-    //         <div>
-    //             {needsHelp
-    //             && (
-    //                 <span>
-    //                 <Button size="small" color="primary" target="_blank">
-    //                     I need help!
-    //                 </Button>
-    //                 <Button size="small" color="primary" target="_blank">
-    //                     Contact Owner
-    //                 </Button>
-    //                 </span>
-    //             )}
-    //         </div>
-    //     );
-
     return (
         <Card className={classes.root}>
             <CardActionArea>
