@@ -3,6 +3,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import src from '../assets/hug.jpg';
+import Form from './Form';
 
 const useStyles = matches => makeStyles({
     header: {
@@ -70,6 +71,7 @@ const Home = () => {
                     to="/volunteers"
                 />
             </div>
+            <Form />
         </>
     );
 };
