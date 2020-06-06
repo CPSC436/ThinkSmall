@@ -50,15 +50,16 @@ const VolunteerCard = props => {
                     </Typography>
                     <Divider className="MuiDivider-root" light />
                 </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary" target="_blank">
-                    Read More
+                <CardActionArea>
+                    <CardActions>
+                        <Button size="small" color="primary" target="_blank">
+                            Read More
                     </Button>
-                <Button size="small" color="primary" target="_blank">
-                    Start Conversation
+                        <Button size="small" color="primary" target="_blank">
+                            Start Conversation
                     </Button>
-            </CardActions>
+                    </CardActions>
+                </CardActionArea>
         </Card>
     );
 };
