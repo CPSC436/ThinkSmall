@@ -25,28 +25,29 @@ const useStyles = makeStyles({
 const BusinessCard = props => {
     const classes = useStyles();
 
-    const showNeedsHelp = needsHelp => {
-        if (needsHelp) {
-            return (
-                <div>
-                    <Button size="small" color="primary" target="_blank">
-                        I need help!
-                    </Button>
-                    <Button size="small" color="primary" target="_blank">
-                        Contact Owner
-                    </Button>
-                </div>
-            );
-        }
-        return null;
-    };
+    // const showNeedsHelp = needsHelp => (
+    //         <div>
+    //             {needsHelp
+    //             && (
+    //                 <span>
+    //                 <Button size="small" color="primary" target="_blank">
+    //                     I need help!
+    //                 </Button>
+    //                 <Button size="small" color="primary" target="_blank">
+    //                     Contact Owner
+    //                 </Button>
+    //                 </span>
+    //             )}
+    //         </div>
+    //     );
 
     return (
         <Card className={classes.root}>
-            {/*<CardActionArea>*/}
+            <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image={props.avatar} title="Business Picture"
+                    image={props.avatar}
+                    title="Business Picture"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h6">
@@ -60,19 +61,27 @@ const BusinessCard = props => {
                     </Typography>
                     <Divider className="MuiDivider-root" light />
                     <Typography component="p">
-                        <div>{props.name}</div>
-                        <div>{props.location}</div>
+                        <span>{props.name}</span>
+                        <span>{props.location}</span>
                     </Typography>
                 </CardContent>
-            {/*</CardActionArea>*/}
-            <CardActionArea>
+            </CardActionArea>
             <Button size="small" color="primary" target="_blank">
                 Read More
             </Button>
-            <CardActions onLoad={() => showNeedsHelp(props.needsHelp)} />
-            </CardActionArea>
+            <div>
+                {props.needsHelp
+                && <span>
+                    <Button size="small" color="primary" target="_blank">
+                        I need help!
+                    </Button>
+                    <Button size="small" color="primary" target="_blank">
+                        Contact Owner
+                    </Button>
+                   </span>}
+            </div>
         </Card>
     );
-}
+};
 
 export default BusinessCard;

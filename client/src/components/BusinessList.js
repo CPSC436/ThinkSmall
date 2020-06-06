@@ -93,9 +93,13 @@ const BusinessList = () => {
                             {businesses.map(business => (
                                 <Grid key={business.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
                                     <BusinessCard
-                                        key={business.id} store={business.storeName} name={business.storeOwner}
-                                        location={business.location} description={business.description}
-                                        needsHelp={business.needsHelp} avatar={business.avatar}
+                                        key={business.id}
+                                        store={business.storeName}
+                                        name={business.storeOwner}
+                                        location={business.location}
+                                        description={business.description}
+                                        needsHelp={business.needsHelp}
+                                        avatar={business.avatar}
                                         tags={business.tags}
                                     />
                                 </Grid>

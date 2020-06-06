@@ -27,34 +27,33 @@ const VolunteerCard = props => {
 
     return (
         <Card className={classes.root}>
-            {/*<CardActionArea>*/}
-                <CardMedia
+             <CardActionArea>
+            <CardMedia
                 className={classes.media}
-                image={props.avatar} title="Volunteer Picture"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h6">
-                        {props.volunteerName}
-                    </Typography>
-                    <Typography variant="subtitle1" component="h6">
-                        <UserTags tags={props.tags} />
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {props.description}
-                    </Typography>
-                    <Divider className="MuiDivider-root" light />
-                </CardContent>
-            {/*</CardActionArea>*/}
-            <CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary" target="_blank">
-                    Read More
-                </Button>
-                <Button size="small" color="primary" target="_blank">
-                    Start Conversation
-                </Button>
-            </CardActions>
-            </CardActionArea>
+                image={props.avatar}
+                title="Volunteer Picture"
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="h6">
+                    {props.volunteerName}
+                </Typography>
+                <Typography variant="subtitle1" component="h6">
+                    <UserTags tags={props.tags} />
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                    {props.description}
+                </Typography>
+                <Divider className="MuiDivider-root" light />
+            </CardContent>
+             </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary" target="_blank">
+                        Read More
+                    </Button>
+                    <Button size="small" color="primary" target="_blank">
+                        Start Conversation
+                    </Button>
+                </CardActions>
         </Card>
     );
 };

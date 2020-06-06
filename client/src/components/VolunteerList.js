@@ -46,7 +46,8 @@ const VolunteerList = () => {
                 {volunteers.map(volunteer => (
                     <Grid key={volunteer.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
                         <VolunteerCard
-                            key={volunteer.id} name={volunteer.volunteerName}
+                            key={volunteer.id}
+                            name={volunteer.volunteerName}
                             description={volunteer.description}
                             avatar={volunteer.avatar}
                             tags={volunteer.tags}
