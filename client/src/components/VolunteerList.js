@@ -44,7 +44,7 @@ const VolunteerList = () => {
             {/* {volunteers && 'volunteers'} */}
             <Search />
             <Tags />
-            <Grid container spacing={10} style={{ padding: '24px' }}>
+            <Grid container spacing={5}>
                 {volunteers.map(volunteer => (
                     <Grid key={volunteer.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
                         <VolunteerCard

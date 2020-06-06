@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import Pagination from '@material-ui/lab/Pagination';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Paper from '@material-ui/core/Paper';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import Tags from './Tags';
 import Search from './Search';
 import BusinessCard from './BusinessCard';
@@ -90,7 +89,7 @@ const BusinessList = () => {
             <Paper className={classes.paper}>
                 <Grid container spacing={2}>
                     <Grid item>
-                        <Grid container spacing={10} style={{ padding: '24px' }}>
+                        <Grid container spacing={5}>
                             {businesses.map(business => (
                                 <Grid key={business.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
                                     <BusinessCard

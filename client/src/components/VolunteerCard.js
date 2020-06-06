@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { createMuiTheme, MuiThemeProvider, useTheme } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Divider from '@material-ui/core/Divider';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -28,14 +27,13 @@ const VolunteerCard = props => {
 
     return (
         <Card className={classes.root}>
-            <CardActionArea>
+            {/*<CardActionArea>*/}
                 <CardMedia
-                wide
                 className={classes.media}
-                image={props.avatar}
+                image={props.avatar} title="Volunteer Picture"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h5">
+                    <Typography gutterBottom variant="h5" component="h6">
                         {props.volunteerName}
                     </Typography>
                     <Typography variant="subtitle1" component="h6">
@@ -43,18 +41,20 @@ const VolunteerCard = props => {
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {props.description}
-                        <Button size="small" color="primary" target="_blank">
-                            Read More
-                        </Button>
                     </Typography>
                     <Divider className="MuiDivider-root" light />
                 </CardContent>
-            </CardActionArea>
+            {/*</CardActionArea>*/}
+            <CardActionArea>
             <CardActions>
+                <Button size="small" color="primary" target="_blank">
+                    Read More
+                </Button>
                 <Button size="small" color="primary" target="_blank">
                     Start Conversation
                 </Button>
             </CardActions>
+            </CardActionArea>
         </Card>
     );
 };

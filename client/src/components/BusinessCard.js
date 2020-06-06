@@ -24,6 +24,7 @@ const useStyles = makeStyles({
 
 const BusinessCard = props => {
     const classes = useStyles();
+
     const showNeedsHelp = needsHelp => {
         if (needsHelp) {
             return (
@@ -32,19 +33,18 @@ const BusinessCard = props => {
                         I need help!
                     </Button>
                     <Button size="small" color="primary" target="_blank">
-                        Contact owner
+                        Contact Owner
                     </Button>
                 </div>
             );
         }
-        return (<div />);
+        return null;
     };
 
     return (
         <Card className={classes.root}>
-            <CardActionArea>
+            {/*<CardActionArea>*/}
                 <CardMedia
-                    wide
                     className={classes.media}
                     image={props.avatar} title="Business Picture"
                 />
@@ -57,9 +57,6 @@ const BusinessCard = props => {
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {props.description}
-                        <Button size="small" color="primary" target="_blank">
-                            Read More
-                        </Button>
                     </Typography>
                     <Divider className="MuiDivider-root" light />
                     <Typography component="p">
@@ -67,8 +64,13 @@ const BusinessCard = props => {
                         <div>{props.location}</div>
                     </Typography>
                 </CardContent>
+            {/*</CardActionArea>*/}
+            <CardActionArea>
+            <Button size="small" color="primary" target="_blank">
+                Read More
+            </Button>
+            <CardActions onLoad={() => showNeedsHelp(props.needsHelp)} />
             </CardActionArea>
-            <CardActions onLoad={showNeedsHelp(props.needsHelp)} />
         </Card>
     );
 }
