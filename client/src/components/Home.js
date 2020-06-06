@@ -17,22 +17,22 @@ const Square = ({ title, subtitle, to }) => (
 );
 
 const Home = () => (
-    <>
+    <div className={classes.root}>
         <h1 className={classes.header}>Are you...</h1>
         <div className={classes.container}>
             <Square
-                    title="Business Owner"
-                    subtitle="We need a nice logo for our website!"
-                    to="/businesses"
+                title="Business Owner"
+                subtitle="We need a nice logo for our website!"
+                to="/businesses"
             />
             <Square
-                    title="Volunteer"
-                    subtitle="Looking to get involved in the community!"
-                    to="/volunteers"
+                title="Volunteer"
+                subtitle="Looking to get involved in the community!"
+                to="/volunteers"
             />
         </div>
         <Form />
-    </>
-    );
+    </div>
+);
 
 export default Home;

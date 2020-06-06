@@ -91,8 +91,9 @@ const Form = () => {
             <input
                 {...getInputProps({
                     placeholder: 'Search Places ...',
-                    className: ['location-search-input', classes.input],
+                    className: 'location-search-input',
                 })}
+                className={classes.input}
             />
             {address && <Suggestions {...props} />}
         </div>

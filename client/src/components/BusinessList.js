@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Pagination from '@material-ui/lab/Pagination';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Paper from '@material-ui/core/Paper';
-import Tags from './Tags';
+import Tags from './Tags/Tags';
 import Search from './Search';
 import BusinessCard from './BusinessCard';
 
@@ -93,10 +93,10 @@ const BusinessList = () => {
                             {businesses.map(business => (
                                 <Grid key={business.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
                                     <BusinessCard
-                            key={business.id} store={business.storeName} name={business.storeOwner}
-                            location={business.location} description={business.description}
-                            needsHelp={business.needsHelp} avatar={business.avatar}
-                            tags={business.tags}
+                                        key={business.id} store={business.storeName} name={business.storeOwner}
+                                        location={business.location} description={business.description}
+                                        needsHelp={business.needsHelp} avatar={business.avatar}
+                                        tags={business.tags}
                                     />
                                 </Grid>
                             ))}

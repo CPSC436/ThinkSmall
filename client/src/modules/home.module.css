@@ -1,3 +1,10 @@
+.root {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .header {
     font-family: 'PT Serif Caption', serif;
     text-align: center;
@@ -29,6 +36,15 @@
 }
 
 @media (max-width: 926px) {
+    .root {
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: auto;
+        width: fit-content;
+    }
+
     .container {
         display: block;
         width: fit-content;

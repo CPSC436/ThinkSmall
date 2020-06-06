@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Pagination from '@material-ui/lab/Pagination';
-import Tags from './Tags';
+import Tags from './Tags/Tags';
 import Search from './Search';
 import VolunteerCard from './VolunteerCard';
 
@@ -40,8 +40,6 @@ const VolunteerList = () => {
 
     return (
         <>
-            {/* {businesses && 'businesses'} */}
-            {/* {volunteers && 'volunteers'} */}
             <Search />
             <Tags />
             <Grid container spacing={5}>
