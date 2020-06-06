@@ -18,8 +18,12 @@ const List = ({ businesses, volunteers }) => {
         <div className={classes.root}>
             <SearchBar />
             <div className={classes.container}>
-                {businesses && businesses.map(({ id, ...props }) => <BusinessCard key={id} {...props} />)}
-                {volunteers && volunteers.map(({ id, ...props }) => <VolunteerCard key={id} {...props} />)}
+                {businesses && businesses.map(({ id, ...props }) => (
+                    <BusinessCard key={id} {...props} />
+                ))}
+                {volunteers && volunteers.map(({ id, ...props }) => (
+                    <VolunteerCard key={id} {...props} />
+                ))}
             </div>
             <Pagination count={10} variant="outlined" color="primary" size="small" />
         </div>
