@@ -1,0 +1,29 @@
+.root {
+    color: black;
+    background: white;
+    font-size: small;
+}
+
+.flex {
+    display: flex;
+}
+
+.link {
+    margin: auto 20px;
+    border-bottom: 1px solid transparent;
+    box-sizing: border-box;
+}
+
+.link:hover {
+    border-bottom: 1px solid;
+}
+
+.account {
+    margin: auto 20px;
+}
+
+.button {
+    font-family: 'Baloo 2', cursive;
+    font-size: small;
+    margin-left: 10px;
+}

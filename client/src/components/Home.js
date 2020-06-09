@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from '../modules/home.module.css';
 
-const Square = ({ title, subtitle, background, to, src }) => (
+const Square = ({
+ title, subtitle, background, to, src,
+}) => (
     <Link to={to}>
         <div className={classes.square} style={{ background }}>
             <div>

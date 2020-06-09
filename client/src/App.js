@@ -7,7 +7,7 @@ import {
 import Home from './components/Home';
 import Form from './components/Form/Form';
 import List from './components/List';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import { businesses, volunteers } from './constant';
 import './App.css';
 
