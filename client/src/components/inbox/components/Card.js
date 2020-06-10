@@ -23,7 +23,7 @@ const Card = ({ id, message, timestamp, users }) => {
         <div className={classes.card}>
             <Square type="md" color={colors[id]} user={users[id]} />
             <div style={{ fontSize: 'small' }}>
-                <span style={{ fontWeight: 'bold' }}>
+                <span style={{ fontWeight: 600 }}>
                     {users[id].name}
                     {' '}
                     <span className={classes.timestamp}>{timestamp}</span>

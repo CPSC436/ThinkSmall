@@ -3,7 +3,7 @@ import { useKeyPressEvent } from 'react-use';
 import { makeStyles } from '@material-ui/styles';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
-import { push } from '../../actions';
+import { push } from '../../../actions';
 
 const useStyles = makeStyles({
     root: {
