@@ -1,7 +1,18 @@
 .root {
-    color: black;
     background: white;
+    box-shadow: none;
+    color: black;
     font-size: small;
+}
+
+.account {
+    margin: auto 20px;
+}
+
+.button {
+    font-family: 'Baloo 2', cursive;
+    font-size: small;
+    margin-left: 10px;
 }
 
 .flex {
@@ -18,12 +29,22 @@
     border-bottom: 1px solid;
 }
 
-.account {
-    margin: auto 20px;
-}
+@media (max-width: 576px) {
+    .flex {
+        display: block;
+    }
 
-.button {
-    font-family: 'Baloo 2', cursive;
-    font-size: small;
-    margin-left: 10px;
+    .link {
+        border-bottom: none;
+        display: block;
+        margin: 10px 20px;
+    }
+
+    .link:hover {
+        border-bottom: none;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
 }

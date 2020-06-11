@@ -7,7 +7,7 @@ import { push } from '../../../actions';
 
 const useStyles = makeStyles({
     root: {
-        marginTop: 10
+        marginTop: 10,
     },
     input: {
         background: 'transparent',
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
         borderRadius: '0 5px 5px 0',
         cursor: 'pointer',
         fontFamily: '\'Baloo 2\', cursive',
-    }
+    },
 });
 
 const Input = ({
@@ -48,7 +48,7 @@ const Input = ({
     return (
         <div className={classes.root}>
             <input className={classes.input} value={message} onChange={e => setMessage(e.target.value)} type="text" />
-            <button className={classes.button} onClick={pushMessage}>
+            <button className={classes.button} onClick={pushMessage} type="button">
                 <Icon icon="paper-plane" style={{ color: message ? '#00aa8d' : 'inherit' }} />
             </button>
         </div>

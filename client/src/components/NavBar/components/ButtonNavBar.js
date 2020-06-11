@@ -15,7 +15,7 @@ const ButtonNavBar = ({ userType, handleOpen }) => {
     };
     return (
         <div className={classes.flex}>
-            {options[userType.toLowerCase()].map(({ title, action }) => (
+            {options[userType].map(({ title, action }) => (
                 <Button
                     key={title}
                     className={classes.button}

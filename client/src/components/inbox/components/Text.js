@@ -7,7 +7,7 @@ export const Text = withStyles({
         fontSize: 'small',
         textAlign: 'center',
         margin: '0 auto',
-    }
+    },
 })(Typography);
 
 export const Title = withStyles({
@@ -17,7 +17,7 @@ export const Title = withStyles({
         fontWeight: 600,
         fontFamily: '\'Baloo 2\', cursive',
         fontSize: 'small',
-    }
+    },
 })(Typography);
 
 export const Subtitle = withStyles({
@@ -27,5 +27,5 @@ export const Subtitle = withStyles({
         cursor: 'pointer',
         fontFamily: '\'Baloo 2\', cursive',
         fontSize: 'small',
-    }
+    },
 })(Typography);

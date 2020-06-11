@@ -69,7 +69,7 @@ const defaultConversations = [
                     { id: 0, message: 'Run Forrest, run!', timestamp: '12:27 PM' },
                 ],
             },
-        ]
+        ],
     },
     {
         id: 3,
@@ -95,14 +95,12 @@ const defaultConversations = [
                 message: 'How\'s your project going?',
                 timestamp: '12:17 PM',
             },
-        ]
+        ],
     },
 ];
 
 export default combineReducers({
-    users: (users = defaultUsers, action) => {
-        return users;
-    },
+    users: (users = defaultUsers, action) => users,
     conversations: (conversations = defaultConversations, action) => {
         switch (action.type) {
             case PUSH_MESSAGE:

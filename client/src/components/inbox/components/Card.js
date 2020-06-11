@@ -7,16 +7,18 @@ const colors = ['#FFC759', '#FF7B9C', '#607196', '#BABFD1'];
 const useStyles = makeStyles({
     card: {
         display: 'flex',
-        margin: 5
+        margin: 5,
     },
     timestamp: {
         fontSize: 11,
         fontWeight: 'normal',
         color: '#686868',
     },
-})
+});
 
-const Card = ({ id, message, timestamp, users }) => {
+const Card = ({
+ id, message, timestamp, users,
+}) => {
     const classes = useStyles();
 
     return (

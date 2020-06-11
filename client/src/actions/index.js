@@ -8,7 +8,7 @@ export const push = (uid, iid, message) => ({
     message,
 });
 
-export const setConversation = (id) => ({
+export const setConversation = id => ({
     type: SET_CONVERSATION,
     id,
-})
+});

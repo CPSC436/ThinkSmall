@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Card, Input, Sidebar, Text } from './components';
+import clsx from 'clsx';
+import {
+ Card, Input, Sidebar, Text,
+} from './components';
 import src from '../../assets/yoga.png';
 import classes from '../../modules/inbox.module.css';
-import clsx from 'clsx';
 
 const Inbox = ({ inbox }) => {
     const [selected, setSelected] = useState();
     const { title, messages } = inbox;
 
-    const Filler = () => <div className={classes.fill}>
-        <img className={classes.img} src={src} width={150} height={150} alt="filler" />
-        <Text>This is your first conversation with your team</Text>
-        <Text>Start the conversation!</Text>
-    </div>;
+    const Filler = () => (
+        <div className={classes.fill}>
+            <img className={classes.img} src={src} width={150} height={150} alt="filler" />
+            <Text>This is your first conversation with your team</Text>
+            <Text>Start the conversation!</Text>
+        </div>
+);
 
     return (
         <div className={classes.root}>
@@ -38,7 +42,7 @@ const Inbox = ({ inbox }) => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 const mapStateToProps = ({ conversations, conversation: id }) => ({ inbox: conversations[id] });
