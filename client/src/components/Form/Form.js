@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { connect } from 'react-redux';
 import { useTheme } from '@material-ui/core/styles';
 import {
     Button,
@@ -11,19 +12,18 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng,
 } from 'react-places-autocomplete';
-import { connect } from 'react-redux';
 import ImageUploader from 'react-images-upload';
 import {
     Actions,
     Content,
     ContentText,
     Input,
+    LoadingIndicator,
     Text,
 } from './components';
 import Tags from '../Tags/Tags';
-import loader from '../../assets/loader.svg';
 import classes from '../../modules/form.module.css';
-import { addBusiness } from '../../actions';
+import { addBusiness, saveRequest } from '../../actions';
 
 const styles = {
     active: {
@@ -42,41 +42,7 @@ const styles = {
     },
 };
 
-const Suggestions = ({ loading, suggestions, getSuggestionItemProps }) => (
-    <div className={['autocomplete-dropdown-container', classes.suggestions]}>
-        {loading
-            ? <LoadingIndicator />
-            : suggestions.map(suggestion => {
-                const className = suggestion.active
-                    ? 'suggestion-item--active'
-                    : 'suggestion-item';
-                const style = suggestion.active
-                    ? styles.active
-                    : styles.inactive;
-                return (
-                    <div
-                        {...getSuggestionItemProps(suggestion, {
-                            className,
-                            style,
-                        })}
-                    >
-                        <span>{suggestion.description}</span>
-                    </div>
-                );
-            })}
-    </div>
-);
-
-const LoadingIndicator = () => (
-    <div style={{ padding: 50 }}>
-        <img id="loading" src={loader} />
-        <p style={{ textAlign: 'center', fontSize: 'small' }}>Loading...</p>
-    </div>
-);
-
-const Form = ({
-    open, handleClose, addBusiness,
-}) => {
+const Form = ({ open, handleClose, addBusiness, saveRequest }) => {
     const [address, setAddress] = useState('');
     const [storeName, setStoreName] = useState('');
     const [avatar, setAvatar] = useState();
@@ -93,6 +59,45 @@ const Form = ({
             .catch(error => console.error('Error', error));
     };
 
+    const handleSubmit = e => {
+        const request = {
+            id: 411,
+            details: '',
+            tags: [{ label: 'Call for Designers' }, { label: 'Clothing' }],
+        }
+        saveRequest(request);
+        addBusiness(storeName, avatar, 'Dummy Name', address, description, true, tags);
+        handleClose();
+        // setDescription('');
+        // setStoreName('');
+        // setAddress('');
+    };
+
+    const Suggestions = ({ loading, suggestions, getSuggestionItemProps }) => (
+        <div className={['autocomplete-dropdown-container', classes.suggestions]}>
+            {loading
+                ? <LoadingIndicator />
+                : suggestions.map(suggestion => {
+                    const className = suggestion.active
+                        ? 'suggestion-item--active'
+                        : 'suggestion-item';
+                    const style = suggestion.active
+                        ? styles.active
+                        : styles.inactive;
+                    return (
+                        <div
+                            {...getSuggestionItemProps(suggestion, {
+                                className,
+                                style,
+                            })}
+                        >
+                            <span>{suggestion.description}</span>
+                        </div>
+                    );
+                })}
+        </div>
+    );
+
     const PlacesInput = ({ getInputProps, ...props }) => (
         <div>
             <input
@@ -105,14 +110,6 @@ const Form = ({
             {address && <Suggestions {...props} />}
         </div>
     );
-
-    const handleSubmit = e => {
-        addBusiness(storeName, avatar, 'Dummy Name', address, description, true, tags);
-        handleClose();
-        // setDescription('');
-        // setStoreName('');
-        // setAddress('');
-    };
 
     const onDrop = picture => setAvatar(picture[0].name);
 
@@ -170,4 +167,4 @@ const Form = ({
     );
 };
 
-export default connect(null, { addBusiness })(Form);
+export default connect(null, { addBusiness, saveRequest })(Form);

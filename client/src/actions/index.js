@@ -7,6 +7,7 @@ export const EDIT_BUSINESS = 'EDIT_BUSINESS';
 export const ADD_VOLUNTEER = 'ADD_VOLUNTEER';
 export const DELETE_VOLUNTEER = 'DELETE_VOLUNTEER';
 export const EDIT_VOLUNTEER = 'EDIT_VOLUNTEER';
+export const SAVE_REQUEST = 'SAVE_REQUEST';
 
 export const push = (uid, iid, message) => ({
     type: PUSH_MESSAGE,
@@ -75,3 +76,7 @@ export const editVolunteer = (id, volunteerName, avatar, description, tags) => (
     description,
     tags,
 });
+export const saveRequest = request => ({
+    type: SAVE_REQUEST,
+    request,
+})
