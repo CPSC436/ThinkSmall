@@ -1,17 +1,12 @@
 import { combineReducers } from 'redux';
 import {
     PUSH_MESSAGE,
-<<<<<<< HEAD
     SET_CONVERSATION, SWITCH_VIEW,
-=======
-    SET_CONVERSATION,
-    ADD_BUSINESS,
-    DELETE_BUSINESS,
-    EDIT_BUSINESS,
->>>>>>> 5708fc3... Naive implementation of businesses reducer
+    ADD_BUSINESS, DELETE_BUSINESS, EDIT_BUSINESS,
+    ADD_VOLUNTEER, DELETE_VOLUNTEER, EDIT_VOLUNTEER,
 } from '../actions';
-import { businesses, volunteers } from '../constant';
 import { now } from './helper';
+import { defaultBusinesses, defaultVolunteers } from '../constant';
 
 const defaultUsers = [
     {
@@ -142,29 +137,36 @@ export default combineReducers({
                 return switchState;
         }
     },
-    businesses: (businesses = businesses, action) => {
+    businesses: (businesses = defaultBusinesses, action) => {
         switch (action.type) {
-            case ADD_BUSINESS:
+            case ADD_BUSINESS: {
                 const {
                     storeName, avatar, storeOwner, location, description,
                     needsHelp, tags,
                 } = action;
                 const id = Math.random();
                 return Object.assign([...businesses], {
-                    [id]: id,
-                    [storeName]: storeName,
-                    [avatar]: avatar,
-                    [storeOwner]: storeOwner,
-                    [location]: location,
-                    [description]: description,
-                    [needsHelp]: needsHelp,
-                    [tags]: tags,
+                    id,
+                    storeName,
+                    avatar,
+                    storeOwner,
+                    location,
+                    description,
+                    needsHelp,
+                    tags,
                 });
-            case DELETE_BUSINESS:
+            }
+            case DELETE_BUSINESS: {
                 const updatedBusinesses = [...businesses];
-                return delete updatedBusinesses[action.id];
-            case EDIT_BUSINESS:
-                const editedUsers = [...businesses];
+                delete updatedBusinesses[action.id];
+                return updatedBusinesses;
+            }
+            case EDIT_BUSINESS: {
+                const editedBusinesses = [...businesses];
+                const {
+                    id, storeName, avatar, storeOwner, location, description,
+                    needsHelp, tags,
+                } = action;
                 const properties = [storeName,
                     avatar,
                     storeOwner,
@@ -172,20 +174,70 @@ export default combineReducers({
                     description,
                     needsHelp,
                     tags];
-                for (let i = 0; i < editedUsers.length; i++) {
-                    if (editedUsers[i].id === action.id) {
+                for (let i = 0; i < editedBusinesses.length; i++) {
+                    if (editedBusinesses[i].id === id) {
                         for (let j = 0; j < 7; j++) {
-                            editedUsers[i].properties[j] = properties[j];
+                            editedBusinesses[i].properties[j] = properties[j];
                         }
                         break;
                     }
                 }
-                return editedUsers;
+                return editedBusinesses;
+            }
             default:
-                return users;
+                return businesses;
         }
     },
-    volunteers: (volunteers = volunteers, action) => {
-
+    volunteers: (volunteers = defaultVolunteers, action) => {
+        switch (action.type) {
+            case ADD_VOLUNTEER: {
+                const {
+                    volunteerName,
+                    avatar,
+                    description,
+                    tags,
+                } = action;
+                const id = Math.random();
+                return Object.assign([...volunteers], {
+                    id,
+                    volunteerName,
+                    avatar,
+                    description,
+                    tags,
+                });
+            }
+            case DELETE_VOLUNTEER: {
+                const updatedVolunteers = [...volunteers];
+                delete updatedVolunteers[action.id];
+                return updatedVolunteers;
+            }
+            case EDIT_VOLUNTEER: {
+                const editedVolunteers = [...volunteers];
+                const {
+                    id,
+                    volunteerName,
+                    avatar,
+                    description,
+                    tags,
+                } = action;
+                const properties = [
+                    volunteerName,
+                    avatar,
+                    description,
+                    tags,
+                ];
+                for (let i = 0; i < editedVolunteers.length; i++) {
+                    if (editedVolunteers[i].id === id) {
+                        for (let j = 0; j < 4; j++) {
+                            editedVolunteers[i].properties[j] = properties[j];
+                        }
+                        break;
+                    }
+                }
+                return editedVolunteers;
+            }
+            default:
+                return volunteers;
+        }
     },
 });

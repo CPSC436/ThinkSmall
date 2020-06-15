@@ -15,7 +15,6 @@ import Inbox from './components/Inbox/Inbox';
 import BusinessesList from './components/BusinessesList';
 import VolunteersList from './components/VolunteersList';
 import NavBar from './components/NavBar/NavBar';
-import { businesses, volunteers } from './constant';
 import './App.css';
 import Maps from './components/Maps';
 
@@ -31,12 +30,12 @@ function App({ switchState }) {
             <Switch>
                 <Route path="/businesses">
                     <NavBar userType="business" handleOpen={() => setOpen(true)} />
-                    {switchState ? <Maps />
-                        : <BusinessesList businesses={businesses} />}
+                    {switchState ? <Maps /> : <BusinessesList businesses={businesses} />}
+                    <BusinessesList />
                 </Route>
                 <Route path="/volunteers">
-                    <NavBar userType="volunteer" handleOpen={() => setVolunteerOpen(true)} />
-                    <VolunteersList volunteers={volunteers} />
+                    <NavBar userType="volunteer" />
+                    <VolunteersList />
                 </Route>
                 <Route path="/inbox">
                     <Inbox />
@@ -53,7 +52,7 @@ function App({ switchState }) {
 }
 
 const mapStateToProps = state => ({
-        switchState: state.switchView,
-    });
+    switchState: state.switchView,
+});
 
 export default connect(mapStateToProps)(App);

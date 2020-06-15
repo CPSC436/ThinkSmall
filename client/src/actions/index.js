@@ -4,6 +4,9 @@ export const SWITCH_VIEW = 'SWITCH_VIEW';
 export const ADD_BUSINESS = 'ADD_BUSINESS';
 export const DELETE_BUSINESS = 'DELETE_BUSINESS';
 export const EDIT_BUSINESS = 'EDIT_BUSINESS';
+export const ADD_VOLUNTEER = 'ADD_VOLUNTEER';
+export const DELETE_VOLUNTEER = 'DELETE_VOLUNTEER';
+export const EDIT_VOLUNTEER = 'EDIT_VOLUNTEER';
 
 export const push = (uid, iid, message) => ({
     type: PUSH_MESSAGE,
@@ -50,3 +53,25 @@ export const editBusiness = (id, storeName, avatar, storeOwner, location, descri
         needsHelp,
         tags,
     });
+
+export const addVolunteer = (volunteerName, avatar, description, tags) => ({
+    type: ADD_VOLUNTEER,
+    volunteerName,
+    avatar,
+    description,
+    tags,
+});
+
+export const deleteVolunteer = id => ({
+    type: DELETE_VOLUNTEER,
+    id,
+});
+
+export const editVolunteer = (id, volunteerName, avatar, description, tags) => ({
+    type: EDIT_VOLUNTEER,
+    id,
+    volunteerName,
+    avatar,
+    description,
+    tags,
+});

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
- GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow,
+    GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow,
 } from 'react-google-maps';
 import { businesses } from '../constant';
 import classes from '../modules/maps.module.css';
@@ -52,7 +52,7 @@ function Map() {
             <Markers />
             <InfoWindows />
         </GoogleMap>
-);
+    );
 }
 
 // must wrap the map with some more code for google maps to work
@@ -76,7 +76,7 @@ function Maps() {
 
     return (
         <DisplayMap />
- );
+    );
 }
 
 export default Maps;

@@ -6,7 +6,7 @@ export const defaultTags = [
     { label: 'Call for writers', selected: false },
 ];
 
-export const volunteers = [{
+export const defaultVolunteers = [{
     id: 111,
     volunteerName: 'Alice Kim',
     avatar: 'https://images.unsplash.com/photo-1504131598085-4cca8500b677?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80',
@@ -98,7 +98,7 @@ export const volunteers = [{
     tags: [{ label: 'Food Designer' }, { label: 'Speaks German', color: 'secondary' }],
 }];
 
-export const businesses = [{
+export const defaultBusinesses = [{
     id: 411,
     storeName: 'Tenth and Proper',
     avatar: 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1510&q=80',
