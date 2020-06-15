@@ -174,9 +174,9 @@ export default combineReducers({
                     description,
                     needsHelp,
                     tags];
-                for (let i = 0; i < editedBusinesses.length; i++) {
+                for (let i = 0; i < editedBusinesses.length; i += 1) {
                     if (editedBusinesses[i].id === id) {
-                        for (let j = 0; j < 7; j++) {
+                        for (let j = 0; j < 7; j += 1) {
                             editedBusinesses[i].properties[j] = properties[j];
                         }
                         break;
@@ -226,9 +226,9 @@ export default combineReducers({
                     description,
                     tags,
                 ];
-                for (let i = 0; i < editedVolunteers.length; i++) {
+                for (let i = 0; i < editedVolunteers.length; i += 1) {
                     if (editedVolunteers[i].id === id) {
-                        for (let j = 0; j < 4; j++) {
+                        for (let j = 0; j < 4; j += 1) {
                             editedVolunteers[i].properties[j] = properties[j];
                         }
                         break;

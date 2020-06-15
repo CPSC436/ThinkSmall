@@ -11,6 +11,9 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng,
 } from 'react-places-autocomplete';
+import { connect } from 'react-redux';
+import ImageUploader from 'react-images-upload';
+import { bindActionCreators } from 'redux';
 import {
     Actions,
     Content,
@@ -21,6 +24,7 @@ import {
 import Tags from '../Tags/Tags';
 import loader from '../../assets/loader.svg';
 import classes from '../../modules/form.module.css';
+import { addBusiness } from '../../actions';
 
 const styles = {
     active: {
@@ -71,8 +75,12 @@ const LoadingIndicator = () => (
     </div>
 );
 
-const Form = ({ open, handleClose }) => {
+const Form = ({ open, handleClose, dispatch }) => {
     const [address, setAddress] = useState('');
+    const [storeName, setStoreName] = useState('');
+    const [avatar, setAvatar] = useState({ pictures: [] });
+    const [description, setDescription] = useState('');
+    const [tags, setTags] = useState(<Tags />);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -97,7 +105,18 @@ const Form = ({ open, handleClose }) => {
         </div>
     );
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        this.props.addBusiness(storeName, avatar, 'Dummy Name', address,
+            description, true, tags);
+    }
+
+    const onDrop = picture => {
+        setAvatar(avatar.pictures.concat(picture));
+    }
+
     return (
+        <form onSubmit={handleSubmit}>
         <Dialog
             fullScreen={fullScreen}
             open={open}
@@ -110,7 +129,18 @@ const Form = ({ open, handleClose }) => {
                     please provide details and type of help required of your business.
                 </ContentText>
                 <Text>Name of Business</Text>
-                <Input autoFocus margin="dense" fullWidth placeholder="e.g. Hunter & Hare" />
+                <Input
+                    autoFocus margin="dense" fullWidth placeholder="e.g. Hunter & Hare"
+                    value={storeName} onChange={e => setStoreName(e.target.value)}
+                />
+                <Text>Business Icon</Text>
+                <ImageUploader
+                    withIcon={true}
+                    buttonText="Choose images"
+                    onChange={onDrop}
+                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                    maxFileSize={5242880}
+                />
                 <Text>Location</Text>
                 <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
                     {PlacesInput}
@@ -118,15 +148,30 @@ const Form = ({ open, handleClose }) => {
                 <Text>Description of Business</Text>
                 <Textarea className={classes.textarea} aria-label="description" rowsMin={5} />
                 <Text>Request Details</Text>
-                <Tags canAdd />
-                <Textarea className={classes.textarea} aria-label="details" rowsMin={5} />
+                <Tags canAdd value={tags} onChange={e => setTags(e.target.value)} />
+                <Textarea
+                    className={classes.textarea} aria-label="details" rowsMin={5}
+                    value={description} onChange={e => setDescription(e.target.value)}
+                />
             </Content>
             <Actions>
                 <Button variant="outlined" onClick={handleClose}>Cancel</Button>
-                <Button variant="outlined" onClick={handleClose}>Submit</Button>
+                <Button variant="outlined" onClick={handleClose}>
+                    Submit
+                </Button>
             </Actions>
         </Dialog>
+        </form>
     );
 };
 
-export default Form;
+const mapStateToProps = ({ businesses }) => ({
+    businesses,
+});
+
+const mapDispatchToProps = dispatch => ({
+    dispatch,
+    ...bindActionCreators({ addBusiness }, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
