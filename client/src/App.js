@@ -13,7 +13,6 @@ import Inbox from './components/Inbox/Inbox';
 import BusinessesList from './components/BusinessesList';
 import VolunteersList from './components/VolunteersList';
 import NavBar from './components/NavBar/NavBar';
-import { businesses, volunteers } from './constant';
 import './App.css';
 
 library.add(fab, faPaperPlane, faBars);
@@ -26,11 +25,11 @@ function App() {
             <Switch>
                 <Route path="/businesses">
                     <NavBar userType="business" handleOpen={() => setOpen(true)} />
-                    <BusinessesList businesses={businesses} />
+                    <BusinessesList />
                 </Route>
                 <Route path="/volunteers">
                     <NavBar userType="volunteer" />
-                    <VolunteersList volunteers={volunteers} />
+                    <VolunteersList />
                 </Route>
                 <Route path="/inbox">
                     <Inbox />
