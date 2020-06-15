@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import Tags from './Tags/Tags';
 import Search from './Search';
-import Pagination from './Pagination';
 import VolunteerCard from './VolunteerCard';
 import classes from '../modules/list.module.css';
+import {Pagination, PaginationItem} from '@material-ui/lab';
 
-const List = ({ volunteers }) => {
+const VolunteersList = ({ volunteers }) => {
     const SearchBar = () => (
         <div className={classes.searchBar}>
             <Search />
@@ -21,7 +21,16 @@ const List = ({ volunteers }) => {
         <div className={classes.root}>
             <SearchBar />
             
-            <Pagination page={currentPage} handleChange={handleChange}/>
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'row-reverse'}}>
+                <Pagination
+                    onChange={handleChange}
+                    page={currentPage}
+                    count={Math.ceil(volunteers.length / 6)}
+                    renderItem={(item) => (
+                        <PaginationItem {...item} />
+                    )}
+                />
+            </div>
 
             <div className={classes.container}>
                 {volunteers && volunteers
@@ -34,4 +43,4 @@ const List = ({ volunteers }) => {
     );
 };
 
-export default List;
+export default VolunteersList;

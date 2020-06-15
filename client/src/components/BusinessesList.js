@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
-//import Pagination from '@material-ui/lab/Pagination';
+import React, { useState } from 'react';
 import Tags from './Tags/Tags';
 import Search from './Search';
-import Pagination from './Pagination';
 import BusinessCard from './BusinessCard';
-import VolunteerCard from './VolunteerCard';
 import classes from '../modules/list.module.css';
+import {Pagination, PaginationItem} from '@material-ui/lab';
 
-const List = ({ businesses }) => {
+const BusinessesList = ({ businesses }) => {
     const SearchBar = () => (
         <div className={classes.searchBar}>
             <Search />
@@ -22,9 +20,17 @@ const List = ({ businesses }) => {
     return (
         <div className={classes.root}>
             <SearchBar />
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'row-reverse'}}>
+                <Pagination
+                    onChange={handleChange}
+                    page={currentPage}
+                    count={Math.ceil(businesses.length / 6)}
+                    renderItem={(item) => (
+                        <PaginationItem {...item} />
+                    )}
+                />
+            </div>
             
-            <Pagination page={currentPage} handleChange={handleChange}/>
-
             <div className={classes.container}>
                 {businesses && businesses
                     .slice((currentPage - 1) * 6, currentPage * 6)
@@ -36,4 +42,4 @@ const List = ({ businesses }) => {
     );
 };
 
-export default List;
+export default BusinessesList;

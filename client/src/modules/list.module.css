@@ -2,10 +2,6 @@
     flex-grow: 1;
 }
 
-.root > * {
-    float: right;
-}
-
 .searchBar {
     width: fit-content;
     margin: 50px auto;
