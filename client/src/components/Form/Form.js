@@ -109,6 +109,9 @@ const Form = ({ open, handleClose, dispatch }) => {
         e.preventDefault();
         this.props.addBusiness(storeName, avatar, 'Dummy Name', address,
             description, true, tags);
+        // setDescription('');
+        // setStoreName('');
+        // setAddress('');
     }
 
     const onDrop = picture => {
