@@ -9,7 +9,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faPaperPlane, faBars } from '@fortawesome/free-solid-svg-icons';
 import Home from './components/Home';
 import Form from './components/Form/Form';
-import Inbox from './components/inbox/Inbox';
+import Inbox from './components/Inbox/Inbox';
 import BusinessesList from './components/BusinessesList';
 import VolunteersList from './components/VolunteersList';
 import NavBar from './components/NavBar/NavBar';

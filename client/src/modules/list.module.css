@@ -5,7 +5,12 @@
 .searchBar {
     width: fit-content;
     margin: 50px auto;
-    float: none;
+}
+
+.page {
+    width: 100%;
+    display: flex; 
+    flex-direction: row-reverse;
 }
 
 .container {
