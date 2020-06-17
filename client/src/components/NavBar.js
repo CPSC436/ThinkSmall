@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import makeStyles from '@material-ui/styles/makeStyles';
 import ButtonNavBar from './ButtonNavBar';
+import Switch from './Switch';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -73,6 +74,17 @@ function NavBar({ userType, handleOpen }) {
                     </div>
                     <Box mr="1rem" />
                     <ButtonNavBar userType={userType} handleOpen={handleOpen} style={classes} />
+
+                    <Box mr="1rem" />
+
+                    {userType === 'Volunteer' && (
+                        <Switch style={classes} />
+                        )}
+                    {userType === 'Volunteer' && (
+                        <Typography className={classes.middleStyle}>Maps View</Typography>
+                    )}
+
+
                 </Toolbar>
             </AppBar>
         </div>

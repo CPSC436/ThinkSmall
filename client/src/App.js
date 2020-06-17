@@ -10,6 +10,7 @@ import List from './components/List';
 import NavBar from './components/NavBar';
 import { businesses, volunteers } from './constant';
 import './App.css';
+import Maps from './components/Maps';
 
 function App() {
     const [open, setOpen] = useState(false);
@@ -23,6 +24,10 @@ function App() {
                 </Route>
                 <Route path="/volunteers">
                     <NavBar userType="Volunteer" />
+                    {/* Based on toggle, it's either maps or list */}
+                    {/* state of switch in a conditional statement */}
+
+                    <Maps />
                     <List volunteers={volunteers} />
                 </Route>
                 <Route path="*">
