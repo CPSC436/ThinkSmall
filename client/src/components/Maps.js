@@ -51,13 +51,15 @@ function Map() {
 
 // must wrap the map with some more code for google maps to work
 const WrappedMap = withScriptjs(withGoogleMap(Map));
+const API_KEY = process.env.REACT_APP_API_KEY;
 // {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
+// ask about witch and why display map cant be componentized
 
 function Maps() {
     const displayMap = () => (
         <div style={{ width: '100vw', height: '100vh' }}>
             <WrappedMap
-                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=REACT_APP_API_KEY"
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
                 loadingElement={<div style={{ height: '100%' }} />}
                 containerElement={<div style={{ height: '100%' }} />}
                 mapElement={<div style={{ height: '100%' }} />}
