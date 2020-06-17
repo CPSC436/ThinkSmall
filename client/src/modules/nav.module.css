@@ -29,7 +29,7 @@
     border-bottom: 1px solid;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 991.98px) {
     .flex {
         display: block;
     }
