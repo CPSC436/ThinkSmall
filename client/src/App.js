@@ -4,13 +4,20 @@ import {
     Switch,
     Route,
 } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faPaperPlane, faBars } from '@fortawesome/free-solid-svg-icons';
 import Home from './components/Home';
 import Form from './components/Form/Form';
-import List from './components/List';
-import NavBar from './components/NavBar';
+import Inbox from './components/Inbox/Inbox';
+import BusinessesList from './components/BusinessesList';
+import VolunteersList from './components/VolunteersList';
+import NavBar from './components/NavBar/NavBar';
 import { businesses, volunteers } from './constant';
 import './App.css';
 import Maps from './components/Maps';
+
+library.add(fab, faPaperPlane, faBars);
 
 function App() {
     const [open, setOpen] = useState(false);
@@ -19,18 +26,18 @@ function App() {
         <Router>
             <Switch>
                 <Route path="/businesses">
-                    <NavBar userType="Business" handleOpen={() => setOpen(true)} />
-                    <List businesses={businesses} />
+                    <NavBar userType="business" handleOpen={() => setOpen(true)} />
+                    <BusinessesList businesses={businesses} />
                 </Route>
                 <Route path="/volunteers">
-                    <NavBar userType="Volunteer" />
-                    {/* Based on toggle, it's either maps or list */}
-                    {/* state of switch in a conditional statement */}
-
-                    <Maps />
-                    <List volunteers={volunteers} />
+                    <NavBar userType="volunteer" />
+                    <VolunteersList volunteers={volunteers} />
+                </Route>
+                <Route path="/inbox">
+                    <Inbox />
                 </Route>
                 <Route path="*">
+                    <NavBar />
                     <Home />
                 </Route>
             </Switch>
