@@ -7,6 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/styles/withStyles';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import CheckIcon from '@material-ui/icons/Check';
 import Tags from './Tags/Tags';
 import classes from '../modules/card.module.css';
 
@@ -18,35 +20,50 @@ const Text = withStyles({
 
 const BusinessCard = ({
     avatar, storeName, tags = [], description, storeOwner, location, needsHelp,
-}) => (
-    <Card className={classes.root}>
-        <CardMedia
+}) => {
+    const [selected, setSelected] = React.useState(needsHelp);
+
+    return (
+        <Card className={classes.root}>
+            <CardMedia
                 className={classes.media}
                 image={avatar}
                 title="Business Picture"
-        />
-        <CardContent>
-            <Text variant="h5" component="h6">
-                {storeName}
-            </Text>
-            <Tags tags={tags} />
-            <Text gutterBottom variant="body2" color="textSecondary" component="p">
-                {description}
-            </Text>
-            <Divider light />
-            <Text>{storeOwner}</Text>
-            <Text>{location}</Text>
-            <a href="#" className={classes.link}>Read more</a>
-        </CardContent>
-        <CardActions className={classes.actions}>
-            {needsHelp && (
-            <>
-                <Button size="small" color="primary" target="_blank">I need help!</Button>
-                <Button size="small" color="primary" target="_blank">Contact Owner</Button>
-            </>
+            />
+            <CardContent>
+                <Text variant="h5" component="h6">
+                    {storeName}
+                </Text>
+                <Tags tags={tags} />
+                <Text gutterBottom variant="body2" color="textSecondary" component="p">
+                    {description}
+                </Text>
+                <Divider light />
+                <Text>{storeOwner}</Text>
+                <Text>{location}</Text>
+                <a href="#" className={classes.link}>Read more</a>
+            </CardContent>
+            <CardActions className={classes.actions}>
+                <ToggleButton
+                    size="small"
+                    value="check"
+                    selected={selected}
+                    onChange={() => {
+                        setSelected(!selected);
+                    }}
+                >
+                    Help Needed
+                    <CheckIcon />
+                </ToggleButton>
+                {selected && (
+                    <>
+                        <Button size="small" color="primary" target="_blank">I need help!</Button>
+                        <Button size="small" color="primary" target="_blank">Contact Owner</Button>
+                    </>
                 )}
-        </CardActions>
-    </Card>
+            </CardActions>
+        </Card>
     );
+};
 
 export default BusinessCard;
