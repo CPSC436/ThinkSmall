@@ -109,9 +109,11 @@ const Form = ({
     const handleSubmit = e => {
         addBusiness(storeName, avatar, 'Dummy Name', address, description, true, tags);
         handleClose();
-        // setDescription('');
-        // setStoreName('');
-        // setAddress('');
+        setDescription('');
+        setStoreName('');
+        setAddress('');
+        setTags([]);
+        setAvatar();
     };
 
     const onDrop = picture => setAvatar(picture[0].name);

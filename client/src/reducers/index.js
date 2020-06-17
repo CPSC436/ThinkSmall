@@ -4,7 +4,7 @@ import {
     SET_CONVERSATION,
     ADD_BUSINESS,
     DELETE_BUSINESS,
-    EDIT_BUSINESS, ADD_VOLUNTEER, DELETE_VOLUNTEER, EDIT_VOLUNTEER,
+    EDIT_BUSINESS, TOGGLE_HELP, ADD_VOLUNTEER, DELETE_VOLUNTEER, EDIT_VOLUNTEER,
 } from '../actions';
 import { now } from './helper';
 import { defaultBusinesses, defaultVolunteers } from '../constant';
@@ -103,6 +103,9 @@ const defaultConversations = [
     },
 ];
 
+const businessFields = 7;
+const volunteerFields = 4;
+
 export default combineReducers({
     users: (users = defaultUsers, action) => users,
     conversations: (conversations = defaultConversations, action) => {
@@ -136,7 +139,25 @@ export default combineReducers({
             }
             case DELETE_BUSINESS: {
                 const updatedBusinesses = [...businesses];
-                delete updatedBusinesses[action.id];
+                let index = null;
+                for (let i = 0; i < updatedBusinesses.length; i += 1) {
+                    if (updatedBusinesses[i].id === action.id) {
+                        index = i;
+                        break;
+                    }
+                }
+                return updatedBusinesses.splice(index, 1);
+            }
+            case TOGGLE_HELP: {
+                const updatedBusinesses = [...businesses];
+                let index = null;
+                for (let i = 0; i < updatedBusinesses.length; i += 1) {
+                    if (updatedBusinesses[i].id === action.id) {
+                        index = i;
+                        break;
+                    }
+                }
+                updatedBusinesses[index].needsHelp = !updatedBusinesses[index].needsHelp;
                 return updatedBusinesses;
             }
             case EDIT_BUSINESS: {
@@ -154,7 +175,7 @@ export default combineReducers({
                     tags];
                 for (let i = 0; i < editedBusinesses.length; i += 1) {
                     if (editedBusinesses[i].id === id) {
-                        for (let j = 0; j < 7; j += 1) {
+                        for (let j = 0; j < businessFields; j += 1) {
                             editedBusinesses[i].properties[j] = properties[j];
                         }
                         break;
@@ -206,7 +227,7 @@ export default combineReducers({
                 ];
                 for (let i = 0; i < editedVolunteers.length; i += 1) {
                     if (editedVolunteers[i].id === id) {
-                        for (let j = 0; j < 4; j += 1) {
+                        for (let j = 0; j < volunteerFields; j += 1) {
                             editedVolunteers[i].properties[j] = properties[j];
                         }
                         break;
