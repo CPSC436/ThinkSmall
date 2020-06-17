@@ -131,21 +131,8 @@ export default combineReducers({
     businesses: (businesses = defaultBusinesses, action) => {
         switch (action.type) {
             case ADD_BUSINESS: {
-                const {
-                    storeName, avatar, storeOwner, location, description,
-                    needsHelp, tags,
-                } = action;
                 const id = Math.random();
-                return Object.assign([...businesses], {
-                    id,
-                    storeName,
-                    avatar,
-                    storeOwner,
-                    location,
-                    description,
-                    needsHelp,
-                    tags,
-                });
+                return [...businesses, { ...action, id }];
             }
             case DELETE_BUSINESS: {
                 const updatedBusinesses = [...businesses];
@@ -229,6 +216,6 @@ export default combineReducers({
             }
             default:
                 return volunteers;
-            }
+        }
     },
 });

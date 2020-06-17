@@ -20,16 +20,16 @@ export const setConversation = id => ({
 });
 
 export const addBusiness = (storeName, avatar, storeOwner, location, description,
-                            needsHelp, tags) => ({
-    type: ADD_BUSINESS,
-    storeName,
-    avatar,
-    storeOwner,
-    location,
-    description,
-    needsHelp,
-    tags,
-});
+    needsHelp, tags) => ({
+        type: ADD_BUSINESS,
+        storeName,
+        avatar,
+        storeOwner,
+        location,
+        description,
+        needsHelp,
+        tags,
+    });
 
 export const deleteBusiness = id => ({
     type: DELETE_BUSINESS,
@@ -37,17 +37,17 @@ export const deleteBusiness = id => ({
 });
 
 export const editBusiness = (id, storeName, avatar, storeOwner, location, description,
-                             needsHelp, tags) => ({
-    type: EDIT_BUSINESS,
-    id,
-    storeName,
-    avatar,
-    storeOwner,
-    location,
-    description,
-    needsHelp,
-    tags,
-});
+    needsHelp, tags) => ({
+        type: EDIT_BUSINESS,
+        id,
+        storeName,
+        avatar,
+        storeOwner,
+        location,
+        description,
+        needsHelp,
+        tags,
+    });
 
 export const addVolunteer = (volunteerName, avatar, description, tags) => ({
     type: ADD_VOLUNTEER,
@@ -58,8 +58,8 @@ export const addVolunteer = (volunteerName, avatar, description, tags) => ({
 });
 
 export const deleteVolunteer = id => ({
-   type: DELETE_VOLUNTEER,
-   id,
+    type: DELETE_VOLUNTEER,
+    id,
 });
 
 export const editVolunteer = (id, volunteerName, avatar, description, tags) => ({

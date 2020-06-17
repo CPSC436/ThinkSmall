@@ -13,7 +13,6 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import { connect } from 'react-redux';
 import ImageUploader from 'react-images-upload';
-import { bindActionCreators } from 'redux';
 import {
     Actions,
     Content,
@@ -75,12 +74,14 @@ const LoadingIndicator = () => (
     </div>
 );
 
-const Form = ({ open, handleClose, dispatch }) => {
+const Form = ({
+    open, handleClose, addBusiness,
+}) => {
     const [address, setAddress] = useState('');
     const [storeName, setStoreName] = useState('');
-    const [avatar, setAvatar] = useState({ pictures: [] });
+    const [avatar, setAvatar] = useState();
     const [description, setDescription] = useState('');
-    const [tags, setTags] = useState(<Tags />);
+    const [tags, setTags] = useState([]);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -106,20 +107,16 @@ const Form = ({ open, handleClose, dispatch }) => {
     );
 
     const handleSubmit = e => {
-        e.preventDefault();
-        this.props.addBusiness(storeName, avatar, 'Dummy Name', address,
-            description, true, tags);
+        addBusiness(storeName, avatar, 'Dummy Name', address, description, true, tags);
+        handleClose();
         // setDescription('');
         // setStoreName('');
         // setAddress('');
-    }
+    };
 
-    const onDrop = picture => {
-        setAvatar(avatar.pictures.concat(picture));
-    }
+    const onDrop = picture => setAvatar(picture[0].name);
 
     return (
-        <form onSubmit={handleSubmit}>
         <Dialog
             fullScreen={fullScreen}
             open={open}
@@ -133,16 +130,21 @@ const Form = ({ open, handleClose, dispatch }) => {
                 </ContentText>
                 <Text>Name of Business</Text>
                 <Input
-                    autoFocus margin="dense" fullWidth placeholder="e.g. Hunter & Hare"
-                    value={storeName} onChange={e => setStoreName(e.target.value)}
+                    autoFocus
+                    margin="dense"
+                    fullWidth
+                    placeholder="e.g. Hunter & Hare"
+                    value={storeName}
+                    onChange={e => setStoreName(e.target.value)}
                 />
                 <Text>Business Icon</Text>
                 <ImageUploader
-                    withIcon={true}
+                    withIcon
                     buttonText="Choose images"
                     onChange={onDrop}
                     imgExtension={['.jpg', '.gif', '.png', '.gif']}
                     maxFileSize={5242880}
+                    withPreview
                 />
                 <Text>Location</Text>
                 <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
@@ -151,30 +153,21 @@ const Form = ({ open, handleClose, dispatch }) => {
                 <Text>Description of Business</Text>
                 <Textarea className={classes.textarea} aria-label="description" rowsMin={5} />
                 <Text>Request Details</Text>
-                <Tags canAdd value={tags} onChange={e => setTags(e.target.value)} />
+                <Tags canAdd />
                 <Textarea
-                    className={classes.textarea} aria-label="details" rowsMin={5}
-                    value={description} onChange={e => setDescription(e.target.value)}
+                    className={classes.textarea}
+                    aria-label="details"
+                    rowsMin={5}
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
                 />
             </Content>
             <Actions>
                 <Button variant="outlined" onClick={handleClose}>Cancel</Button>
-                <Button variant="outlined" onClick={handleClose}>
-                    Submit
-                </Button>
+                <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
             </Actions>
         </Dialog>
-        </form>
     );
 };
 
-const mapStateToProps = ({ businesses }) => ({
-    businesses,
-});
-
-const mapDispatchToProps = dispatch => ({
-    dispatch,
-    ...bindActionCreators({ addBusiness }, dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default connect(null, { addBusiness })(Form);

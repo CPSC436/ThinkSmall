@@ -21,6 +21,7 @@ const ButtonNavBar = ({ userType, handleOpen }) => {
                     className={classes.button}
                     variant="outlined"
                     onClick={action}
+                    style={{ fontFamily: 'inherit', fontSize: 'small', marginLeft: 10 }}
                 >
                     {title}
                 </Button>
