@@ -5,6 +5,7 @@ import {
 import { Info } from '@material-ui/icons';
 import { businesses } from '../constant';
 import classes from '../modules/maps.module.css';
+import { Text } from './NavBar/components';
 
 
 function Map() {
@@ -50,13 +51,13 @@ function Map() {
 
 // must wrap the map with some more code for google maps to work
 const WrappedMap = withScriptjs(withGoogleMap(Map));
+// {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
 
 function Maps() {
-    return (
-
+    const displayMap = () => (
         <div style={{ width: '100vw', height: '100vh' }}>
             <WrappedMap
-                googleMapURL="https://maps.googleapis.com/maps/api/js?key=REACT_APP_API_KEY"
+                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=REACT_APP_API_KEY"
                 loadingElement={<div style={{ height: '100%' }} />}
                 containerElement={<div style={{ height: '100%' }} />}
                 mapElement={<div style={{ height: '100%' }} />}
@@ -64,6 +65,10 @@ function Maps() {
             />
         </div>
     );
+
+    return (
+        displayMap()
+ );
 }
 
 export default Maps;

@@ -31,6 +31,7 @@ function App() {
                 </Route>
                 <Route path="/volunteers">
                     <NavBar userType="volunteer" />
+                    <Maps />
                     <VolunteersList volunteers={volunteers} />
                 </Route>
                 <Route path="/inbox">
