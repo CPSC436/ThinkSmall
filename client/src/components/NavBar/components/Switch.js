@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
+import { connect } from 'react-redux';
 import classes from '../../../modules/nav.module.css';
+import { switchView } from '../../../actions/index';
 
 
 const AntSwitch = withStyles(theme => ({
@@ -39,13 +41,15 @@ const AntSwitch = withStyles(theme => ({
     checked: {},
 }))(Switch);
 
-export default function SmallSwitch() {
+function SmallSwitch({ toggleSwitch }) {
     const [state, setState] = React.useState({
         checkedC: false,
     });
 
+
     const handleChange = event => {
         setState({ ...state, [event.target.name]: event.target.checked });
+        toggleSwitch();
     };
 
 
@@ -61,3 +65,10 @@ export default function SmallSwitch() {
         </div>
     );
 }
+
+
+const mapDispatchToProps = dispatch => ({
+        toggleSwitch: () => dispatch(switchView()),
+    });
+
+export default connect(null, mapDispatchToProps)(SmallSwitch);
