@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
@@ -48,9 +48,9 @@ function SmallSwitch({ switchState, toggleSwitch }) {
 
 
     const handleChange = event => {
-        setState({ ...state, checkedC: switchState });
+        // setState({ ...state, checkedC: switchState });
 
-        // setState({ ...state, [event.target.name]: event.target.checked });
+        setState({ ...state, [event.target.name]: event.target.checked });
         toggleSwitch();
     };
 

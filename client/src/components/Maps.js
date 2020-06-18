@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import {
  GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow,
 } from 'react-google-maps';
-import { Info } from '@material-ui/icons';
 import { businesses } from '../constant';
 import classes from '../modules/maps.module.css';
-import { Text } from './NavBar/components';
 
 
 function Map() {
