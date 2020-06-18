@@ -10,41 +10,50 @@ import { Text } from './NavBar/components';
 
 function Map() {
     const [selectedBusiness, setSelectedBusiness] = useState(null);
+    const Markers = () => (
+        <div>
+            {businesses.map(business => (business.needsHelp
+                && (
+                    <Marker
+                        key={business.id}
+                        position={{ lat: business.lat, lng: business.lng }}
+                        onClick={() => {
+                            setSelectedBusiness(business);
+                        }}
+                    />
+                )))}
+        </div>
+
+    );
+
+    const InfoWindows = () => (
+        <div>
+            {selectedBusiness && (
+                <InfoWindow
+                    position={{ lat: selectedBusiness.lat, lng: selectedBusiness.lng }}
+                    onCloseClick={() => { setSelectedBusiness(null); }}
+                >
+                    <div className={classes.root}>
+                        <h3>{selectedBusiness.storeName}</h3>
+                        <h4>
+                            Address:
+                            {selectedBusiness.streetAddress}
+                        </h4>
+
+                        {/* <img src={selectedBusiness.avatar} alt=""/> */}
+                    </div>
+                </InfoWindow>
+            )}
+        </div>
+    );
 
     return (
         <GoogleMap
-        defaultZoom={11.5}
-        defaultCenter={{ lat: 49.282730, lng: -123.120735 }}
+            defaultZoom={11.5}
+            defaultCenter={{ lat: 49.282730, lng: -123.120735 }}
         >
-            {businesses.map(business => (business.needsHelp
-                && (
-                <Marker
-                    key={business.id}
-                    position={{ lat: business.lat, lng: business.lng }}
-                    onClick={() => {
-                        setSelectedBusiness(business);
-                    }}
-                />
-)))}
-
-            {selectedBusiness && (
-            <InfoWindow
-                position={{ lat: selectedBusiness.lat, lng: selectedBusiness.lng }}
-                onCloseClick={() => {
-                    setSelectedBusiness(null);
-                }}
-            >
-                <div className={classes.root}>
-                    <h3>{selectedBusiness.storeName}</h3>
-                    <h4>
-                        Address:
-                        {selectedBusiness.streetAddress}
-                    </h4>
-                    {/* <img src={selectedBusiness.avatar} alt=""/> */}
-
-                </div>
-            </InfoWindow>
-        )}
+            <Markers />
+            <InfoWindows />
         </GoogleMap>
 );
 }
@@ -56,7 +65,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 // ask about witch and why display map cant be componentized
 
 function Maps() {
-    const displayMap = () => (
+    const DisplayMap = () => (
         <div style={{ width: '100vw', height: '100vh' }}>
             <WrappedMap
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
@@ -69,7 +78,7 @@ function Maps() {
     );
 
     return (
-        displayMap()
+        <DisplayMap />
  );
 }
 
