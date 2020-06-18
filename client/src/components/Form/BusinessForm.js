@@ -21,9 +21,8 @@ import {
     LoadingIndicator,
     Text,
 } from './components';
-import Tags from '../Tags/Tags';
 import classes from '../../modules/form.module.css';
-import { addBusiness, saveRequest } from '../../actions';
+import { addBusiness, closeForm } from '../../actions';
 
 const styles = {
     active: {
@@ -42,7 +41,7 @@ const styles = {
     },
 };
 
-const Form = ({ open, handleClose, addBusiness, saveRequest }) => {
+const Form = ({ open = false, closeForm, addBusiness }) => {
     const [address, setAddress] = useState('');
     const [storeName, setStoreName] = useState('');
     const [avatar, setAvatar] = useState();
@@ -51,7 +50,7 @@ const Form = ({ open, handleClose, addBusiness, saveRequest }) => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const handleSelect = address => {
+    const onSelect = address => {
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
             .then(latLng => console.log('Success', latLng))
@@ -59,18 +58,17 @@ const Form = ({ open, handleClose, addBusiness, saveRequest }) => {
             .catch(error => console.error('Error', error));
     };
 
-    const handleSubmit = e => {
-        const request = {
-            id: 411,
-            details: '',
-            tags: [{ label: 'Call for Designers' }, { label: 'Clothing' }],
-        }
-        saveRequest(request);
+    const onClose = () => {
+        setAddress('');
+        setStoreName('');
+        setAvatar('');
+        setDescription('');
+        closeForm('business');
+    }
+
+    const onSubmit = e => {
         addBusiness(storeName, avatar, 'Dummy Name', address, description, true, tags);
-        handleClose();
-        // setDescription('');
-        // setStoreName('');
-        // setAddress('');
+        onClose();
     };
 
     const Suggestions = ({ loading, suggestions, getSuggestionItemProps }) => (
@@ -111,19 +109,23 @@ const Form = ({ open, handleClose, addBusiness, saveRequest }) => {
         </div>
     );
 
-    const onDrop = picture => setAvatar(picture[0].name);
+    const onDrop = files => {
+        const reader = new FileReader();
+        reader.onload = e => setAvatar(e.target.result);
+        reader.readAsDataURL(files[0]);
+    }
 
     return (
         <Dialog
             fullScreen={fullScreen}
             open={open}
-            aria-labelledby="request-form"
+            aria-labelledby="business-form"
         >
-            <Title id="request-form" disableTypography>File a new request</Title>
+            <Title id="business-form" disableTypography>Add a new business</Title>
             <Content>
                 <ContentText>
                     To help us best understand your situation,
-                    please provide details and type of help required of your business.
+                    please provide details of your business.
                 </ContentText>
                 <Text>Name of Business</Text>
                 <Input
@@ -144,27 +146,26 @@ const Form = ({ open, handleClose, addBusiness, saveRequest }) => {
                     withPreview
                 />
                 <Text>Location</Text>
-                <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
+                <PlacesAutocomplete value={address} onChange={setAddress} onSelect={onSelect}>
                     {PlacesInput}
                 </PlacesAutocomplete>
                 <Text>Description of Business</Text>
-                <Textarea className={classes.textarea} aria-label="description" rowsMin={5} />
-                <Text>Request Details</Text>
-                <Tags canAdd />
                 <Textarea
                     className={classes.textarea}
-                    aria-label="details"
+                    aria-label="description"
                     rowsMin={5}
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
             </Content>
             <Actions>
-                <Button variant="outlined" onClick={handleClose}>Cancel</Button>
-                <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+                <Button variant="outlined" onClick={onClose}>Cancel</Button>
+                <Button variant="outlined" onClick={onSubmit}>Submit</Button>
             </Actions>
         </Dialog>
     );
 };
 
-export default connect(null, { addBusiness, saveRequest })(Form);
+const mapStateToProps = ({ forms }) => ({ open: forms.business })
+
+export default connect(mapStateToProps, { addBusiness, closeForm })(Form);

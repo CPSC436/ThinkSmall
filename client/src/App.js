@@ -9,7 +9,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faPaperPlane, faBars } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import Home from './components/Home';
-import Form from './components/Form/Form';
+import BusinessForm from './components/Form/BusinessForm';
+import RequestForm from './components/Form/RequestForm';
 import VolunteerForm from './components/Form/VolunteerForm';
 import Inbox from './components/Inbox/Inbox';
 import BusinessesList from './components/BusinessesList';
@@ -21,21 +22,21 @@ import Maps from './components/Maps';
 
 library.add(fab, faPaperPlane, faBars);
 
-function App({ switchState }) {
-    const [open, setOpen] = useState(false);
-    const [volunteerOpen, setVolunteerOpen] = useState(false);
-
+function App() {
     return (
         <Router>
             <Switch>
                 <Route path="/businesses">
-                    <NavBar userType="business" handleOpen={() => setOpen(true)} />
+                    <NavBar userType="business" />
                     {switchState ? <Maps /> : <BusinessesList businesses={businesses} />}
                     <BusinessesList />
+                    <BusinessForm />
+                    <RequestForm />
                 </Route>
                 <Route path="/volunteers">
                     <NavBar userType="volunteer" />
                     <VolunteersList />
+                    <VolunteerForm />
                 </Route>
                 <Route path="/inbox">
                     <Inbox />
@@ -45,9 +46,7 @@ function App({ switchState }) {
                     <Home />
                 </Route>
             </Switch>
-            <Form open={open} handleClose={() => setOpen(false)} />
-            <VolunteerForm open={volunteerOpen} handleClose={() => setVolunteerOpen(false)} />
-        </Router>
+        </Router >
     );
 }
 

@@ -8,6 +8,8 @@ export const ADD_VOLUNTEER = 'ADD_VOLUNTEER';
 export const DELETE_VOLUNTEER = 'DELETE_VOLUNTEER';
 export const EDIT_VOLUNTEER = 'EDIT_VOLUNTEER';
 export const SAVE_REQUEST = 'SAVE_REQUEST';
+export const OPEN_FORM = 'OPEN_FORM';
+export const CLOSE_FORM = 'CLOSE_FORM';
 
 export const push = (uid, iid, message) => ({
     type: PUSH_MESSAGE,
@@ -76,7 +78,18 @@ export const editVolunteer = (id, volunteerName, avatar, description, tags) => (
     description,
     tags,
 });
+
 export const saveRequest = request => ({
     type: SAVE_REQUEST,
     request,
+})
+
+export const openForm = id => ({
+    type: OPEN_FORM,
+    id,
+})
+
+export const closeForm = id => ({
+    type: CLOSE_FORM,
+    id,
 })

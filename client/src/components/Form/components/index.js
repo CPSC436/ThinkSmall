@@ -4,6 +4,7 @@ import ContentText from './ContentText';
 import Input from './Input';
 import LoadingIndicator from './LoadingIndicator';
 import Text from './Text';
+import { Select, MenuItem } from './Select';
 
 export {
     Actions,
@@ -11,5 +12,7 @@ export {
     ContentText,
     Input,
     LoadingIndicator,
+    MenuItem,
+    Select,
     Text,
 };
