@@ -138,15 +138,8 @@ export default combineReducers({
                 return [...businesses, { ...action, id }];
             }
             case DELETE_BUSINESS: {
-                const updatedBusinesses = [...businesses];
-                let index = null;
-                for (let i = 0; i < updatedBusinesses.length; i += 1) {
-                    if (updatedBusinesses[i].id === action.id) {
-                        index = i;
-                        break;
-                    }
-                }
-                return updatedBusinesses.splice(index, 1);
+                console.log('INSIDE DELETE REDUCER!!!');
+                return [...businesses.filter(el => el.id !== action.id)];
             }
             case TOGGLE_HELP: {
                 const updatedBusinesses = [...businesses];

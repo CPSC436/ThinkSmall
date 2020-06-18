@@ -114,6 +114,7 @@ const Form = ({
         setAddress('');
         setTags([]);
         setAvatar();
+        setTags([]);
     };
 
     const onDrop = picture => setAvatar(picture[0].name);

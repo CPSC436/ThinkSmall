@@ -37,8 +37,8 @@ const BusinessesList = ({ businesses }) => {
                     .map(({ id, ...props }) => (
                         <BusinessCard
                             key={id}
-                            {...props}
-                            id={id}
+                            {...{ ...props, id }}
+                            // id={id}
                         />
                     ))}
             </div>
