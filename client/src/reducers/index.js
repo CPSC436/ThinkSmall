@@ -130,7 +130,6 @@ export default combineReducers({
         switch (action.type) {
             case SWITCH_VIEW:
                 const updatedSwitchState = !initialSwitchState;
-               alert(updatedSwitchState);
                 return updatedSwitchState;
             default:
                 return initialSwitchState;

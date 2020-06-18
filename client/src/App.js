@@ -7,6 +7,7 @@ import {
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faPaperPlane, faBars } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
 import Home from './components/Home';
 import Form from './components/Form/Form';
 import Inbox from './components/Inbox/Inbox';
@@ -17,9 +18,10 @@ import { businesses, volunteers } from './constant';
 import './App.css';
 import Maps from './components/Maps';
 
+
 library.add(fab, faPaperPlane, faBars);
 
-function App() {
+function App({ switchState }) {
     const [open, setOpen] = useState(false);
 
     return (
@@ -31,8 +33,8 @@ function App() {
                 </Route>
                 <Route path="/volunteers">
                     <NavBar userType="volunteer" />
-                    <Maps />
-                    <VolunteersList volunteers={volunteers} />
+                    {switchState ? <Maps />
+                       : <VolunteersList volunteers={volunteers} />}
                 </Route>
                 <Route path="/inbox">
                     <Inbox />
@@ -47,4 +49,8 @@ function App() {
     );
 }
 
-export default App;
+const mapStateToProps = state => ({
+        switchState: state.switchView,
+    });
+
+export default connect(mapStateToProps)(App);
