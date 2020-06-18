@@ -7,4 +7,4 @@ export default (conversation = 0, action) => {
         default:
             return conversation;
     }
-}
+};

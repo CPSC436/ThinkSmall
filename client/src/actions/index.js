@@ -82,14 +82,14 @@ export const editVolunteer = (id, volunteerName, avatar, description, tags) => (
 export const saveRequest = request => ({
     type: SAVE_REQUEST,
     request,
-})
+});
 
 export const openForm = id => ({
     type: OPEN_FORM,
     id,
-})
+});
 
 export const closeForm = id => ({
     type: CLOSE_FORM,
     id,
-})
+});

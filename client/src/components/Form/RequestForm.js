@@ -4,15 +4,15 @@ import {
     Dialog, DialogTitle as Title,
     TextareaAutosize as Textarea,
 } from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { SelectedChip } from '../Tags/components';
 import {
     Actions,
     Select, MenuItem,
     Content, ContentText, Text,
 } from './components';
-import { SelectedChip } from '../Tags/components';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
 import Tags from '../Tags/Tags';
 import classes from '../../modules/form.module.css';
 import { addBusiness, saveRequest, closeForm } from '../../actions';
@@ -27,7 +27,7 @@ const Form = ({ open = false, closeForm, saveRequest }) => {
         setDetails('');
         setTags([]);
         closeForm('request');
-    }
+    };
 
     const onSubmit = e => {
         saveRequest({ details, tags });
@@ -38,7 +38,7 @@ const Form = ({ open = false, closeForm, saveRequest }) => {
     const businesses = [
         { storeName: 'Hunter & Hare' },
         { storeName: 'Sushi California' },
-    ]
+    ];
 
     return (
         <Dialog
@@ -70,7 +70,7 @@ const Form = ({ open = false, closeForm, saveRequest }) => {
                 <Button variant="outlined" onClick={onClose}>Cancel</Button>
                 <Button variant="outlined" onClick={onSubmit}>Submit</Button>
             </Actions>
-        </Dialog >
+        </Dialog>
     );
 };
 

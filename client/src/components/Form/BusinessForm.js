@@ -64,7 +64,7 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
         setAvatar('');
         setDescription('');
         closeForm('business');
-    }
+    };
 
     const onSubmit = e => {
         addBusiness(storeName, avatar, 'Dummy Name', address, description, true, tags);
@@ -113,7 +113,7 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
         const reader = new FileReader();
         reader.onload = e => setAvatar(e.target.result);
         reader.readAsDataURL(files[0]);
-    }
+    };
 
     return (
         <Dialog
@@ -166,6 +166,6 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
     );
 };
 
-const mapStateToProps = ({ forms }) => ({ open: forms.business })
+const mapStateToProps = ({ forms }) => ({ open: forms.business });
 
 export default connect(mapStateToProps, { addBusiness, closeForm })(Form);

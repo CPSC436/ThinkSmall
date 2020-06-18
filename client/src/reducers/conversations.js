@@ -16,4 +16,4 @@ export default (conversations = defaultConversations, action) => {
         default:
             return conversations;
     }
-}
+};
