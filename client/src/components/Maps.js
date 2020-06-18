@@ -36,11 +36,10 @@ function Map() {
                     <div className={classes.root}>
                         <h3>{selectedBusiness.storeName}</h3>
                         <h4>
-                            Address:
+                            Address:&nbsp;
                             {selectedBusiness.streetAddress}
                         </h4>
-
-                        {/* <img src={selectedBusiness.avatar} alt=""/> */}
+                        <img className={classes.avatar} src={selectedBusiness.avatar} alt="" />
                     </div>
                 </InfoWindow>
             )}

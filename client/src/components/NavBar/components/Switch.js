@@ -41,14 +41,16 @@ const AntSwitch = withStyles(theme => ({
     checked: {},
 }))(Switch);
 
-function SmallSwitch({ toggleSwitch }) {
+function SmallSwitch({ switchState, toggleSwitch }) {
     const [state, setState] = React.useState({
         checkedC: false,
     });
 
 
     const handleChange = event => {
-        setState({ ...state, [event.target.name]: event.target.checked });
+        setState({ ...state, checkedC: switchState });
+
+        // setState({ ...state, [event.target.name]: event.target.checked });
         toggleSwitch();
     };
 
@@ -60,15 +62,17 @@ function SmallSwitch({ toggleSwitch }) {
                 <Grid item>
                     <AntSwitch checked={state.checkedC} onChange={handleChange} name="checkedC" />
                 </Grid>
-                <Grid item>Grid View</Grid>
+                <Grid item>Map View</Grid>
             </Grid>
         </div>
     );
 }
 
-
+const mapStateToProps = state => ({
+    switchState: state.switchView,
+});
 const mapDispatchToProps = dispatch => ({
         toggleSwitch: () => dispatch(switchView()),
     });
 
-export default connect(null, mapDispatchToProps)(SmallSwitch);
+export default connect(mapStateToProps, mapDispatchToProps)(SmallSwitch);
