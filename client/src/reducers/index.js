@@ -142,6 +142,7 @@ export default combineReducers({
                 return [...businesses.filter(el => el.id !== action.id)];
             }
             case TOGGLE_HELP: {
+                console.log('INSIDE TOGGLE REDUCER!!!');
                 const updatedBusinesses = [...businesses];
                 let index = null;
                 for (let i = 0; i < updatedBusinesses.length; i += 1) {

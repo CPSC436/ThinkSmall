@@ -23,9 +23,8 @@ const Text = withStyles({
 
 const BusinessCard = ({
     avatar, storeName, tags = [], description, storeOwner, location, needsHelp, id,
+                          deleteBusiness, helpToggle,
 }) => {
-    const [selected, setSelected] = React.useState(needsHelp);
-
     return (
         <Card className={classes.root}>
             <CardMedia
@@ -51,19 +50,15 @@ const BusinessCard = ({
                 <ToggleButton
                     size="small"
                     value="check"
-                    selected={selected}
                     onChange={() => {
-                        setSelected(!selected);
+                        helpToggle(id);
                     }}
-                    // onChange={() => {
-                    //     helpToggle(id);
-                    // }}
                 >
                     Help Needed
                     <CheckIcon />
                 </ToggleButton>
                 </div>
-                {selected && (
+                {needsHelp && (
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
                         <Button size="small" color="primary" target="_blank">Help Details</Button>
                         <Button size="small" color="primary" target="_blank">Contact Owner</Button>
