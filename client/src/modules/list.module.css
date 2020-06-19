@@ -7,6 +7,12 @@
     margin: 50px auto;
 }
 
+.page {
+    width: 100%;
+    display: flex; 
+    flex-direction: row-reverse;
+}
+
 .container {
     display: flex;
     flex-flow: row wrap;
