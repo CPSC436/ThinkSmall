@@ -17,23 +17,6 @@ import {
 import Tags from '../Tags/Tags';
 import classes from '../../modules/form.module.css';
 
-const styles = {
-    active: {
-        backgroundColor: '#fafafa',
-        cursor: 'pointer',
-        padding: '7.5px 10px',
-        fontSize: 'small',
-        borderRadius: 4,
-    },
-    inactive: {
-        backgroundColor: '#ffffff',
-        cursor: 'pointer',
-        padding: '7.5px 10px',
-        fontSize: 'small',
-        borderRadius: 4,
-    },
-};
-
 const VolunteerForm = ({ open, handleClose }) => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -42,9 +25,9 @@ const VolunteerForm = ({ open, handleClose }) => {
         <Dialog
             fullScreen={fullScreen}
             open={open}
-            aria-labelledby="request-form"
+            aria-labelledby="volunteer-form"
         >
-            <Title id="request-form" disableTypography>Volunteer Registration Form</Title>
+            <Title id="volunteer-form" disableTypography>Volunteer Registration Form</Title>
             <Content>
                 <ContentText>
                     To help small businesses with your talent,
@@ -56,7 +39,7 @@ const VolunteerForm = ({ open, handleClose }) => {
                 <Tags canAdd />
                 <Textarea className={classes.textarea} aria-label="description" rowsMin={5} />
                 <Text>Portfolio or resume link</Text>
-                <Textarea className={classes.textarea} aria-label="details" rowsMin={5} />
+                <Input autoFocus margin="dense" fullWidth placeholder="http://" />
             </Content>
             <Actions>
                 <Button variant="outlined" onClick={handleClose}>Cancel</Button>
