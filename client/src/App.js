@@ -22,14 +22,13 @@ import Maps from './components/Maps';
 
 library.add(fab, faPaperPlane, faBars);
 
-function App() {
+function App({ switchState }) {
     return (
         <Router>
             <Switch>
                 <Route path="/businesses">
                     <NavBar userType="business" />
-                    {switchState ? <Maps /> : <BusinessesList businesses={businesses} />}
-                    <BusinessesList />
+                    {switchState ? <Maps /> : <BusinessesList />}
                     <BusinessForm />
                     <RequestForm />
                 </Route>
@@ -50,8 +49,6 @@ function App() {
     );
 }
 
-const mapStateToProps = state => ({
-    switchState: state.switchView,
-});
+const mapStateToProps = ({ switchState }) => ({ switchState });
 
 export default connect(mapStateToProps)(App);

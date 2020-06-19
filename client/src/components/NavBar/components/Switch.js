@@ -4,7 +4,7 @@ import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import classes from '../../../modules/nav.module.css';
-import { switchView } from '../../../actions/index';
+import { switchView } from '../../../actions';
 
 
 const AntSwitch = withStyles(theme => ({
@@ -60,11 +60,9 @@ function SmallSwitch({ switchState, toggleSwitch }) {
     );
 }
 
-const mapStateToProps = state => ({
-    switchState: state.switchView,
-});
+const mapStateToProps = ({ switchState }) => ({ switchState });
 const mapDispatchToProps = dispatch => ({
-        toggleSwitch: () => dispatch(switchView()),
-    });
+    toggleSwitch: () => dispatch(switchView()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SmallSwitch);

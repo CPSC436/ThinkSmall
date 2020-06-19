@@ -5,9 +5,8 @@ import conversation from './conversation';
 import conversations from './conversations';
 import forms from './forms';
 import requests from './requests';
+import switchState from './switchState';
 import users from './users';
-
-const defaultSwitchState = false;
 
 export default combineReducers({
     businesses,
@@ -16,13 +15,6 @@ export default combineReducers({
     conversations,
     forms,
     requests,
-    switchView: (switchState = defaultSwitchState, action) => {
-        switch (action.type) {
-            case SWITCH_VIEW:
-                return !switchState;
-            default:
-                return switchState;
-        }
-    },
+    switchState,
     users,
 });

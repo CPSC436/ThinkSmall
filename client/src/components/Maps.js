@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import {
     GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow,
 } from 'react-google-maps';
-import { businesses } from '../constant';
+import { defaultBusinesses as businesses } from '../constant';
 import classes from '../modules/maps.module.css';
 
 
 function Map() {
     const [selectedBusiness, setSelectedBusiness] = useState(null);
+    console.log(businesses);
     const Markers = () => (
         <div>
             {businesses.map(business => (business.needsHelp
@@ -21,7 +22,6 @@ function Map() {
                     />
                 )))}
         </div>
-
     );
 
     const InfoWindows = () => (
