@@ -1,5 +1,7 @@
-import { ADD_BUSINESS, DELETE_BUSINESS, EDIT_BUSINESS } from '../actions';
+import { ADD_BUSINESS, DELETE_BUSINESS, EDIT_BUSINESS, TOGGLE_HELP } from '../actions';
 import { defaultBusinesses } from '../constant';
+
+const businessFields = 7;
 
 export default (businesses = defaultBusinesses, action) => {
     switch (action.type) {
@@ -8,8 +10,18 @@ export default (businesses = defaultBusinesses, action) => {
             return [...businesses, { ...action, id }];
         }
         case DELETE_BUSINESS: {
+            return [...businesses.filter(el => el.id !== action.id)];
+        }
+        case TOGGLE_HELP: {
             const updatedBusinesses = [...businesses];
-            delete updatedBusinesses[action.id];
+            let index = null;
+            for (let i = 0; i < updatedBusinesses.length; i += 1) {
+                if (updatedBusinesses[i].id === action.id) {
+                    index = i;
+                    break;
+                }
+            }
+            updatedBusinesses[index].needsHelp = !updatedBusinesses[index].needsHelp;
             return updatedBusinesses;
         }
         case EDIT_BUSINESS: {
@@ -27,7 +39,7 @@ export default (businesses = defaultBusinesses, action) => {
                 tags];
             for (let i = 0; i < editedBusinesses.length; i += 1) {
                 if (editedBusinesses[i].id === id) {
-                    for (let j = 0; j < 7; j += 1) {
+                    for (let j = 0; j < businessFields; j += 1) {
                         editedBusinesses[i].properties[j] = properties[j];
                     }
                     break;

@@ -35,7 +35,7 @@ const BusinessesList = ({ businesses }) => {
                 {businesses && businesses
                     .slice((currentPage - 1) * 6, currentPage * 6)
                     .map(({ id, ...props }) => (
-                        <BusinessCard key={id} {...props} />
+                        <BusinessCard key={id} id={id} {...props} />
                     ))}
             </div>
         </div>

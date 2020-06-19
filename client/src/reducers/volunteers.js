@@ -1,6 +1,8 @@
 import { ADD_VOLUNTEER, DELETE_VOLUNTEER, EDIT_VOLUNTEER } from '../actions';
 import { defaultVolunteers } from '../constant';
 
+const volunteerFields = 4;
+
 export default (volunteers = defaultVolunteers, action) => {
     switch (action.type) {
         case ADD_VOLUNTEER: {
@@ -41,7 +43,7 @@ export default (volunteers = defaultVolunteers, action) => {
             ];
             for (let i = 0; i < editedVolunteers.length; i += 1) {
                 if (editedVolunteers[i].id === id) {
-                    for (let j = 0; j < 4; j += 1) {
+                    for (let j = 0; j < volunteerFields; j += 1) {
                         editedVolunteers[i].properties[j] = properties[j];
                     }
                     break;

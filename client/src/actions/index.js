@@ -10,6 +10,7 @@ export const EDIT_VOLUNTEER = 'EDIT_VOLUNTEER';
 export const SAVE_REQUEST = 'SAVE_REQUEST';
 export const OPEN_FORM = 'OPEN_FORM';
 export const CLOSE_FORM = 'CLOSE_FORM';
+export const TOGGLE_HELP = 'TOGGLE_HELP';
 
 export const push = (uid, iid, message) => ({
     type: PUSH_MESSAGE,
@@ -41,6 +42,11 @@ export const addBusiness = (storeName, avatar, storeOwner, location, description
 
 export const deleteBusiness = id => ({
     type: DELETE_BUSINESS,
+    id,
+});
+
+export const helpToggle = id => ({
+    type: TOGGLE_HELP,
     id,
 });
 
