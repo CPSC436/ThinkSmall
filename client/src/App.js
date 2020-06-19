@@ -19,7 +19,6 @@ import NavBar from './components/NavBar/NavBar';
 import './App.css';
 import Maps from './components/Maps';
 
-
 library.add(fab, faPaperPlane, faBars);
 
 function App({ switchState }) {
@@ -45,7 +44,7 @@ function App({ switchState }) {
                     <Home />
                 </Route>
             </Switch>
-        </Router >
+        </Router>
     );
 }
 

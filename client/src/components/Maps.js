@@ -5,7 +5,6 @@ import {
 import { defaultBusinesses as businesses } from '../constant';
 import classes from '../modules/maps.module.css';
 
-
 function Map() {
     const [selectedBusiness, setSelectedBusiness] = useState(null);
     console.log(businesses);

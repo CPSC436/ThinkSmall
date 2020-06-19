@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import classes from '../../../modules/nav.module.css';
 import { switchView } from '../../../actions';
 
-
 const AntSwitch = withStyles(theme => ({
     root: {
         width: 28,
@@ -45,7 +44,6 @@ function SmallSwitch({ switchState, toggleSwitch }) {
     const handleChange = event => {
         toggleSwitch();
     };
-
 
     return (
         <div className={classes.button}>
