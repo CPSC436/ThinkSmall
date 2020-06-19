@@ -28,16 +28,9 @@ export const switchView = () => ({
     type: SWITCH_VIEW,
 });
 
-export const addBusiness = (storeName, avatar, storeOwner, location, description,
-    needsHelp, tags) => ({
+export const addBusiness = business => ({
     type: ADD_BUSINESS,
-    storeName,
-    avatar,
-    storeOwner,
-    location,
-    description,
-    needsHelp,
-    tags,
+    business,
 });
 
 export const deleteBusiness = id => ({

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -6,7 +6,9 @@ import {
 } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faPaperPlane, faBars } from '@fortawesome/free-solid-svg-icons';
+import {
+    faPaperPlane, faBars, faList, faMapMarkedAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import Home from './components/Home';
 import BusinessForm from './components/Form/BusinessForm';
@@ -19,7 +21,7 @@ import NavBar from './components/NavBar/NavBar';
 import './App.css';
 import Maps from './components/Maps';
 
-library.add(fab, faPaperPlane, faBars);
+library.add(fab, faPaperPlane, faBars, faList, faMapMarkedAlt);
 
 function App({ switchState }) {
     return (

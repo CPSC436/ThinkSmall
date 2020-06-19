@@ -7,7 +7,6 @@ import {
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { SelectedChip } from '../Tags/components';
 import {
     Actions,
     Select, MenuItem,
@@ -54,7 +53,11 @@ const Form = ({ open = false, closeForm, saveRequest }) => {
                 </ContentText>
                 <Text>Which business of yours do you need help with?</Text>
                 <Select variant="outlined" defaultValue="" value={business} onChange={e => setBusiness(e.target.value)}>
-                    {businesses.map(({ storeName }, i) => <MenuItem key={i} value={storeName} dense>{storeName}</MenuItem>)}
+                    {businesses.map(({ storeName }, i) => (
+                        <MenuItem key={i} value={storeName} dense>
+                            {storeName}
+                        </MenuItem>
+                    ))}
                 </Select>
                 <Text>Request Details</Text>
                 <Tags canAdd />

@@ -7,7 +7,6 @@ import classes from '../modules/maps.module.css';
 
 function Map() {
     const [selectedBusiness, setSelectedBusiness] = useState(null);
-    console.log(businesses);
     const Markers = () => (
         <div>
             {businesses.map(business => (business.needsHelp
@@ -68,14 +67,11 @@ function Maps() {
                 loadingElement={<div style={{ height: '100%' }} />}
                 containerElement={<div style={{ height: '100%' }} />}
                 mapElement={<div style={{ height: '100%' }} />}
-
             />
         </div>
     );
 
-    return (
-        <DisplayMap />
-    );
+    return <DisplayMap />;
 }
 
 export default Maps;

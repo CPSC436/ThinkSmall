@@ -22,7 +22,8 @@ const Text = withStyles({
 })(Typography);
 
 const BusinessCard = ({
-    avatar, storeName, tags = [], description, storeOwner, location, needsHelp, deleteBusiness, helpToggle, id,
+    id, avatar, storeName, tags = [], description, storeOwner, location, needsHelp,
+    deleteBusiness, helpToggle,
 }) => (
     <Card className={classes.root}>
         <CardMedia

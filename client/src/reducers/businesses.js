@@ -8,21 +8,14 @@ const businessFields = 7;
 export default (businesses = defaultBusinesses, action) => {
     switch (action.type) {
     case ADD_BUSINESS: {
-        const id = Math.random();
-        return [...businesses, { ...action, id }];
+        return [...businesses, { ...action.business, id: businesses.length }];
     }
     case DELETE_BUSINESS: {
-        return [...businesses.filter(el => el.id !== action.id)];
+        return [...businesses.filter(({ id }) => id !== action.id)];
     }
     case TOGGLE_HELP: {
         const updatedBusinesses = [...businesses];
-        let index = null;
-        for (let i = 0; i < updatedBusinesses.length; i += 1) {
-            if (updatedBusinesses[i].id === action.id) {
-                index = i;
-                break;
-            }
-        }
+        const index = businesses.findIndex(({ id }) => id === action.id);
         updatedBusinesses[index].needsHelp = !updatedBusinesses[index].needsHelp;
         return updatedBusinesses;
     }

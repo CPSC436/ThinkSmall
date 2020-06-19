@@ -4,25 +4,21 @@ import { connect } from 'react-redux';
 import { useTheme } from '@material-ui/core/styles';
 import {
     Button,
-    Dialog,
-    DialogTitle as Title,
+    Dialog, DialogTitle as Title,
     TextareaAutosize as Textarea,
 } from '@material-ui/core';
 import PlacesAutocomplete, {
-    geocodeByAddress,
-    getLatLng,
+    geocodeByAddress, getLatLng,
 } from 'react-places-autocomplete';
 import ImageUploader from 'react-images-upload';
 import {
     Actions,
-    Content,
-    ContentText,
+    Content, ContentText, Text,
     Input,
     LoadingIndicator,
-    Text,
 } from './components';
-import classes from '../../modules/form.module.css';
 import { addBusiness, closeForm } from '../../actions';
+import classes from '../../modules/form.module.css';
 
 const styles = {
     active: {
@@ -42,7 +38,7 @@ const styles = {
 };
 
 const Form = ({ open = false, closeForm, addBusiness }) => {
-    const [address, setAddress] = useState('');
+    const [location, setLocation] = useState('');
     const [storeName, setStoreName] = useState('');
     const [avatar, setAvatar] = useState();
     const [description, setDescription] = useState('');
@@ -50,25 +46,40 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const onSelect = address => {
-        geocodeByAddress(address)
+    const onSelect = location => {
+        geocodeByAddress(location)
             .then(results => getLatLng(results[0]))
             .then(latLng => console.log('Success', latLng))
-            .then(() => setAddress(address))
+            .then(() => setLocation(location))
             .catch(error => console.error('Error', error));
     };
 
     const onClose = () => {
-        setAddress('');
         setStoreName('');
         setAvatar('');
+        setLocation('');
         setDescription('');
         closeForm('business');
     };
 
     const onSubmit = e => {
-        addBusiness(storeName, avatar, 'Dummy Name', address, description, true, tags);
+        const business = {
+            storeName,
+            avatar,
+            storeOwner: 'Dummy Name',
+            location,
+            description,
+            needsHelp: true,
+            tags,
+        };
+        addBusiness(business);
         onClose();
+    };
+
+    const onDrop = files => {
+        const reader = new FileReader();
+        reader.onload = e => setAvatar(e.target.result);
+        reader.readAsDataURL(files[0]);
     };
 
     const Suggestions = ({ loading, suggestions, getSuggestionItemProps }) => (
@@ -105,15 +116,9 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
                 })}
                 className={classes.input}
             />
-            {address && <Suggestions {...props} />}
+            {location && <Suggestions {...props} />}
         </div>
     );
-
-    const onDrop = files => {
-        const reader = new FileReader();
-        reader.onload = e => setAvatar(e.target.result);
-        reader.readAsDataURL(files[0]);
-    };
 
     return (
         <Dialog
@@ -144,9 +149,10 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
                     imgExtension={['.jpg', '.gif', '.png', '.gif']}
                     maxFileSize={5242880}
                     withPreview
+                    singleImage
                 />
                 <Text>Location</Text>
-                <PlacesAutocomplete value={address} onChange={setAddress} onSelect={onSelect}>
+                <PlacesAutocomplete value={location} onChange={setLocation} onSelect={onSelect}>
                     {PlacesInput}
                 </PlacesAutocomplete>
                 <Text>Description of Business</Text>
