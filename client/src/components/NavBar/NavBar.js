@@ -51,7 +51,7 @@ function NavBar({ userType, handleOpen }) {
                                 <>
                                     <AccountInfo />
                                     <ButtonNavBar userType={userType} handleOpen={handleOpen} />
-                                    {userType === 'volunteer' && (
+                                    {userType === 'business' && (
                                         <Switch />
                                     )}
                                 </>
@@ -69,7 +69,7 @@ function NavBar({ userType, handleOpen }) {
                 }}
             >
                 <Links />
-                {userType === 'volunteer' && (
+                {userType === 'business' && (
                     <Switch />
                 )}
             </Drawer>

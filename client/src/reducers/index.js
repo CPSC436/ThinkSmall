@@ -99,7 +99,7 @@ const defaultConversations = [
     },
 ];
 
-const switchState = false;
+const defaultSwitchState = false;
 
 export default combineReducers({
     users: (users = defaultUsers, action) => users,
@@ -126,13 +126,12 @@ export default combineReducers({
                 return conversation;
         }
     },
-    switchView: (initialSwitchState = switchState, action) => {
+    switchView: (switchState = defaultSwitchState, action) => {
         switch (action.type) {
             case SWITCH_VIEW:
-                const updatedSwitchState = !initialSwitchState;
-                return updatedSwitchState;
+                return !switchState;
             default:
-                return initialSwitchState;
+                return switchState;
         }
     },
 });

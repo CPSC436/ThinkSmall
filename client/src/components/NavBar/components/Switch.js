@@ -42,15 +42,7 @@ const AntSwitch = withStyles(theme => ({
 }))(Switch);
 
 function SmallSwitch({ switchState, toggleSwitch }) {
-    const [state, setState] = React.useState({
-        checkedC: false,
-    });
-
-
     const handleChange = event => {
-        // setState({ ...state, checkedC: switchState });
-
-        setState({ ...state, [event.target.name]: event.target.checked });
         toggleSwitch();
     };
 
@@ -60,7 +52,7 @@ function SmallSwitch({ switchState, toggleSwitch }) {
             <Grid component="label" container alignItems="center" spacing={1}>
                 <Grid item>List View</Grid>
                 <Grid item>
-                    <AntSwitch checked={state.checkedC} onChange={handleChange} name="checkedC" />
+                    <AntSwitch checked={switchState} onChange={handleChange} name="checkedC" />
                 </Grid>
                 <Grid item>Map View</Grid>
             </Grid>

@@ -29,12 +29,12 @@ function App({ switchState }) {
             <Switch>
                 <Route path="/businesses">
                     <NavBar userType="business" handleOpen={() => setOpen(true)} />
-                    <BusinessesList businesses={businesses} />
+                    {switchState ? <Maps />
+                        : <BusinessesList businesses={businesses} />}
                 </Route>
                 <Route path="/volunteers">
                     <NavBar userType="volunteer" />
-                    {switchState ? <Maps />
-                       : <VolunteersList volunteers={volunteers} />}
+                    <VolunteersList volunteers={volunteers} />
                 </Route>
                 <Route path="/inbox">
                     <Inbox />
