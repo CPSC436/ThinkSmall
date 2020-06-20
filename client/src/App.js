@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -6,42 +6,35 @@ import {
 } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faPaperPlane, faBars } from '@fortawesome/free-solid-svg-icons';
+import {
+    faPaperPlane, faBars, faList, faMapMarkedAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
-import Home from './components/Home';
-import Form from './components/Form/Form';
-<<<<<<< HEAD
 import Inbox from './components/inbox/Inbox';
-import List from './components/List';
-=======
 import VolunteerForm from './components/Form/VolunteerForm';
 import Inbox from './components/Inbox/Inbox';
 import BusinessesList from './components/BusinessesList';
 import VolunteersList from './components/VolunteersList';
->>>>>>> 2a9f6c74539f3139f820c54e95748e0e2fae6b6f
 import NavBar from './components/NavBar/NavBar';
-import { businesses, volunteers } from './constant';
 import './App.css';
 import Maps from './components/Maps';
 
-
-library.add(fab, faPaperPlane, faBars);
+library.add(fab, faPaperPlane, faBars, faList, faMapMarkedAlt);
 
 function App({ switchState }) {
-    const [open, setOpen] = useState(false);
-    const [volunteerOpen, setVolunteerOpen] = useState(false);
-
     return (
         <Router>
             <Switch>
                 <Route path="/businesses">
-                    <NavBar userType="business" handleOpen={() => setOpen(true)} />
-                    {switchState ? <Maps />
-                        : <BusinessesList businesses={businesses} />}
+                    <NavBar userType="business" />
+                    {switchState ? <Maps /> : <BusinessesList />}
+                    <BusinessForm />
+                    <RequestForm />
                 </Route>
                 <Route path="/volunteers">
-                    <NavBar userType="volunteer" handleOpen={() => setVolunteerOpen(true)} />
-                    <VolunteersList volunteers={volunteers} />
+                    <NavBar userType="volunteer" />
+                    <VolunteersList />
+                    <VolunteerForm />
                 </Route>
                 <Route path="/inbox">
                     <Inbox />
@@ -51,14 +44,10 @@ function App({ switchState }) {
                     <Home />
                 </Route>
             </Switch>
-            <Form open={open} handleClose={() => setOpen(false)} />
-            <VolunteerForm open={volunteerOpen} handleClose={() => setVolunteerOpen(false)} />
         </Router>
     );
 }
 
-const mapStateToProps = state => ({
-        switchState: state.switchView,
-    });
+const mapStateToProps = ({ switchState }) => ({ switchState });
 
 export default connect(mapStateToProps)(App);
