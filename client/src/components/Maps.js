@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import {
     GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow,
 } from 'react-google-maps';
-import { defaultBusinesses as businesses } from '../constant';
+import { connect } from 'react-redux';
+// import { defaultBusinesses as businesses } from '../constant';
 import classes from '../modules/maps.module.css';
 
-function Map() {
+function Map(businessesObj) {
     const [selectedBusiness, setSelectedBusiness] = useState(null);
+    const businesses = businessesObj.businessesObj;
     const Markers = () => (
         <div>
             {businesses.map(business => (business.needsHelp
@@ -53,13 +55,10 @@ function Map() {
     );
 }
 
-// must wrap the map with some more code for google maps to work
 const WrappedMap = withScriptjs(withGoogleMap(Map));
 const API_KEY = process.env.REACT_APP_API_KEY;
-// {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
-// ask about witch and why display map cant be componentized
 
-function Maps() {
+function Maps({ businesses }) {
     const DisplayMap = () => (
         <div style={{ width: '100vw', height: '100vh' }}>
             <WrappedMap
@@ -67,11 +66,13 @@ function Maps() {
                 loadingElement={<div style={{ height: '100%' }} />}
                 containerElement={<div style={{ height: '100%' }} />}
                 mapElement={<div style={{ height: '100%' }} />}
+                businessesObj={businesses}
             />
         </div>
     );
 
     return <DisplayMap />;
 }
+const mapStateToProps = ({ businesses }) => ({ businesses });
 
-export default Maps;
+export default connect(mapStateToProps)(Maps);
