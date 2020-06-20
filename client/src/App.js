@@ -10,7 +10,9 @@ import {
     faPaperPlane, faBars, faList, faMapMarkedAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
-import Inbox from './components/inbox/Inbox';
+import Home from './components/Home';
+import BusinessForm from './components/Form/BusinessForm';
+import RequestForm from './components/Form/RequestForm';
 import VolunteerForm from './components/Form/VolunteerForm';
 import Inbox from './components/Inbox/Inbox';
 import BusinessesList from './components/BusinessesList';
