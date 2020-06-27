@@ -12,9 +12,9 @@ import { connect } from 'react-redux'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import ErrorIcon from '@material-ui/icons/Error'
 import TelegramIcon from '@material-ui/icons/Telegram'
-import Tags from './Tags/Tags'
-import classes from '../modules/card.module.css'
-import { deleteBusiness, helpToggle } from '../actions'
+import Tags from '../../Tags/Tags'
+import classes from '../../../modules/card.module.css'
+import { deleteBusiness, helpToggle } from '../../../actions'
 
 const Text = withStyles({
     root: {

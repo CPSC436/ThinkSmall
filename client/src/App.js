@@ -15,11 +15,11 @@ import BusinessForm from './components/Form/BusinessForm'
 import RequestForm from './components/Form/RequestForm'
 import VolunteerForm from './components/Form/VolunteerForm'
 import Inbox from './components/Inbox/Inbox'
-import BusinessesList from './components/BusinessesList'
-import VolunteersList from './components/VolunteersList'
+import BusinessesList from './components/List/BusinessesList'
+import VolunteersList from './components/List/VolunteersList'
 import NavBar from './components/NavBar/NavBar'
-import './App.css'
 import Maps from './components/Maps'
+import './App.css'
 
 library.add(fab, faPaperPlane, faBars, faList, faMapMarkedAlt)
 

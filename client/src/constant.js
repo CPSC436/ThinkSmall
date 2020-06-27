@@ -15,6 +15,22 @@ export const styles = {
     },
 }
 
+export const defaultNeeds = [
+    { label: 'Call for designers', selected: false },
+    { label: 'Call for developers', selected: false },
+    { label: 'Call for translators', selected: false },
+    { label: 'Call for drivers', selected: false },
+    { label: 'Call for writers', selected: false },
+]
+
+export const defaultSkills = [
+    { label: 'Design', selected: false },
+    { label: 'Web development', selected: false },
+    { label: 'Mobile development', selected: false },
+    { label: 'Speaks Korean', selected: false },
+    { label: 'Can drive', selected: false },
+]
+
 export const defaultUsers = [
     {
         id: 0,

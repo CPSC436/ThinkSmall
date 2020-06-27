@@ -12,6 +12,7 @@ export const OPEN_FORM = 'OPEN_FORM'
 export const CLOSE_FORM = 'CLOSE_FORM'
 export const TOGGLE_HELP = 'TOGGLE_HELP'
 export const SET_KEYWORD = 'SET_KEYWORD'
+export const SET_FILTERS = 'SET_FILTERS'
 
 export const push = (uid, iid, message) => ({
     type: PUSH_MESSAGE,
@@ -46,16 +47,16 @@ export const helpToggle = id => ({
 
 export const editBusiness = (id, storeName, avatar, storeOwner, location, description,
     needsHelp, tags) => ({
-    type: EDIT_BUSINESS,
-    id,
-    storeName,
-    avatar,
-    storeOwner,
-    location,
-    description,
-    needsHelp,
-    tags,
-})
+        type: EDIT_BUSINESS,
+        id,
+        storeName,
+        avatar,
+        storeOwner,
+        location,
+        description,
+        needsHelp,
+        tags,
+    })
 
 export const addVolunteer = (volunteerName, avatar, description, tags) => ({
     type: ADD_VOLUNTEER,
@@ -99,4 +100,7 @@ export const setKeyword = keyword => ({
     keyword,
 })
 
-export const clearKeyword = () => setKeyword('')
+export const setFilters = tags => ({
+    type: SET_FILTERS,
+    tags,
+})
