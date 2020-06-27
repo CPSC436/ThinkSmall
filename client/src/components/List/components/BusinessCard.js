@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -8,11 +7,14 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/styles/withStyles'
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import cx from 'classnames'
+import ToggleButton from '@material-ui/lab/ToggleButton'
+import { connect } from 'react-redux'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import ErrorIcon from '@material-ui/icons/Error'
+import TelegramIcon from '@material-ui/icons/Telegram'
 import Tags from '../../Tags/Tags'
 import classes from '../../../modules/card.module.css'
-import placeholder from '../../../assets/white-room.jpeg'
+import { deleteBusiness, helpToggle } from '../../../actions'
 
 const Text = withStyles({
     root: {
@@ -110,9 +112,6 @@ const BusinessCard = ({
     )
 }
 
-const mapStateToProps = ({ requests = [] }, { requests: ownRequests = [], description }) => ({
-    requests: ownRequests.map(i => requests[i]),
-    shortDescription: description.slice(0, Math.min(100, description.length)),
-})
+const mapStateToProps = ({ businesses }) => ({ businesses })
 
-export default connect(mapStateToProps)(BusinessCard)
+export default connect(mapStateToProps, { deleteBusiness, helpToggle })(BusinessCard)
