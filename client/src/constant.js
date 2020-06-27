@@ -16,19 +16,24 @@ export const styles = {
 }
 
 export const defaultNeeds = [
-    { label: 'Call for designers', selected: false },
-    { label: 'Call for developers', selected: false },
-    { label: 'Call for translators', selected: false },
-    { label: 'Call for drivers', selected: false },
-    { label: 'Call for writers', selected: false },
+    { label: 'Call for Designers' },
+    { label: 'Clothing' },
+    { label: 'Call for Logo Design' },
+    { label: 'Call for Delivery Personnel' },
+    { label: 'Food' },
+    { label: 'Call for Translators' },
+    { label: 'Music Retail' },
+    { label: 'Italian' },
 ]
 
 export const defaultSkills = [
-    { label: 'Design', selected: false },
-    { label: 'Web development', selected: false },
-    { label: 'Mobile development', selected: false },
-    { label: 'Speaks Korean', selected: false },
-    { label: 'Can drive', selected: false },
+    { label: 'Web Design' },
+    { label: 'Logo Design' },
+    { label: 'Speaks Korean' },
+    { label: 'Chef' },
+    { label: 'Delivery' },
+    { label: 'Speaks German' },
+    { label: 'Food Designer' },
 ]
 
 export const defaultUsers = [
@@ -128,11 +133,11 @@ export const defaultConversations = [
 export const defaultRequests = []
 
 export const defaultTags = [
-    { label: 'Call for designers', selected: false },
-    { label: 'Call for developers', selected: false },
-    { label: 'Call for translators', selected: false },
-    { label: 'Call for drivers', selected: false },
-    { label: 'Call for writers', selected: false },
+    { label: 'Call for Designers', selected: false },
+    { label: 'Call for Developers', selected: false },
+    { label: 'Call for Translators', selected: false },
+    { label: 'Call for Drivers', selected: false },
+    { label: 'Call for Writers', selected: false },
 ]
 
 export const defaultVolunteers = [{
@@ -140,91 +145,91 @@ export const defaultVolunteers = [{
     volunteerName: 'Alice Kim',
     avatar: 'https://images.unsplash.com/photo-1504131598085-4cca8500b677?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80',
     description: "I'm available for help!",
-    tags: [{ label: 'Web Design' }, { label: 'Speaks Korean', color: 'secondary' }],
+    tags: [{ label: 'Web Design' }, { label: 'Speaks Korean' }],
 }, {
     id: 222,
     volunteerName: 'John Kim',
     avatar: 'https://images.unsplash.com/photo-1492447166138-50c3889fccb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
     description: 'Description, something something...',
-    tags: [{ label: 'Logo Design' }, { label: 'Speaks Korean', color: 'secondary' }],
+    tags: [{ label: 'Logo Design' }, { label: 'Speaks Korean' }],
 }, {
     id: 333,
     volunteerName: 'Hyesun An',
     avatar: 'https://images.unsplash.com/photo-1526510747491-58f928ec870f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
     description: 'I can help you!',
-    tags: [{ label: 'Chef' }, { label: 'Speaks Korean', color: 'secondary' }],
+    tags: [{ label: 'Chef' }, { label: 'Speaks Korean' }],
 }, {
     id: 555,
     volunteerName: 'Yuree Jang',
     avatar: 'https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
     description: 'All of us here to help!',
-    tags: [{ label: 'Delivery' }, { label: 'Speaks Korean', color: 'secondary' }],
+    tags: [{ label: 'Delivery' }, { label: 'Speaks Korean' }],
 }, {
     id: 121,
     volunteerName: 'Mora Vus',
     avatar: 'https://images.unsplash.com/photo-1500757810556-5d600d9b737d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1470&q=80',
     description: 'More volunteers here',
-    tags: [{ label: 'Food Designer' }, { label: 'Speaks German', color: 'secondary' }],
+    tags: [{ label: 'Food Designer' }, { label: 'Speaks German' }],
 }, {
     id: 212,
     volunteerName: 'Allef Vinicius',
     avatar: 'https://images.unsplash.com/photo-1482961674540-0b0e8363a005?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
     description: 'More volunteers here',
-    tags: [{ label: 'Food Designer' }, { label: 'Speaks German', color: 'secondary' }],
+    tags: [{ label: 'Food Designer' }, { label: 'Speaks German' }],
 }, {
     id: 104,
     volunteerName: 'Lanya dai',
     avatar: 'https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
     description: 'All of us here to help!',
-    tags: [{ label: 'Delivery' }, { label: 'Speaks Korean', color: 'secondary' }],
+    tags: [{ label: 'Delivery' }, { label: 'Speaks Korean' }],
 }, {
     id: 105,
     volunteerName: 'Mohamed Liu',
     avatar: 'https://images.unsplash.com/photo-1500757810556-5d600d9b737d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1470&q=80',
     description: 'More volunteers here',
-    tags: [{ label: 'Food Designer' }, { label: 'Speaks German', color: 'secondary' }],
+    tags: [{ label: 'Food Designer' }, { label: 'Speaks German' }],
 }, {
     id: 106,
     volunteerName: 'Allan Di',
     avatar: 'https://images.unsplash.com/photo-1482961674540-0b0e8363a005?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
     description: 'More volunteers here',
-    tags: [{ label: 'Food Designer' }, { label: 'Speaks German', color: 'secondary' }],
+    tags: [{ label: 'Food Designer' }, { label: 'Speaks German' }],
 }, {
     id: 103,
     volunteerName: 'Dave Lin',
     avatar: 'https://images.unsplash.com/photo-1526510747491-58f928ec870f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
     description: 'I can help you!',
-    tags: [{ label: 'Chef' }, { label: 'Speaks Korean', color: 'secondary' }],
+    tags: [{ label: 'Chef' }, { label: 'Speaks Korean' }],
 }, {
     id: 107,
     volunteerName: 'Lanya dai',
     avatar: 'https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
     description: 'All of us here to help!',
-    tags: [{ label: 'Delivery' }, { label: 'Speaks Korean', color: 'secondary' }],
+    tags: [{ label: 'Delivery' }, { label: 'Speaks Korean' }],
 }, {
     id: 108,
     volunteerName: 'Mohamed Liu',
     avatar: 'https://images.unsplash.com/photo-1500757810556-5d600d9b737d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1470&q=80',
     description: 'Description, something something...',
-    tags: [{ label: 'Food Designer' }, { label: 'Speaks German', color: 'secondary' }],
+    tags: [{ label: 'Food Designer' }, { label: 'Speaks German' }],
 }, {
     id: 101,
     volunteerName: 'Daniel Lee',
     avatar: 'https://images.unsplash.com/photo-1504131598085-4cca8500b677?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80',
     description: "I'm available for help!",
-    tags: [{ label: 'Web Design' }, { label: 'Speaks Korean', color: 'secondary' }],
+    tags: [{ label: 'Web Design' }, { label: 'Speaks Korean' }],
 }, {
     id: 102,
     volunteerName: 'Kean P',
     avatar: 'https://images.unsplash.com/photo-1492447166138-50c3889fccb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
     description: 'Description, something something...',
-    tags: [{ label: 'Logo Design' }, { label: 'Speaks Korean', color: 'secondary' }],
+    tags: [{ label: 'Logo Design' }, { label: 'Speaks Korean' }],
 }, {
     id: 109,
     volunteerName: 'Allan Di',
     avatar: 'https://images.unsplash.com/photo-1482961674540-0b0e8363a005?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
     description: 'More volunteers here',
-    tags: [{ label: 'Food Designer' }, { label: 'Speaks German', color: 'secondary' }],
+    tags: [{ label: 'Food Designer' }, { label: 'Speaks German' }],
 }]
 
 export const defaultBusinesses = [{
@@ -238,7 +243,7 @@ export const defaultBusinesses = [{
     description: 'Tenth & Proper, a unique fashion and lifestyle boutique specializing in beautifully crafted '
         + 'casual wear for women. ',
     needsHelp: true,
-    tags: [{ label: 'Call for Designers' }, { label: 'Clothing', color: 'secondary' }],
+    tags: [{ label: 'Call for Designers' }, { label: 'Clothing' }],
 }, {
     id: 422,
     storeName: 'Hunter and Hare',
@@ -250,7 +255,7 @@ export const defaultBusinesses = [{
     description: 'Boutique for women\'s clothing & accessories on consignment, plus jewelry, stationery & '
         + 'beauty items.',
     needsHelp: true,
-    tags: [{ label: 'Call for Logo Design' }, { label: 'Clothing', color: 'secondary' }],
+    tags: [{ label: 'Call for Logo Design' }, { label: 'Clothing' }],
 }, {
     id: 909,
     storeName: 'Kosoo',
@@ -261,7 +266,7 @@ export const defaultBusinesses = [{
     lng: -123.132530,
     description: 'High-end place with a warm feel providing Korean fusion small & large plates, a raw bar & cocktails.',
     needsHelp: true,
-    tags: [{ label: 'Call for Delivery Personnel' }, { label: 'Food', color: 'secondary' }],
+    tags: [{ label: 'Call for Delivery Personnel' }, { label: 'Food' }],
 }, {
     id: 433,
     storeName: 'Red Cat Records',
@@ -272,7 +277,7 @@ export const defaultBusinesses = [{
     lng: -123.101130,
     description: 'Red Cat Records is an independent record store in Vancouver, voted one of the top ten indie stores in Canada by our customers (CBC 3 Searchlight).',
     needsHelp: true,
-    tags: [{ label: 'Call for Translators' }, { label: 'Music Retail', color: 'secondary' }],
+    tags: [{ label: 'Call for Translators' }, { label: 'Music Retail' }],
 }, {
     id: 522,
     storeName: 'Viet House',
@@ -283,7 +288,7 @@ export const defaultBusinesses = [{
     lng: -123.114920,
     description: 'Traditional Vietnamese menu & chef specials in a casual setting with dark wood interior details.',
     needsHelp: false,
-    tags: [{ label: 'Call for Translators' }, { label: 'Food', color: 'secondary' }],
+    tags: [{ label: 'Call for Translators' }, { label: 'Food' }],
 }, {
     id: 828,
     storeName: 'Robba da Matti',
@@ -294,7 +299,7 @@ export const defaultBusinesses = [{
     lng: -123.121240,
     description: 'Cozy Italian trattoria with a warm vibe & outdoor seating, plus homemade pasta mains & a tapas menu.',
     needsHelp: false,
-    tags: [{ label: 'Italian' }, { label: 'Food', color: 'secondary' }],
+    tags: [{ label: 'Italian' }, { label: 'Food' }],
 }, {
     id: 402,
     storeName: '2nd Kosoo',
@@ -305,7 +310,7 @@ export const defaultBusinesses = [{
     lng: -123.132530,
     description: 'High-end place with a warm feel providing Korean fusion small & large plates, a raw bar & cocktails.',
     needsHelp: true,
-    tags: [{ label: 'Call for Delivery Personnel' }, { label: 'Food', color: 'secondary' }],
+    tags: [{ label: 'Call for Delivery Personnel' }, { label: 'Food' }],
 }, {
     id: 400,
     storeName: '2nd Tenth and Proper',
@@ -317,7 +322,7 @@ export const defaultBusinesses = [{
     description: 'Tenth & Proper, a unique fashion and lifestyle boutique specializing in beautifully crafted '
         + 'casual wear for women. ',
     needsHelp: true,
-    tags: [{ label: 'Call for Designers' }, { label: 'Clothing', color: 'secondary' }],
+    tags: [{ label: 'Call for Designers' }, { label: 'Clothing' }],
 }, {
     id: 401,
     storeName: '2nd Hunter and Hare',
@@ -329,7 +334,7 @@ export const defaultBusinesses = [{
     description: 'Boutique for women\'s clothing & accessories on consignment, plus jewelry, stationery & '
         + 'beauty items.',
     needsHelp: true,
-    tags: [{ label: 'Call for Logo Design' }, { label: 'Clothing', color: 'secondary' }],
+    tags: [{ label: 'Call for Logo Design' }, { label: 'Clothing' }],
 }, {
     id: 403,
     storeName: '2nd Red Cat Records',
@@ -340,7 +345,7 @@ export const defaultBusinesses = [{
     lng: -123.101130,
     description: 'Red Cat Records is an independent record store in Vancouver, voted one of the top ten indie stores in Canada by our customers (CBC 3 Searchlight).',
     needsHelp: true,
-    tags: [{ label: 'Call for Translators' }, { label: 'Music Retail', color: 'secondary' }],
+    tags: [{ label: 'Call for Translators' }, { label: 'Music Retail' }],
 }, {
     id: 404,
     storeName: '2nd Viet House',
@@ -351,7 +356,7 @@ export const defaultBusinesses = [{
     lng: -123.114920,
     description: 'Traditional Vietnamese menu & chef specials in a casual setting with dark wood interior details.',
     needsHelp: true,
-    tags: [{ label: 'Call for Translators' }, { label: 'Food', color: 'secondary' }],
+    tags: [{ label: 'Call for Translators' }, { label: 'Food' }],
 }, {
     id: 405,
     storeName: '2nd Robba da Matti',
@@ -362,7 +367,7 @@ export const defaultBusinesses = [{
     lng: -123.121240,
     description: 'Cozy Italian trattoria with a warm vibe & outdoor seating, plus homemade pasta mains & a tapas menu.',
     needsHelp: false,
-    tags: [{ label: 'Italian' }, { label: 'Food', color: 'secondary' }],
+    tags: [{ label: 'Italian' }, { label: 'Food' }],
 }, {
     id: 406,
     storeName: '3rd Viet House',
@@ -373,7 +378,7 @@ export const defaultBusinesses = [{
     lng: -123.114920,
     description: 'Traditional Vietnamese menu & chef specials in a casual setting with dark wood interior details.',
     needsHelp: true,
-    tags: [{ label: 'Call for Translators' }, { label: 'Food', color: 'secondary' }],
+    tags: [{ label: 'Call for Translators' }, { label: 'Food' }],
 }, {
     id: 407,
     storeName: '3rd Robba da Matti',
@@ -384,7 +389,7 @@ export const defaultBusinesses = [{
     lng: -123.121240,
     description: 'Cozy Italian trattoria with a warm vibe & outdoor seating, plus homemade pasta mains & a tapas menu.',
     needsHelp: false,
-    tags: [{ label: 'Italian' }, { label: 'Food', color: 'secondary' }],
+    tags: [{ label: 'Italian' }, { label: 'Food' }],
 }, {
     id: 408,
     storeName: '3rd Robba da Matti',
@@ -395,5 +400,5 @@ export const defaultBusinesses = [{
     lng: -123.121240,
     description: 'Cozy Italian trattoria with a warm vibe & outdoor seating, plus homemade pasta mains & a tapas menu.',
     needsHelp: false,
-    tags: [{ label: 'Italian' }, { label: 'Food', color: 'secondary' }],
+    tags: [{ label: 'Italian' }, { label: 'Food' }],
 }]

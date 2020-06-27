@@ -5,6 +5,7 @@ import Tags from '../Tags/Tags'
 import Search from '../Search'
 import VolunteerCard from './components/VolunteerCard'
 import { setKeyword, setFilters } from '../../actions'
+import { defaultSkills } from '../../constant'
 import classes from '../../modules/list.module.css'
 
 const VolunteersList = ({ volunteers, filters, keyword, setKeyword, setFilters }) => {
@@ -21,7 +22,7 @@ const VolunteersList = ({ volunteers, filters, keyword, setKeyword, setFilters }
         <div className={classes.root}>
             <div className={classes.searchBar}>
                 <Search />
-                <Tags />
+                <Tags tags={defaultSkills} canSelect />
             </div>
             <div className={classes.page}>
                 <Pagination
@@ -35,7 +36,9 @@ const VolunteersList = ({ volunteers, filters, keyword, setKeyword, setFilters }
                 {volunteers
                     && volunteers
                         .filter(({ volunteerName }) => volunteerName.includes(keyword))
-                        .filter(({ tags }) => !filters.length || tags.some(tag => filters.includes(tag)))
+                        .filter(({ tags }) => !filters.length ||
+                            filters.every(tag => tags.some(({ label }) => label === tag))
+                        )
                         .slice((currentPage - 1) * 6, currentPage * 6)
                         .map(({ id, ...props }) => <VolunteerCard key={id} {...props} />)}
             </div>
