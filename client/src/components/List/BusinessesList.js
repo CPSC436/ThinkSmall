@@ -22,7 +22,7 @@ const BusinessesList = ({ businesses, filters, keyword, setKeyword, setFilters }
         <div className={classes.root}>
             <div className={classes.searchBar}>
                 <Search />
-                <Tags />
+                <Tags tags={defaultNeeds} canSelect />
             </div>
             <div className={classes.page}>
                 <Pagination
@@ -37,7 +37,9 @@ const BusinessesList = ({ businesses, filters, keyword, setKeyword, setFilters }
             <div className={classes.container}>
                 {businesses && businesses
                     .filter(({ storeName }) => storeName.includes(keyword))
-                    .filter(({ tags }) => !filters.length || tags.some(tag => filters.includes(tag)))
+                    .filter(({ tags }) => !filters.length ||
+                        filters.every(tag => tags.some(({ label }) => label === tag))
+                    )
                     .slice((currentPage - 1) * 6, currentPage * 6)
                     .map(({ id, ...props }) => (
                         <BusinessCard key={id} id={id} {...props} />
