@@ -47,16 +47,16 @@ export const helpToggle = id => ({
 
 export const editBusiness = (id, storeName, avatar, storeOwner, location, description,
     needsHelp, tags) => ({
-    type: EDIT_BUSINESS,
-    id,
-    storeName,
-    avatar,
-    storeOwner,
-    location,
-    description,
-    needsHelp,
-    tags,
-})
+        type: EDIT_BUSINESS,
+        id,
+        storeName,
+        avatar,
+        storeOwner,
+        location,
+        description,
+        needsHelp,
+        tags,
+    })
 
 export const addVolunteer = (volunteerName, avatar, description, tags) => ({
     type: ADD_VOLUNTEER,
