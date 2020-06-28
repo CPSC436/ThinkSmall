@@ -20,9 +20,9 @@ function Tags({ tags: userTags, canAdd = false, canSelect = false, filters, setF
     const classes = useStyles()
     const [tags, setTags] = useState(userTags || defaultTags)
     const selectTag = i => {
-        tags[i].selected = !tags[i].selected
-        setTags([...tags])
         if (canSelect) {
+            tags[i].selected = !tags[i].selected
+            setTags([...tags])
             if (tags[i].selected) setFilters([...filters, tags[i].label])
             else setFilters([...filters.filter(tag => tag !== tags[i].label)])
         }
