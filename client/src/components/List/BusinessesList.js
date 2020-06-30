@@ -8,7 +8,9 @@ import { setKeyword, setFilters } from '../../actions'
 import classes from '../../modules/list.module.css'
 import { defaultNeeds } from '../../constant'
 
-const BusinessesList = ({ businesses, filters, keyword, setKeyword, setFilters }) => {
+const BusinessesList = ({
+    businesses, filters, keyword, setKeyword, setFilters,
+}) => {
     const [currentPage, setPage] = useState(1)
     const handleChange = (_, currentPage) => {
         setPage(currentPage)
@@ -37,9 +39,8 @@ const BusinessesList = ({ businesses, filters, keyword, setKeyword, setFilters }
             <div className={classes.container}>
                 {businesses && businesses
                     .filter(({ storeName }) => storeName.includes(keyword))
-                    .filter(({ tags }) => !filters.length ||
-                        filters.every(tag => tags.some(({ label }) => label === tag))
-                    )
+                    .filter(({ tags }) => !filters.length
+                        || filters.every(tag => tags.some(({ label }) => label === tag)))
                     .slice((currentPage - 1) * 6, currentPage * 6)
                     .map(({ id, ...props }) => (
                         <BusinessCard key={id} id={id} {...props} />

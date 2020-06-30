@@ -16,7 +16,9 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-function Tags({ tags: userTags, canAdd = false, canSelect = false, filters, setFilters }) {
+function Tags({
+    tags: userTags, canAdd = false, canSelect = false, filters, setFilters,
+}) {
     const classes = useStyles()
     const [tags, setTags] = useState(userTags || defaultTags)
     const selectTag = i => {
