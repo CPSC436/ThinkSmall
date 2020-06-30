@@ -8,7 +8,9 @@ import { setKeyword, setFilters } from '../../actions'
 import { defaultSkills } from '../../constant'
 import classes from '../../modules/list.module.css'
 
-const VolunteersList = ({ volunteers, filters, keyword, setKeyword, setFilters }) => {
+const VolunteersList = ({
+    volunteers, filters, keyword, setKeyword, setFilters,
+}) => {
     const [currentPage, setPage] = useState(1)
     const handleChange = (_, currentPage) => {
         setPage(currentPage)
@@ -36,9 +38,8 @@ const VolunteersList = ({ volunteers, filters, keyword, setKeyword, setFilters }
                 {volunteers
                     && volunteers
                         .filter(({ volunteerName }) => volunteerName.includes(keyword))
-                        .filter(({ tags }) => !filters.length ||
-                            filters.every(tag => tags.some(({ label }) => label === tag))
-                        )
+                        .filter(({ tags }) => !filters.length
+                            || filters.every(tag => tags.some(({ label }) => label === tag)))
                         .slice((currentPage - 1) * 6, currentPage * 6)
                         .map(({ id, ...props }) => <VolunteerCard key={id} {...props} />)}
             </div>
