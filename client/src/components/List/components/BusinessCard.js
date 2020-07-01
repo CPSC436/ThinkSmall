@@ -24,27 +24,31 @@ const BusinessCard = ({
     id, avatar, storeName, storeOwner, description, shortDescription, location, requests, tags = [],
 }) => {
     const [hover, setHover] = useState(false)
-    const RequestIcon = () => <div
-        className={classes.icon}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-    >
-        <Icon icon="meteor" size="xs" style={{ marginRight: 5 }} />
-        {requests.length}
-    </div>
-    const RequestPanel = () => <div
-        className={classes.panel}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-    >
-        <div style={{ fontWeight: 'bold' }}>Pending requests</div>
-        {requests.map(({ details }, i) => (
-            <div key={i} className={classes.request}>
-                {details}
-                <Button variant="contained" className={cx(classes.details, classes.button)}>See Details</Button>
-            </div>
-        ))}
-    </div>
+    const RequestIcon = () => (
+        <div
+            className={classes.icon}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+        >
+            <Icon icon="meteor" size="xs" style={{ marginRight: 5 }} />
+            {requests.length}
+        </div>
+    )
+    const RequestPanel = () => (
+        <div
+            className={classes.panel}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+        >
+            <div style={{ fontWeight: 'bold' }}>Pending requests</div>
+            {requests.map(({ details }, i) => (
+                <div key={i} className={classes.request}>
+                    {details}
+                    <Button variant="contained" className={cx(classes.details, classes.button)}>See Details</Button>
+                </div>
+            ))}
+        </div>
+    )
 
     return (
         <Card className={classes.root} style={{ overflow: 'visible' }}>
@@ -61,7 +65,8 @@ const BusinessCard = ({
                 </Text>
                 <Tags tags={tags} />
                 <Text gutterBottom variant="body2" color="textSecondary" component="p">
-                    {shortDescription}{shortDescription.length < description.length && '...'}
+                    {shortDescription}
+                    {shortDescription.length < description.length && '...'}
                 </Text>
                 <a href="#" className={classes.link} style={{ fontSize: 'smaller' }}>Read more</a>
                 <Divider light style={{ margin: '10px auto' }} />
@@ -77,14 +82,18 @@ const BusinessCard = ({
             <CardActions style={{ padding: 16 }}>
                 <Button
                     className={classes.button}
-                    size="small" variant="contained" target="_blank"
+                    size="small"
+                    variant="contained"
+                    target="_blank"
                     style={{ width: '100%', height: 36 }}
                 >
                     See Details
                 </Button>
                 <Button
                     className={classes.button}
-                    size="small" variant="contained" target="_blank"
+                    size="small"
+                    variant="contained"
+                    target="_blank"
                     style={{ width: '100%', height: 36 }}
                 >
                     Contact Owner
@@ -94,11 +103,9 @@ const BusinessCard = ({
     )
 }
 
-const mapStateToProps = ({ requests = [] }, { requests: ownRequests = [], description }) => {
-    return {
-        requests: ownRequests.map(i => requests[i]),
-        shortDescription: description.slice(0, Math.min(100, description.length))
-    }
-}
+const mapStateToProps = ({ requests = [] }, { requests: ownRequests = [], description }) => ({
+    requests: ownRequests.map(i => requests[i]),
+    shortDescription: description.slice(0, Math.min(100, description.length)),
+})
 
 export default connect(mapStateToProps)(BusinessCard)
