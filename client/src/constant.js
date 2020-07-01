@@ -251,7 +251,6 @@ export const defaultVolunteers = [{
 export const defaultBusinesses = [{
     id: 411,
     storeName: 'Tenth and Proper',
-    avatar: 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1510&q=80',
     storeOwner: 'Marion Fudge',
     location: '4483 W 10th Ave, Vancouver',
     lat: 49.264100,
