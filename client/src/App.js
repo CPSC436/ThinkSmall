@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {
     BrowserRouter as Router,
     Switch,
@@ -6,10 +7,8 @@ import {
 } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import {
-    faPaperPlane, faBars, faList, faMapMarkedAlt,
-} from '@fortawesome/free-solid-svg-icons'
-import { connect } from 'react-redux'
+import { faPaperPlane, faBars, faList, faMapMarkedAlt, faAddressCard, faUser, faMapMarkerAlt, faBolt, faMeteor } from '@fortawesome/free-solid-svg-icons'
+import { StylesProvider } from '@material-ui/core/styles'
 import Home from './components/Home'
 import BusinessForm from './components/Form/BusinessForm'
 import RequestForm from './components/Form/RequestForm'
@@ -21,32 +20,34 @@ import NavBar from './components/NavBar/NavBar'
 import Maps from './components/Maps'
 import './App.css'
 
-library.add(fab, faPaperPlane, faBars, faList, faMapMarkedAlt)
+library.add(fab, faPaperPlane, faBars, faList, faMapMarkedAlt, faAddressCard, faUser, faMapMarkerAlt, faBolt, faMeteor)
 
 function App({ switchState }) {
     return (
-        <Router>
-            <Switch>
-                <Route path="/businesses">
-                    <NavBar userType="business" />
-                    {switchState ? <Maps /> : <BusinessesList />}
-                    <BusinessForm />
-                    <RequestForm />
-                </Route>
-                <Route path="/volunteers">
-                    <NavBar userType="volunteer" />
-                    <VolunteersList />
-                    <VolunteerForm />
-                </Route>
-                <Route path="/inbox">
-                    <Inbox />
-                </Route>
-                <Route path="*">
-                    <NavBar />
-                    <Home />
-                </Route>
-            </Switch>
-        </Router>
+        <StylesProvider injectFirst>
+            <Router>
+                <Switch>
+                    <Route path="/businesses">
+                        <NavBar userType="business" />
+                        {switchState ? <Maps /> : <BusinessesList />}
+                        <BusinessForm />
+                        <RequestForm />
+                    </Route>
+                    <Route path="/volunteers">
+                        <NavBar userType="volunteer" />
+                        <VolunteersList />
+                        <VolunteerForm />
+                    </Route>
+                    <Route path="/inbox">
+                        <Inbox />
+                    </Route>
+                    <Route path="*">
+                        <NavBar />
+                        <Home />
+                    </Route>
+                </Switch>
+            </Router>
+        </StylesProvider>
     )
 }
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import {
     GoogleMap, withGoogleMap, Marker, InfoWindow,
 } from 'react-google-maps'
 import { useGeolocation } from 'react-use'
 import { LoadingIndicator } from './Form/components'
-import { defaultBusinesses as businesses } from '../constant'
 import classes from '../modules/maps.module.css'
 
-function Maps() {
+function Maps({ businesses }) {
     const [selectedBusiness, setSelectedBusiness] = useState(null)
     const geo = useGeolocation()
 
@@ -75,4 +75,4 @@ function Maps() {
     return <DisplayMap />
 }
 
-export default Maps
+export default connect(({ businesses }) => ({ businesses }))(Maps)
