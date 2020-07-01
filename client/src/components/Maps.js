@@ -8,13 +8,14 @@ import { LoadingIndicator } from './Form/components'
 import classes from '../modules/maps.module.css'
 
 function Maps({ businesses }) {
-    const [selectedBusiness, setSelectedBusiness] = useState(null)
     const geo = useGeolocation()
 
     const Map = () => {
+        const [selectedBusiness, setSelectedBusiness] = useState(null)
+
         const Markers = () => (
             <div>
-                {businesses.map(business => (business.needsHelp
+                {businesses.map(business => (business.requests?.length > 0
                     && (
                         <Marker
                             key={business.id}
@@ -38,7 +39,7 @@ function Maps({ businesses }) {
                             <h3>{selectedBusiness.storeName}</h3>
                             <h4>
                                 Address:&nbsp;
-                                {selectedBusiness.streetAddress}
+                                {selectedBusiness.location}
                             </h4>
                             <img className={classes.avatar} src={selectedBusiness.avatar} alt="" />
                         </div>
