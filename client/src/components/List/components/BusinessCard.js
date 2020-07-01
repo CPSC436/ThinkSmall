@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
@@ -10,9 +10,9 @@ import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/styles/withStyles'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import cx from 'classnames'
-import Tags from './Tags/Tags'
-import classes from '../modules/card.module.css'
-import placeholder from '../assets/white-room.jpeg'
+import Tags from '../../Tags/Tags'
+import classes from '../../../modules/card.module.css'
+import placeholder from '../../../assets/white-room.jpeg'
 
 const Text = withStyles({
     root: {
@@ -110,11 +110,9 @@ const BusinessCard = ({
     )
 }
 
-const mapStateToProps = ({ requests = [] }, { requests: ownRequests = [], description }) => {
-    return {
-        requests: ownRequests.map(i => requests[i]),
-        shortDescription: description.slice(0, Math.min(100, description.length))
-    }
-}
+const mapStateToProps = ({ requests = [] }, { requests: ownRequests = [], description }) => ({
+    requests: ownRequests.map(i => requests[i]),
+    shortDescription: description.slice(0, Math.min(100, description.length)),
+})
 
 export default connect(mapStateToProps)(BusinessCard)

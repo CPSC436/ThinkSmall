@@ -5,9 +5,15 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
+import withStyles from '@material-ui/styles/withStyles'
 import Tags from '../../Tags/Tags'
 import classes from '../../../modules/card.module.css'
+
+const Text = withStyles({
+    root: {
+        fontFamily: '\'Baloo 2\', cursive',
+    },
+})(Typography)
 
 const VolunteerCard = ({
     avatar, volunteerName, description, tags,
@@ -19,20 +25,33 @@ const VolunteerCard = ({
             title="Volunteer Picture"
         />
         <CardContent>
-            <Typography variant="h5" component="h6" style={{ fontFamily: '\'Baloo 2\', cursive' }}>
+            <Text variant="h5" component="h6">
                 {volunteerName}
-            </Typography>
-            <Typography variant="subtitle1" component="h6">
-                <Tags tags={tags} />
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            </Text>
+            <Tags tags={tags} />
+            <Text gutterBottom variant="body2" color="textSecondary" component="p">
                 {description}
-            </Typography>
-            <Divider className="MuiDivider-root" light />
+            </Text>
         </CardContent>
-        <CardActions>
-            <Button size="small" color="primary" target="_blank">Read More</Button>
-            <Button size="small" color="primary" target="_blank">Start Conversation</Button>
+        <CardActions style={{ padding: 16 }}>
+            <Button
+                className={classes.button}
+                size="small"
+                variant="contained"
+                target="_blank"
+                style={{ width: '100%', height: 36 }}
+            >
+                Read More
+            </Button>
+            <Button
+                className={classes.button}
+                size="small"
+                variant="contained"
+                target="_blank"
+                style={{ width: '100%', height: 36 }}
+            >
+                Start Conversation
+            </Button>
         </CardActions>
     </Card>
 )
