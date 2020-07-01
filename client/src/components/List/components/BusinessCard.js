@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -7,14 +8,10 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/styles/withStyles'
-import ToggleButton from '@material-ui/lab/ToggleButton'
-import { connect } from 'react-redux'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import ErrorIcon from '@material-ui/icons/Error'
-import TelegramIcon from '@material-ui/icons/Telegram'
-import Tags from '../../Tags/Tags'
-import classes from '../../../modules/card.module.css'
-import { deleteBusiness, helpToggle } from '../../../actions'
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import cx from 'classnames'
+import Tags from './Tags/Tags'
+import classes from '../modules/card.module.css'
 
 const Text = withStyles({
     root: {
@@ -112,6 +109,11 @@ const BusinessCard = ({
     )
 }
 
-const mapStateToProps = ({ businesses }) => ({ businesses })
+const mapStateToProps = ({ requests = [] }, { requests: ownRequests = [], description }) => {
+    return {
+        requests: ownRequests.map(i => requests[i]),
+        shortDescription: description.slice(0, Math.min(100, description.length))
+    }
+}
 
-export default connect(mapStateToProps, { deleteBusiness, helpToggle })(BusinessCard)
+export default connect(mapStateToProps)(BusinessCard)
