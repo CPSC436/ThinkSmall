@@ -7,7 +7,18 @@ import {
 } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faPaperPlane, faBars, faList, faMapMarkedAlt, faAddressCard, faUser, faMapMarkerAlt, faBolt, faMeteor } from '@fortawesome/free-solid-svg-icons'
+import {
+    faAddressCard,
+    faBars,
+    faBolt,
+    faList,
+    faMapMarkedAlt,
+    faMapMarkerAlt,
+    faMeteor,
+    faPaperPlane,
+    faUser,
+} from '@fortawesome/free-solid-svg-icons'
+import { connect } from 'react-redux'
 import { StylesProvider } from '@material-ui/core/styles'
 import Home from './components/Home'
 import BusinessForm from './components/Form/BusinessForm'
@@ -20,7 +31,18 @@ import NavBar from './components/NavBar/NavBar'
 import Maps from './components/Maps'
 import './App.css'
 
-library.add(fab, faPaperPlane, faBars, faList, faMapMarkedAlt, faAddressCard, faUser, faMapMarkerAlt, faBolt, faMeteor)
+library.add(
+    fab,
+    faAddressCard,
+    faBars,
+    faBolt,
+    faList,
+    faMapMarkedAlt,
+    faMapMarkerAlt,
+    faMeteor,
+    faPaperPlane,
+    faUser,
+)
 
 function App({ switchState }) {
     return (
