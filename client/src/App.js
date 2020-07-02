@@ -29,9 +29,10 @@ import Inbox from './components/Inbox/Inbox'
 import BusinessesList from './components/List/BusinessesList'
 import VolunteersList from './components/List/VolunteersList'
 import NavBar from './components/NavBar/NavBar'
-import './App.css'
 import Maps from './components/Maps'
 import LoginByGoogle from './components/LoginByGoogle'
+import './App.css'
+import Account from './components/Account'
 
 library.add(
     fab,
@@ -64,6 +65,9 @@ function App({ switchState }) {
                     </Route>
                     <Route path="/inbox">
                         <Inbox />
+                    </Route>
+                    <Route path="/account">
+                        <Account />
                     </Route>
                     <Route path="*">
                         <NavBar userType="entry" />

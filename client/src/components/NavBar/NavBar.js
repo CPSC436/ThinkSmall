@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core'
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import Menu from '@material-ui/core/Menu'
 import { ButtonNavBar, Logo, Text } from './components'
 import classes from '../../modules/nav.module.css'
 import Switch from './components/Switch'
@@ -19,9 +20,18 @@ const tabs = [
     { to: 'contact', title: 'Contact Us' },
 ]
 
+// TODO: Upate these links once notifications and logout functionlity exist
+const dropTabs = [
+    { to: 'account', title: 'Account' },
+    { to: 'notifications', title: 'Notifications' },
+    { to: 'inbox', title: 'Inbox' },
+    { to: 'about', title: 'Logout' },
+]
+
 function NavBar({ userType, handleOpen }) {
     const matches = useMediaQuery('(min-width:991.98px)')
     const [open, setOpen] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null)
     const Links = () => (
         <div className={classes.flex}>
             {tabs.map(({ to, title }) => (
@@ -29,9 +39,40 @@ function NavBar({ userType, handleOpen }) {
             ))}
         </div>
     )
+    const DropLinks = () => (
+        <div className={classes.flex}>
+            <ul style={{ listStyle: 'none', paddingLeft: '0' }}>
+                {dropTabs.map(({ to, title }) => (
+                    <li>
+                        <Link key={to} to={to} className={classes.link}>{title}</Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )
+    const handleClick = event => {
+        // This prevents ghost click.
+        event.preventDefault()
+        setAnchorEl(event.currentTarget)
+    }
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
     const AccountInfo = () => (
         <>
-            <AccountCircleOutlinedIcon />
+            <AccountCircleOutlinedIcon aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                getContentAnchorEl={null}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <DropLinks onClick={handleClose} />
+            </Menu>
             <div className={classes.account}>
                 <Text>John Doe</Text>
                 <Text>{`${userType} user`}</Text>
