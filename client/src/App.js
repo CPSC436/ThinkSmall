@@ -34,6 +34,7 @@ import LoginByGoogle from './components/LoginByGoogle'
 import './App.css'
 import Account from './components/Account'
 import LoginByGoogle from './components/LoginByGoogle'
+import Account from './components/Account'
 import './App.css'
 
 library.add(

@@ -33,54 +33,54 @@ const myRequests = [
 const Account = ({
     id, avatar, storeName, description, storeOwner, location, needsHelp, helpToggle, userType, myRequests,
 }) => (
-    <>
-        <NavBar userType={userType} />
-        <div
-            style={{ marginLeft: '1em', marginTop: '3em' }}
-            className={classes.accounts}
-        >
-            <Card>
-                <CardMedia className={classes.media} image={avatar} />
-                <CardContent>
-                    <Text>
-                        User Name
+        <>
+            <NavBar userType={userType} />
+            <div
+                style={{ marginLeft: '1em', marginTop: '3em' }}
+                className={classes.accounts}
+            >
+                <Card>
+                    <CardMedia className={classes.media} image={avatar} />
+                    <CardContent>
+                        <Text>
+                            User Name
                         <CreateOutlinedIcon fontSize="small" />
-                    </Text>
-                    <Text>
-                        Role
+                        </Text>
+                        <Text>
+                            Role
                         <CreateOutlinedIcon fontSize="small" />
-                    </Text>
-                    <Text>
-                        Email
+                        </Text>
+                        <Text>
+                            Email
                         <CreateOutlinedIcon fontSize="small" />
-                    </Text>
-                    <Text>
-                        Phone
+                        </Text>
+                        <Text>
+                            Phone
                         <CreateOutlinedIcon fontSize="small" />
-                    </Text>
-                </CardContent>
-            </Card>
-            <div>
-                <Text style={{ fontWeight: 'bold', marginBottom: '2em' }}>Account</Text>
-                <Text style={{ fontWeight: 'bold', marginBottom: '1em' }}>My Requests</Text>
-                <List>
-                    {/* {myRequests && myRequests.map(() => ( */}
-                    <ListItem key={id} alignItems="flex-start">
-                        <ListItemText primary="Request Title" secondary="Logo design for new store location." />
-                        <Chip label="In Progress" color="primary" variant="outlined" size="small" />
-                        <ListItemIcon>
-                            <DeleteOutlinedIcon fontSize="small" color="secondary" />
-                        </ListItemIcon>
-                        <ListItemIcon>
-                            <ArrowDropDownRoundedIcon />
-                        </ListItemIcon>
-                    </ListItem>
-                    {/* ))} */}
-                </List>
-                <Text style={{ fontWeight: 'bold', marginBottom: '1em' }}>My Businesses</Text>
+                        </Text>
+                    </CardContent>
+                </Card>
+                <div>
+                    <Text style={{ fontWeight: 'bold', marginBottom: '2em' }}>Account</Text>
+                    <Text style={{ fontWeight: 'bold', marginBottom: '1em' }}>My Requests</Text>
+                    <List>
+                        {/* {myRequests && myRequests.map(() => ( */}
+                        <ListItem key={id} alignItems="flex-start">
+                            <ListItemText primary="Request Title" secondary="Logo design for new store location." />
+                            <Chip label="In Progress" color="primary" variant="outlined" size="small" />
+                            <ListItemIcon>
+                                <DeleteOutlinedIcon fontSize="small" color="secondary" />
+                            </ListItemIcon>
+                            <ListItemIcon>
+                                <ArrowDropDownRoundedIcon />
+                            </ListItemIcon>
+                        </ListItem>
+                        {/* ))} */}
+                    </List>
+                    <Text style={{ fontWeight: 'bold', marginBottom: '1em' }}>My Businesses</Text>
+                </div>
             </div>
-        </div>
-    </>
-)
+        </>
+    )
 
 export default Account
