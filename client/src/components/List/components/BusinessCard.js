@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
@@ -24,8 +24,11 @@ const BusinessCard = ({
     id, avatar, storeName, storeOwner, description, shortDescription, location, requests, tags = [],
 }) => {
     const [hover, setHover] = useState(false)
+    const requestIcon = useRef(null)
+
     const RequestIcon = () => (
         <div
+            ref={requestIcon}
             className={classes.icon}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
@@ -34,21 +37,25 @@ const BusinessCard = ({
             {requests.length}
         </div>
     )
-    const RequestPanel = () => (
-        <div
-            className={classes.panel}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-        >
-            <div style={{ fontWeight: 'bold' }}>Pending requests</div>
-            {requests.map(({ details }, i) => (
-                <div key={i} className={classes.request}>
-                    {details}
-                    <Button variant="contained" className={cx(classes.details, classes.button)}>See Details</Button>
-                </div>
-            ))}
-        </div>
-    )
+    const RequestPanel = () => {
+        const left = requestIcon?.current?.getBoundingClientRect()?.left + 40
+        return (
+            <div
+                className={classes.panel}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                style={{ left }}
+            >
+                <div style={{ fontWeight: 'bold' }}>Pending requests</div>
+                {requests.map(({ details }, i) => (
+                    <div key={i} className={classes.request}>
+                        {details}
+                        <Button variant="contained" className={cx(classes.details, classes.button)}>See Details</Button>
+                    </div>
+                ))}
+            </div>
+        )
+    }
 
     return (
         <Card className={classes.root} style={{ overflow: 'visible' }}>
@@ -57,7 +64,7 @@ const BusinessCard = ({
                 image={avatar || placeholder}
                 title="Business Picture"
             />
-            <CardContent style={{ position: 'relative' }}>
+            <CardContent>
                 <Text variant="h5" component="h6" style={{ display: 'flex' }}>
                     {storeName}
                     {requests.length > 0 && <RequestIcon />}
