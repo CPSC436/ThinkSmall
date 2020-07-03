@@ -75,11 +75,13 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
     }
 
     async function onSave(file) {
-        try {
-            const res = await Client.uploadFile(file)
-            return res.location
-        } catch (err) {
-            console.log(err)
+        if (file) {
+            try {
+                const res = await Client.uploadFile(file)
+                return res.location
+            } catch (err) {
+                console.log(err)
+            }
         }
     }
 
