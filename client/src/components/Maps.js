@@ -3,11 +3,11 @@ import {
     GoogleMap, withGoogleMap, Marker, InfoWindow,
 } from 'react-google-maps'
 import { useGeolocation } from 'react-use'
+import { connect } from 'react-redux'
 import { LoadingIndicator } from './Form/components'
-import { defaultBusinesses as businesses } from '../constant'
 import classes from '../modules/maps.module.css'
 
-function Maps() {
+function Maps({ businesses }) {
     const [selectedBusiness, setSelectedBusiness] = useState(null)
     const geo = useGeolocation()
 
@@ -26,23 +26,6 @@ function Maps() {
                     )))}
             </div>
         )
-function Map(businessesObj) {
-    const [selectedBusiness, setSelectedBusiness] = useState(null);
-    const businesses = businessesObj.businessesObj;
-    const Markers = () => (
-        <div>
-            {businesses.map(business => (business.needsHelp
-                && (
-                    <Marker
-                        key={business.id}
-                        position={{ lat: business.lat, lng: business.lng }}
-                        onClick={() => {
-                            setSelectedBusiness(business);
-                        }}
-                    />
-                )))}
-        </div>
-    );
 
         const InfoWindows = () => (
             <div>
@@ -92,7 +75,6 @@ function Map(businessesObj) {
 
     return <DisplayMap />
 }
-const mapStateToProps = ({ businesses }) => ({ businesses });
+const mapStateToProps = ({ businesses }) => ({ businesses })
 
-export default Maps
-export default connect(mapStateToProps)(Maps);
+export default connect(mapStateToProps)(Maps)
