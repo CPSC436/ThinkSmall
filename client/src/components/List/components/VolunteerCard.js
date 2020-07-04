@@ -6,8 +6,8 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/styles/withStyles'
-import Tags from './Tags/Tags'
-import classes from '../modules/card.module.css'
+import Tags from '../../Tags/Tags'
+import classes from '../../../modules/card.module.css'
 
 const Text = withStyles({
     root: {

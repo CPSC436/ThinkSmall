@@ -10,9 +10,9 @@ import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/styles/withStyles'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import cx from 'classnames'
-import Tags from './Tags/Tags'
-import classes from '../modules/card.module.css'
-import placeholder from '../assets/white-room.jpeg'
+import Tags from '../../Tags/Tags'
+import classes from '../../../modules/card.module.css'
+import placeholder from '../../../assets/white-room.jpeg'
 
 const Text = withStyles({
     root: {

@@ -18,7 +18,6 @@ import {
     faPaperPlane,
     faUser,
 } from '@fortawesome/free-solid-svg-icons'
-import { connect } from 'react-redux'
 import { StylesProvider } from '@material-ui/core/styles'
 import Home from './components/Home'
 import BusinessForm from './components/Form/BusinessForm'
