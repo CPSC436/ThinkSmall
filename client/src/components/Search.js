@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import SearchBar from 'material-ui-search-bar';
-import classes from '../modules/search.module.css';
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import SearchBar from 'material-ui-search-bar'
+import { setKeyword as set } from '../actions'
+import classes from '../modules/search.module.css'
 
-const Search = () => {
-    const [search, setSearch] = useState('');
-    const handleSearch = () => {
-        // TODO: implement searching functionality
-        setSearch('');
-    };
+const Search = ({ set }) => {
+    const [search, setSearch] = useState('')
+    const handleSearch = () => set(search)
 
     return (
         <SearchBar
@@ -16,7 +15,7 @@ const Search = () => {
             onChange={setSearch}
             onRequestSearch={handleSearch}
         />
-    );
-};
+    )
+}
 
-export default Search;
+export default connect(null, { set })(Search)

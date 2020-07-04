@@ -1,48 +1,58 @@
-import React, { useState } from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { connect } from 'react-redux';
-import { useTheme } from '@material-ui/core/styles';
+import React, { useState } from 'react'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { connect } from 'react-redux'
+import { useTheme } from '@material-ui/core/styles'
 import {
     Button,
     Dialog, DialogTitle as Title,
     TextareaAutosize as Textarea,
-} from '@material-ui/core';
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import ImageUploader from 'react-images-upload';
+} from '@material-ui/core'
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import ImageUploader from 'react-images-upload'
+import S3 from 'react-aws-s3'
 import {
     Actions,
     Content, ContentText, Text,
     Input, Autocomplete,
-} from './components';
-import { addBusiness, closeForm } from '../../actions';
-import classes from '../../modules/form.module.css';
+} from './components'
+import { addBusiness, closeForm } from '../../actions'
+import classes from '../../modules/form.module.css'
+
+const config = {
+    bucketName: 'thinksmall',
+    region: 'ca-central-1',
+    accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
+}
+
+const Client = new S3(config)
 
 const Form = ({ open = false, closeForm, addBusiness }) => {
-    const [location, setLocation] = useState('');
-    const [storeName, setStoreName] = useState('');
-    const [avatar, setAvatar] = useState();
-    const [description, setDescription] = useState('');
-    const [tags, setTags] = useState([]);
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const [location, setLocation] = useState('')
+    const [storeName, setStoreName] = useState('')
+    const [description, setDescription] = useState('')
+    const [tags, setTags] = useState([])
+    const [file, setFile] = useState()
+    const theme = useTheme()
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
     const onSelect = location => {
         geocodeByAddress(location)
             .then(results => getLatLng(results[0]))
             .then(latLng => console.log('Success', latLng))
             .then(() => setLocation(location))
-            .catch(error => console.error('Error', error));
-    };
+            .catch(error => console.error('Error', error))
+    }
 
     const onClose = () => {
-        setStoreName('');
-        setAvatar('');
-        setLocation('');
-        setDescription('');
-        closeForm('business');
-    };
+        setStoreName('')
+        setLocation('')
+        setDescription('')
+        closeForm('business')
+    }
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
+        const avatar = await onSave(file)
         const business = {
             storeName,
             avatar,
@@ -51,16 +61,25 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
             description,
             needsHelp: true,
             tags,
-        };
-        addBusiness(business);
-        onClose();
-    };
+        }
+        addBusiness(business)
+        onClose()
+    }
 
     const onDrop = files => {
-        const reader = new FileReader();
-        reader.onload = e => setAvatar(e.target.result);
-        reader.readAsDataURL(files[0]);
-    };
+        const reader = new FileReader()
+        reader.readAsDataURL(files[0])
+        setFile(files[0])
+    }
+
+    async function onSave(file) {
+        try {
+            const res = await Client.uploadFile(file)
+            return res.location
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <Dialog
@@ -109,9 +128,9 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
                 <Button variant="outlined" onClick={onSubmit}>Submit</Button>
             </Actions>
         </Dialog>
-    );
-};
+    )
+}
 
-const mapStateToProps = ({ forms }) => ({ open: forms.business });
+const mapStateToProps = ({ forms }) => ({ open: forms.business })
 
-export default connect(mapStateToProps, { addBusiness, closeForm })(Form);
+export default connect(mapStateToProps, { addBusiness, closeForm })(Form)

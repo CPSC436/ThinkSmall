@@ -22,6 +22,7 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'arrow-parens': [ERROR, 'as-needed'],
+    'consistent-return': OFF,
     'no-case-declarations': OFF,
     'no-irregular-whitespace': OFF,
     'no-param-reassign': OFF,
@@ -31,6 +32,7 @@ module.exports = {
     'no-underscore-dangle': OFF,
     'no-unused-vars': [ON, { args: 'none' }],
     'no-use-before-define': OFF,
+    'semi': [ERROR, 'never'],
     'react/prop-types': OFF,
     'react/jsx-indent': [ON, 4],
     'react/jsx-indent-props': OFF,
