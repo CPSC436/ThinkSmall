@@ -69,3 +69,8 @@
     padding: 10px;
     z-index: 1;
 }
+
+.accounts {
+    display: flex;
+    flex-direction: row;
+}
