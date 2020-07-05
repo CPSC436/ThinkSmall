@@ -34,42 +34,27 @@ createOwner = (req, res) => {
 }
 
 updateOwner = async (req, res) => {
-    const body = req.body
+    const owner = req.body
 
-    if (!body) {
+    if (!owner) {
         return res.status(400).json({
             success: false,
             error: 'You must provide a body to update',
         })
     }
 
-    Owner.findOne({ _id: req.params.id }, (err, owner) => {
-        if (err) {
+    await Owner.findByIdAndUpdate(req.params.id, owner, (err, owner) => {
+        if (!owner) {
             return res.status(404).json({
                 err,
                 message: 'Owner not found!',
             })
         }
-        owner.firstName = body.firstName
-        owner.lastName = body.lastName
-        owner.imageURL = body.imageURL
-        owner.description = body.description
-        owner.businesses = body.businesses
-        owner
-            .save()
-            .then(() => {
-                return res.status(200).json({
-                    success: true,
-                    id: owner._id,
-                    message: 'Owner updated!',
-                })
-            })
-            .catch(error => {
-                return res.status(404).json({
-                    error,
-                    message: 'Owner not updated!',
-                })
-            })
+        return res.status(200).json({
+            success: true,
+            id: owner._id,
+            message: 'Owner updated!',
+        })
     })
 }
 
@@ -80,9 +65,7 @@ deleteOwner = async (req, res) => {
         }
 
         if (!owner) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Owner not found` })
+            return res.status(404).json({ success: false, error: `Owner not found` })
         }
 
         return res.status(200).json({ success: true, data: owner })
@@ -96,9 +79,7 @@ getOwnerById = async (req, res) => {
         }
 
         if (!owner) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Owner not found` })
+            return res.status(404).json({ success: false, error: `Owner not found` })
         }
         return res.status(200).json({ success: true, data: owner })
     }).catch(err => console.log(err))
@@ -110,9 +91,7 @@ getOwners = async (req, res) => {
             return res.status(400).json({ success: false, error: err })
         }
         if (!owners.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Owner not found` })
+            return res.status(404).json({ success: false, error: `Owner not found` })
         }
         return res.status(200).json({ success: true, data: owners })
     }).catch(err => console.log(err))
