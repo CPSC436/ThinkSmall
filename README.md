@@ -105,9 +105,15 @@ c) Stretch requirements:
 ![business_owner]
 ![request_form]
 
+## DB Schema
+
+![db_schema]
+
 ## User Workflow
 
-![user_workflow]
+![login_workflow]
+![account_page_workflow]
+![businesses_page_workflow]
 
 ## Troubleshooting
 List any issues/problems you encounter and how you have troubleshooted the issue!
@@ -116,9 +122,12 @@ List any issues/problems you encounter and how you have troubleshooted the issue
 [volunteer]: screenshots/ui_for_volunteer__list_view.png
 [business_owner]: screenshots/ui_for_business_owner__list_view.png
 [request_form]: screenshots/request_form.png
-[sketch_1]: screenshots/ThinkSmall1.jpg
-[sketch_2]: screenshots/ThinkSmall2.jpg
-[user_workflow]: screenshots/user_workflow.png
+[sketch_1]: screenshots/sketch_1.jpg
+[sketch_2]: screenshots/sketch_2.jpg
+[db_schema]: screenshots/db_schema.png
+[login_workflow]: screenshots/login_workflow.png
+[account_page_workflow]: screenshots/account_page_workflow.png
+[businesses_page_workflow]: screenshots/businesses_page_workflow.png
 
 
 
