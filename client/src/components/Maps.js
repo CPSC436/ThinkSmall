@@ -14,7 +14,7 @@ function Maps({ businesses }) {
     const Map = () => {
         const Markers = () => (
             <div>
-                {businesses.map(business => (business.needsHelp
+                {businesses.map(business => (business.requests?.length > 0
                     && (
                         <Marker
                             key={business.id}
@@ -67,7 +67,6 @@ function Maps({ businesses }) {
                         loadingElement={<div style={{ height: '100%' }} />}
                         containerElement={<div style={{ height: '100%' }} />}
                         mapElement={<div style={{ height: '100%' }} />}
-                        businessesObj={businesses}
                     />
                 )}
         </div>
