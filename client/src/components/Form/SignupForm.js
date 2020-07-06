@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
 import {
     Button,
     Dialog,
@@ -17,12 +18,23 @@ import {
 } from './components'
 import Tags from '../Tags/Tags'
 import { closeForm } from '../../actions'
-import classes from '../../modules/form.module.css'
+import LoginByGoogle from '../LoginByGoogle'
 
 const SignupForm = ({ open = false, closeForm }) => {
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [email, setEmail] = useState('')
+
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
     const onClose = () => closeForm('sign_up')
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        console.log('Email:', email, 'Password: ', password)
+    }
 
     return (
         <Dialog
@@ -30,31 +42,42 @@ const SignupForm = ({ open = false, closeForm }) => {
             open={open}
             aria-labelledby="signup-form"
         >
-            <Title id="signup-form" disableTypography>Signup Form</Title>
+            <Title id="signup-form" disableTypography>Please enter your information in the form or use google to signup</Title>
             <Content>
-                <ContentText>
-                    Please provide the following information or get started with google
-                </ContentText>
-                <Text>First Name</Text>
-                <Input autoFocus margin="dense" fullWidth placeholder="" className="input" />
 
-                <Text>Last Name</Text>
-                <Input autoFocus margin="dense" fullWidth placeholder="" />
+                <form onSubmit={handleSubmit}>
+                    <Text>First Name</Text>
 
-                <Text>Email</Text>
-                <Input autoFocus margin="dense" fullWidth placeholder="" />
+                    <Input autoFocus margin="dense" fullWidth placeholder="" className="input" onChange={e => setFirstName(e.target.value)} required />
 
-                <Text>Password</Text>
-                <Input autoFocus margin="dense" fullWidth placeholder="" />
+                    <Text>Last Name</Text>
+                    <Input autoFocus margin="dense" fullWidth placeholder="" onChange={e => setLastName(e.target.value)} required />
 
-                <Text>Confirm Password</Text>
-                <Input autoFocus margin="dense" fullWidth placeholder="" />
+                    <Text>Email</Text>
+                    <Input autoFocus margin="dense" fullWidth placeholder="" onChange={e => setEmail(e.target.value)} type="email" required />
 
+                    <Text>Password</Text>
+                    <Input autoFocus margin="dense" fullWidth placeholder="" type="password" id="password" onChange={e => setPassword(e.target.value)} required />
+
+                    <Text>Confirm Password</Text>
+                    <Input autoFocus margin="dense" fullWidth placeholder="" type="password" id="confirm_password" onChange={e => setConfirmPassword(e.target.value)} required />
+
+                    <Actions>
+
+                        <Button variant="outlined" label="Submit" type="submit" onClick={onClose}>Submit</Button>
+                        <Button variant="outlined" onClick={onClose}>Cancel</Button>
+
+                    </Actions>
+
+                    <Actions>
+
+                        <LoginByGoogle />
+
+                    </Actions>
+
+                </form>
             </Content>
-            <Actions>
-                <Button variant="outlined" onClick={onClose}>Cancel</Button>
-                <Button variant="outlined" onClick={onClose}>Submit</Button>
-            </Actions>
+
         </Dialog>
     )
 }

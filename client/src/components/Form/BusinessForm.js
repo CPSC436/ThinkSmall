@@ -113,7 +113,7 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
                     imgExtension={['.jpg', '.gif', '.png', '.gif']}
                     maxFileSize={5242880}
                     singleImage
-                    withIcon
+                    withIconz
                     withPreview
                 />
                 <Text>Location</Text>
