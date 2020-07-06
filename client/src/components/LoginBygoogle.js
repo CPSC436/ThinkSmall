@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import GoogleLogin, { GoogleLogout } from 'react-google-login'
 
-const LoginBygoogle = () => {
+const LoginByGoogle = () => {
     const [userDetails, setUserDetails] = useState({})
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
 
@@ -69,4 +69,4 @@ const LoginBygoogle = () => {
     )
 }
 
-export default LoginBygoogle
+export default LoginByGoogle
