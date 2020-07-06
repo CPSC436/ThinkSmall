@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import GoogleLogin, { GoogleLogout } from 'react-google-login'
 
 const LoginByGoogle = () => {
@@ -10,12 +10,7 @@ const LoginByGoogle = () => {
         setIsUserLoggedIn(true)
     }
 
-    const logout = () => {
-        setIsUserLoggedIn(false)
-    }
-
-    useEffect(() => {
-    }, [userDetails, isUserLoggedIn])
+    const logout = () => setIsUserLoggedIn(false)
 
     return (
         <div className="App">
@@ -24,6 +19,7 @@ const LoginByGoogle = () => {
                     clientId={process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_KEY}
                     render={renderProps => (
                         <button
+                            type="button"
                             className="button"
                             onClick={renderProps.onClick}
                             disabled={renderProps.disabled}
@@ -41,6 +37,7 @@ const LoginByGoogle = () => {
                         <GoogleLogout
                             render={renderProps => (
                                 <button
+                                    type="button"
                                     className="logout-button"
                                     onClick={renderProps.onClick}
                                 >

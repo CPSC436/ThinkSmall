@@ -65,7 +65,7 @@ function App({ switchState }) {
                     </Route>
                     <Route path="*">
                         <NavBar />
-                        <LoginBygoogle />
+                        <LoginByGoogle />
                         <Home />
                     </Route>
                 </Switch>
