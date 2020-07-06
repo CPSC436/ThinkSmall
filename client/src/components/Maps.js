@@ -38,7 +38,7 @@ function Maps({ businesses }) {
                             <h3>{selectedBusiness.storeName}</h3>
                             <h4>
                                 Address:&nbsp;
-                                {selectedBusiness.streetAddress}
+                                {selectedBusiness.location}
                             </h4>
                             <img className={classes.avatar} src={selectedBusiness.avatar} alt="" />
                         </div>

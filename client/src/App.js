@@ -18,10 +18,12 @@ import {
     faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { StylesProvider } from '@material-ui/core/styles'
+import { connect } from 'react-redux'
 import Home from './components/Home'
 import BusinessForm from './components/Form/BusinessForm'
 import RequestForm from './components/Form/RequestForm'
 import VolunteerForm from './components/Form/VolunteerForm'
+import SignupForm from './components/Form/SignupForm'
 import Inbox from './components/Inbox/Inbox'
 import BusinessesList from './components/List/BusinessesList'
 import VolunteersList from './components/List/VolunteersList'
@@ -29,7 +31,7 @@ import NavBar from './components/NavBar/NavBar'
 import './App.css'
 import Maps from './components/Maps'
 import LoginByGoogle from './components/LoginByGoogle'
-import './App.css'
+
 
 library.add(
     fab,
@@ -65,8 +67,8 @@ function App({ switchState }) {
                     </Route>
                     <Route path="*">
                         <NavBar userType="entry" />
-                        <LoginByGoogle />
                         <Home />
+                        <SignupForm />
                     </Route>
                 </Switch>
             </Router>

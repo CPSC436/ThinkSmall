@@ -15,8 +15,8 @@ const ButtonNavBar = ({ userType, openForm }) => {
             { title: 'Register User', action: () => openForm('volunteer') },
         ],
         entry: [
-            { title: 'Sign Up', action: () => openForm('help') },
-            { title: 'Login', action: () => openForm('volunteer') },
+            { title: 'Sign Up', action: () => openForm('sign_up') },
+            { title: 'Login', action: () => openForm('login') },
         ],
     }
     return (
