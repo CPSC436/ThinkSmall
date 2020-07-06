@@ -42,7 +42,7 @@ function App({ switchState }) {
                     <Inbox />
                 </Route>
                 <Route path="*">
-                    <NavBar />
+                    <NavBar userType="entry" />
                     <Home />
                 </Route>
             </Switch>

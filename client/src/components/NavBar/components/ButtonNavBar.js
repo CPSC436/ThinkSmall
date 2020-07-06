@@ -14,6 +14,10 @@ const ButtonNavBar = ({ userType, openForm }) => {
             { title: 'Provide Help', action: () => openForm('help') },
             { title: 'Register User', action: () => openForm('volunteer') },
         ],
+        entry: [
+            { title: 'Sign Up', action: () => openForm('help') },
+            { title: 'Login', action: () => openForm('volunteer') },
+        ],
     }
     return (
         <div className={classes.flex}>
