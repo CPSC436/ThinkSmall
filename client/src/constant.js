@@ -36,25 +36,6 @@ export const defaultSkills = [
     { label: 'Food Designer' },
 ]
 
-export const defaultUsers = [
-    {
-        id: 0,
-        name: 'Alice',
-    },
-    {
-        id: 1,
-        name: 'Dave',
-    },
-    {
-        id: 2,
-        name: 'Kelly',
-    },
-    {
-        id: 3,
-        name: 'Jenny',
-    },
-]
-
 export const defaultConversations = [
     {
         id: 0,

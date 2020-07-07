@@ -6,7 +6,6 @@ export const EDIT_BUSINESS = 'EDIT_BUSINESS'
 export const ADD_VOLUNTEER = 'ADD_VOLUNTEER'
 export const DELETE_VOLUNTEER = 'DELETE_VOLUNTEER'
 export const EDIT_VOLUNTEER = 'EDIT_VOLUNTEER'
-export const SAVE_REQUEST = 'SAVE_REQUEST'
 export const OPEN_FORM = 'OPEN_FORM'
 export const CLOSE_FORM = 'CLOSE_FORM'
 export const TOGGLE_HELP = 'TOGGLE_HELP'
@@ -74,11 +73,6 @@ export const editVolunteer = (id, volunteerName, imageUrl, description, tags) =>
     tags,
 })
 
-export const saveRequest = request => ({
-    type: SAVE_REQUEST,
-    request,
-})
-
 export const openForm = id => ({
     type: OPEN_FORM,
     id,
@@ -100,4 +94,5 @@ export const setFilters = tags => ({
 })
 
 export * from './business'
+export * from './request'
 export * from './user'
