@@ -26,7 +26,7 @@ const LoginByGoogle = () => {
                 <div className="userDetails-wrapper">
                     <div className="details-wrapper">
                         <GoogleLogout
-                            buttonText="Logout"
+                            buttonText="Login"
                             onLogoutSuccess={logout}
                         />
                         <div className="image">

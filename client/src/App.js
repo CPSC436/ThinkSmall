@@ -24,6 +24,7 @@ import BusinessForm from './components/Form/BusinessForm'
 import RequestForm from './components/Form/RequestForm'
 import VolunteerForm from './components/Form/VolunteerForm'
 import SignupForm from './components/Form/SignupForm'
+import LoginForm from './components/Form/LoginForm'
 import Inbox from './components/Inbox/Inbox'
 import BusinessesList from './components/List/BusinessesList'
 import VolunteersList from './components/List/VolunteersList'
@@ -69,6 +70,7 @@ function App({ switchState }) {
                         <NavBar userType="entry" />
                         <Home />
                         <SignupForm />
+                        <LoginForm />
                     </Route>
                 </Switch>
             </Router>
