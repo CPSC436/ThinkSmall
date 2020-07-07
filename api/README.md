@@ -4,21 +4,11 @@ This is the API documentation for ThinkSmall project built with [Node.js](https:
 
 ## Account related
 
-### Business Owner related
-
-* [Create owner](docs/OWNER.md#create-owner)
-* [Update owner](docs/OWNER.md#update-owner)
-* [Delete owner](docs/OWNER.md#delete-owner)
-* [Get owners](docs/OWNER.md#get-owners)
-* [Get owner by id](docs/OWNER.md#get-owner-by-id)
-
-### Volunteer related
-
-* [Create volunteer](docs/VOLUNTEER.md#create-volunteer)
-* [Update volunteer](docs/VOLUNTEER.md#update-volunteer)
-* [Delete volunteer](docs/VOLUNTEER.md#delete-volunteer)
-* [Get volunteers](docs/VOLUNTEER.md#get-volunteers)
-* [Get volunteer by id](docs/VOLUNTEER.md#get-volunteer-by-id)
+* [Create user](docs/USER.md#create-user)
+* [Update user](docs/USER.md#update-user)
+* [Delete user](docs/USER.md#delete-user)
+* [Get users](docs/USER.md#get-users)
+* [Get user by id](docs/USER.md#get-user-by-id)
 
 ## Business related
 
