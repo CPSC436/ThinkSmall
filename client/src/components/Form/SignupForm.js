@@ -33,7 +33,7 @@ const SignupForm = ({ open = false, closeForm }) => {
 
     function handleSubmit(event) {
         event.preventDefault()
-        console.log('Email:', email, 'Password: ', password)
+        onClose()
     }
 
     return (
@@ -64,7 +64,7 @@ const SignupForm = ({ open = false, closeForm }) => {
 
                     <Actions>
 
-                        <Button style={{ width: '50%' }} variant="outlined" label="Submit" type="submit" onClick={onClose}>Submit</Button>
+                        <Button style={{ width: '50%' }} variant="outlined" label="Submit" type="submit">Submit</Button>
                         <Button style={{ width: '50%' }} variant="outlined" onClick={onClose}>Cancel</Button>
 
                     </Actions>
