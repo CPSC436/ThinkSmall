@@ -69,7 +69,6 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
 
     const onDrop = files => {
         const reader = new FileReader()
-        console.log(files)
         reader.readAsDataURL(files[0])
         setFile(files[0])
     }

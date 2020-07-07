@@ -25,7 +25,7 @@ function Maps({ loading, businesses }) {
                 {businesses.map(business => (business.requests?.length > 0
                     && (
                         <Marker
-                            key={business.id}
+                            key={business._id}
                             position={{ lat: business.lat, lng: business.lng }}
                             onClick={() => {
                                 setSelectedBusiness(business)
@@ -48,7 +48,7 @@ function Maps({ loading, businesses }) {
                                 Address:&nbsp;
                                 {selectedBusiness.location}
                             </h4>
-                            <img className={classes.imageUrl} src={selectedBusiness.imageUrl} alt="" />
+                            <img className={classes.avatar} src={selectedBusiness.imageUrl} alt="" />
                         </div>
                     </InfoWindow>
                 )}
