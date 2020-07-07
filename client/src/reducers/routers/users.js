@@ -8,22 +8,22 @@ const defaultUsers = {
 
 export default (users = defaultUsers, action) => {
     switch (action.type) {
-        case LOAD_USERS: {
-            return {
-                ...users,
-                loading: true,
-                loaded: false,
-            }
+    case LOAD_USERS: {
+        return {
+            ...users,
+            loading: true,
+            loaded: false,
         }
-        case SET_USERS: {
-            return {
-                ...users,
-                loading: false,
-                loaded: true,
-                data: action.data,
-            }
+    }
+    case SET_USERS: {
+        return {
+            ...users,
+            loading: false,
+            loaded: true,
+            data: action.data,
         }
-        default:
-            return users
+    }
+    default:
+        return users
     }
 }

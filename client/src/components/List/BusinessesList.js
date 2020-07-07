@@ -29,30 +29,31 @@ const BusinessesList = ({
         <>
             {loading
                 ? <LoadingIndicator />
-                : <div className={classes.root}>
-                    <div className={classes.searchBar}>
-                        <Search />
-                        <Tags tags={defaultNeeds} canSelect />
+                : (
+                    <div className={classes.root}>
+                        <div className={classes.searchBar}>
+                            <Search />
+                            <Tags tags={defaultNeeds} canSelect />
+                        </div>
+                        <div className={classes.page}>
+                            <Pagination
+                                onChange={handleChange}
+                                page={currentPage}
+                                count={Math.ceil(businesses.length / 6)}
+                                renderItem={item => (
+                                    <PaginationItem {...item} />
+                                )}
+                            />
+                        </div>
+                        <div className={classes.container}>
+                            {businesses
+                                .slice((currentPage - 1) * 6, currentPage * 6)
+                                .map(({ _id, ...props }) => (
+                                    <BusinessCard key={_id} id={_id} {...props} />
+                                ))}
+                        </div>
                     </div>
-                    <div className={classes.page}>
-                        <Pagination
-                            onChange={handleChange}
-                            page={currentPage}
-                            count={Math.ceil(businesses.length / 6)}
-                            renderItem={item => (
-                                <PaginationItem {...item} />
-                            )}
-                        />
-                    </div>
-                    <div className={classes.container}>
-                        {businesses
-                            .slice((currentPage - 1) * 6, currentPage * 6)
-                            .map(({ _id, ...props }) => (
-                                <BusinessCard key={_id} id={_id} {...props} />
-                            ))}
-                    </div>
-                </div>
-            }
+                )}
         </>
     )
 }

@@ -9,11 +9,11 @@ import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/styles/withStyles'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import cx from 'classnames'
+import axios from 'axios'
 import Tags from '../../Tags/Tags'
 import { LoadingIndicator } from '../../Form/components'
 import classes from '../../../modules/card.module.css'
 import placeholder from '../../../assets/white-room.jpeg'
-import axios from 'axios'
 
 const Text = withStyles({
     root: {
@@ -29,7 +29,7 @@ const BusinessCard = ({
     const [details, setDetails] = useState()
     const [hover, setHover] = useState(false)
     const requestIcon = useRef(null)
-    const getRequest = async (id) => {
+    const getRequest = async id => {
         try {
             const res = await axios.get(`http://localhost:8080/request/${id}`)
             return res.data.data
@@ -66,8 +66,7 @@ const BusinessCard = ({
                             <Button variant="contained" className={cx(classes.details, classes.button)}>See Details</Button>
                         </div>
                     ))
-                    : <LoadingIndicator />
-                }
+                    : <LoadingIndicator />}
             </div>
         )
     }
@@ -75,8 +74,8 @@ const BusinessCard = ({
         async function loadDetails() {
             setDetails([
                 ...await Promise.all(
-                    requests.map(request => getRequest(request))
-                )
+                    requests.map(request => getRequest(request)),
+                ),
             ])
         }
         loadDetails()

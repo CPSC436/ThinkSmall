@@ -8,22 +8,22 @@ const defaultRequests = {
 
 export default (requests = defaultRequests, action) => {
     switch (action.type) {
-        case LOAD_REQUESTS: {
-            return {
-                ...requests,
-                loading: true,
-                loaded: false,
-            }
+    case LOAD_REQUESTS: {
+        return {
+            ...requests,
+            loading: true,
+            loaded: false,
         }
-        case SET_REQUESTS: {
-            return {
-                ...requests,
-                loading: false,
-                loaded: true,
-                data: action.data,
-            }
+    }
+    case SET_REQUESTS: {
+        return {
+            ...requests,
+            loading: false,
+            loaded: true,
+            data: action.data,
         }
-        default:
-            return requests
+    }
+    default:
+        return requests
     }
 }
