@@ -14,7 +14,7 @@ import {
 } from './components'
 import Tags from '../Tags/Tags'
 import classes from '../../modules/form.module.css'
-import { addBusiness, saveRequest, closeForm } from '../../actions'
+import { saveRequest, closeForm } from '../../actions'
 
 const Form = ({ open = false, closeForm, saveRequest }) => {
     const [business, setBusiness] = useState('')
@@ -79,4 +79,4 @@ const Form = ({ open = false, closeForm, saveRequest }) => {
 
 const mapStateToProps = ({ forms }) => ({ open: forms.request })
 
-export default connect(mapStateToProps, { addBusiness, saveRequest, closeForm })(Form)
+export default connect(mapStateToProps, { saveRequest, closeForm })(Form)

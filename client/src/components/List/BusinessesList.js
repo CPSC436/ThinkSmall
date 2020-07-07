@@ -10,7 +10,7 @@ import classes from '../../modules/list.module.css'
 import { defaultNeeds } from '../../constant'
 
 const BusinessesList = ({
-    businesses, filters, keyword, setKeyword, setFilters, getBusinesses,
+    loading, businesses, setKeyword, setFilters, getBusinesses,
 }) => {
     const [currentPage, setPage] = useState(1)
     const handleChange = (_, currentPage) => {
@@ -27,7 +27,7 @@ const BusinessesList = ({
 
     return (
         <>
-            {businesses.loading
+            {loading
                 ? <LoadingIndicator />
                 : <div className={classes.root}>
                     <div className={classes.searchBar}>
@@ -38,20 +38,17 @@ const BusinessesList = ({
                         <Pagination
                             onChange={handleChange}
                             page={currentPage}
-                            count={Math.ceil(businesses.data.length / 6)}
+                            count={Math.ceil(businesses.length / 6)}
                             renderItem={item => (
                                 <PaginationItem {...item} />
                             )}
                         />
                     </div>
                     <div className={classes.container}>
-                        {businesses && businesses.data
-                            .filter(({ storeName }) => storeName.includes(keyword))
-                            .filter(({ tags }) => !filters.length
-                                || filters.every(tag => tags.some(({ label }) => label === tag)))
+                        {businesses
                             .slice((currentPage - 1) * 6, currentPage * 6)
-                            .map(({ id, ...props }) => (
-                                <BusinessCard key={id} id={id} {...props} />
+                            .map(({ _id, ...props }) => (
+                                <BusinessCard key={_id} id={_id} {...props} />
                             ))}
                     </div>
                 </div>
@@ -60,7 +57,13 @@ const BusinessesList = ({
     )
 }
 
-const mapStateToProps = ({ businesses, filters, keyword }) => ({ businesses, filters, keyword })
+const mapStateToProps = ({ businesses, filters, keyword }) => ({
+    loading: businesses.loading,
+    businesses: businesses.data
+        .filter(({ storeName }) => storeName.includes(keyword))
+        .filter(({ tags }) => !filters.length
+            || filters.every(tag => tags.some(({ label }) => label === tag))),
+})
 const mapDispatchToProps = { setKeyword, setFilters, getBusinesses }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BusinessesList)

@@ -1,7 +1,6 @@
 import {
-    ADD_BUSINESS, DELETE_BUSINESS, EDIT_BUSINESS, TOGGLE_HELP, SET_BUSINESSES, LOAD_BUSINESSES
+    DELETE_BUSINESS, EDIT_BUSINESS, TOGGLE_HELP, SET_BUSINESSES, LOAD_BUSINESSES
 } from '../../actions'
-// import { defaultBusinesses } from '../../constant'
 
 const defaultBusinesses = {
     loading: true,
@@ -26,9 +25,6 @@ export default (businesses = defaultBusinesses, action) => {
                 loaded: true,
                 data: action.data,
             }
-        }
-        case ADD_BUSINESS: {
-            return [...businesses, { ...action.business, id: businesses.length }]
         }
         case DELETE_BUSINESS: {
             return [...businesses.filter(({ id }) => id !== action.id)]
