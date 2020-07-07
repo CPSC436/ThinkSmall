@@ -41,7 +41,8 @@ As a business owner user, the app will need to store the following data: name of
 * [Redux](https://redux.js.org/)
 * [Node.js](https://nodejs.org/)
 * [Express](https://expressjs.com/)
-* [AWS](https://aws.amazon.com/)
+* [AWS S3](https://aws.amazon.com/s3/)
+* [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2)
 * [Material UI](https://material-ui.com/)
 
 ## Getting Started

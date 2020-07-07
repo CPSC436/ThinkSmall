@@ -63,7 +63,7 @@ Update a single user.
 **Request body example**
 ```json
 {
-    "email": "alice@nwplus.io"
+    "email": "alice@mail.io"
 }
 ```
 
@@ -135,7 +135,7 @@ Delete a single user.
         "_id": "5f04ba889c40d6cbcb63b9c7",
         "givenName": "Alice",
         "familyName": "Kim",
-        "email": "alice@nwplus.io",
+        "email": "alice@mail.io",
         "imageUrl": "https://i.pinimg.com/736x/18/45/d6/1845d65689ecc7cecfaf8f4d958a7f67.jpg",
         "description": "I'm a developer.",
         "createdAt": "2020-07-07T18:10:16.039Z",
