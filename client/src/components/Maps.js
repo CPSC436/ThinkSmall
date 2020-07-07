@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import {
     GoogleMap, withGoogleMap, Marker, InfoWindow,
 } from 'react-google-maps'
 import { useGeolocation } from 'react-use'
 import { LoadingIndicator } from './Form/components'
+import { getBusinesses } from '../actions'
 import classes from '../modules/maps.module.css'
 
-function Maps({ businesses }) {
+function Maps({ loading, businesses }) {
     const geo = useGeolocation()
+    useEffect(() => {
+        async function loadBusinesses() {
+            await getBusinesses()
+        }
+        loadBusinesses()
+    }, [])
 
     const Map = () => {
         const [selectedBusiness, setSelectedBusiness] = useState(null)
@@ -61,7 +68,7 @@ function Maps({ businesses }) {
 
     const DisplayMap = () => (
         <div style={{ width: '100vw', height: '100vh' }}>
-            {geo.loading
+            {loading || geo.loading
                 ? <LoadingIndicator />
                 : (
                     <WrappedMap
@@ -76,4 +83,7 @@ function Maps({ businesses }) {
     return <DisplayMap />
 }
 
-export default connect(({ businesses }) => ({ businesses }))(Maps)
+export default connect(({ businesses }) => ({
+    loading: businesses.loading,
+    businesses: businesses.data
+}), { getBusinesses })(Maps)
