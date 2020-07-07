@@ -21,7 +21,7 @@ const Text = withStyles({
 })(Typography)
 
 const BusinessCard = ({
-    id, avatar, storeName, storeOwner, description, shortDescription, location, requests, tags = [],
+    _id, imageUrl, storeName, storeOwner, description, shortDescription, location, requests, tags = [],
 }) => {
     const [hover, setHover] = useState(false)
     const requestIcon = useRef(null)
@@ -61,7 +61,7 @@ const BusinessCard = ({
         <Card className={classes.root} style={{ overflow: 'visible' }}>
             <CardMedia
                 className={classes.media}
-                image={avatar || placeholder}
+                image={imageUrl || placeholder}
                 title="Business Picture"
             />
             <CardContent>
