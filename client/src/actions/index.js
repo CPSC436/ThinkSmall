@@ -39,12 +39,12 @@ export const helpToggle = id => ({
     id,
 })
 
-export const editBusiness = (id, storeName, avatar, storeOwner, location, description,
+export const editBusiness = (id, storeName, imageUrl, storeOwner, location, description,
     needsHelp, tags) => ({
         type: EDIT_BUSINESS,
         id,
         storeName,
-        avatar,
+        imageUrl,
         storeOwner,
         location,
         description,
@@ -52,10 +52,10 @@ export const editBusiness = (id, storeName, avatar, storeOwner, location, descri
         tags,
     })
 
-export const addVolunteer = (volunteerName, avatar, description, tags) => ({
+export const addVolunteer = (volunteerName, imageUrl, description, tags) => ({
     type: ADD_VOLUNTEER,
     volunteerName,
-    avatar,
+    imageUrl,
     description,
     tags,
 })
@@ -65,11 +65,11 @@ export const deleteVolunteer = id => ({
     id,
 })
 
-export const editVolunteer = (id, volunteerName, avatar, description, tags) => ({
+export const editVolunteer = (id, volunteerName, imageUrl, description, tags) => ({
     type: EDIT_VOLUNTEER,
     id,
     volunteerName,
-    avatar,
+    imageUrl,
     description,
     tags,
 })
@@ -100,3 +100,4 @@ export const setFilters = tags => ({
 })
 
 export * from './business'
+export * from './user'

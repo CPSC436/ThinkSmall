@@ -38,11 +38,11 @@ export default (businesses = defaultBusinesses, action) => {
         case EDIT_BUSINESS: {
             const editedBusinesses = [...businesses]
             const {
-                id, storeName, avatar, storeOwner, location, description,
+                id, storeName, imageUrl, storeOwner, location, description,
                 needsHelp, tags,
             } = action
             const properties = [storeName,
-                avatar,
+                imageUrl,
                 storeOwner,
                 location,
                 description,

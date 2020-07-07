@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 import businesses from './routers/businesses'
-import volunteers from './routers/volunteers'
 import conversations from './routers/conversations'
 import users from './routers/users'
 import {
@@ -17,5 +16,4 @@ export default combineReducers({
     requests,
     switchState,
     users,
-    volunteers,
 })

@@ -41,7 +41,7 @@ function Maps({ businesses }) {
                                 Address:&nbsp;
                                 {selectedBusiness.location}
                             </h4>
-                            <img className={classes.avatar} src={selectedBusiness.avatar} alt="" />
+                            <img className={classes.imageUrl} src={selectedBusiness.imageUrl} alt="" />
                         </div>
                     </InfoWindow>
                 )}

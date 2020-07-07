@@ -16,44 +16,44 @@ const Text = withStyles({
 })(Typography)
 
 const VolunteerCard = ({
-    avatar, volunteerName, description, tags,
+    imageUrl, givenName, familyName, description, tags,
 }) => (
-    <Card className={classes.root}>
-        <CardMedia
-            className={classes.media}
-            image={avatar}
-            title="Volunteer Picture"
-        />
-        <CardContent>
-            <Text variant="h5" component="h6">
-                {volunteerName}
-            </Text>
-            <Tags tags={tags} />
-            <Text gutterBottom variant="body2" color="textSecondary" component="p">
-                {description}
-            </Text>
-        </CardContent>
-        <CardActions style={{ padding: 16 }}>
-            <Button
-                className={classes.button}
-                size="small"
-                variant="contained"
-                target="_blank"
-                style={{ width: '100%', height: 36 }}
-            >
-                Read More
+        <Card className={classes.root}>
+            <CardMedia
+                className={classes.media}
+                image={imageUrl}
+                title="Volunteer Picture"
+            />
+            <CardContent>
+                <Text variant="h5" component="h6">
+                    {`${givenName} ${familyName}`}
+                </Text>
+                <Tags tags={tags} />
+                <Text gutterBottom variant="body2" color="textSecondary" component="p">
+                    {description}
+                </Text>
+            </CardContent>
+            <CardActions style={{ padding: 16 }}>
+                <Button
+                    className={classes.button}
+                    size="small"
+                    variant="contained"
+                    target="_blank"
+                    style={{ width: '100%', height: 36 }}
+                >
+                    Read More
             </Button>
-            <Button
-                className={classes.button}
-                size="small"
-                variant="contained"
-                target="_blank"
-                style={{ width: '100%', height: 36 }}
-            >
-                Start Conversation
+                <Button
+                    className={classes.button}
+                    size="small"
+                    variant="contained"
+                    target="_blank"
+                    style={{ width: '100%', height: 36 }}
+                >
+                    Start Conversation
             </Button>
-        </CardActions>
-    </Card>
-)
+            </CardActions>
+        </Card>
+    )
 
 export default VolunteerCard
