@@ -30,12 +30,9 @@ import BusinessesList from './components/List/BusinessesList'
 import VolunteersList from './components/List/VolunteersList'
 import NavBar from './components/NavBar/NavBar'
 import Maps from './components/Maps'
-import LoginByGoogle from './components/LoginByGoogle'
 import './App.css'
-import Account from './components/Account'
 import LoginByGoogle from './components/LoginByGoogle'
 import Account from './components/Account'
-import './App.css'
 
 library.add(
     fab,
