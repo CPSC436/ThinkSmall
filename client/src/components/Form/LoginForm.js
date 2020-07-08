@@ -20,7 +20,7 @@ import Tags from '../Tags/Tags'
 import { closeForm } from '../../actions'
 import LoginByGoogle from '../LoginByGoogle'
 
-const LoginForm = ({ open = true, closeForm }) => {
+const LoginForm = ({ open = false, closeForm }) => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
@@ -37,9 +37,11 @@ const LoginForm = ({ open = true, closeForm }) => {
         <Dialog
             fullScreen={fullScreen}
             open={open}
-            aria-labelledby="signup-form"
+            aria-labelledby="login-form"
+            maxWidth="md"
         >
-            <Title id="signup-form" disableTypography>Login</Title>
+            <Title id="signup-form" disableTypography>Please enter your email and password to login!</Title>
+
             <Content>
 
                 <form onSubmit={handleSubmit}>
@@ -52,7 +54,7 @@ const LoginForm = ({ open = true, closeForm }) => {
 
                     <Actions>
 
-                        <Button style={{ width: '50%' }} variant="outlined" label="Submit" type="submit" >Submit</Button>
+                        <Button style={{ width: '50%' }} variant="outlined" label="Submit" type="submit">Submit</Button>
                         <Button style={{ width: '50%' }} variant="outlined" onClick={onClose}>Cancel</Button>
 
                     </Actions>

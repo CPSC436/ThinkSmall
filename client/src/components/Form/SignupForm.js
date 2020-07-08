@@ -43,6 +43,7 @@ const SignupForm = ({ open = false, closeForm }) => {
             aria-labelledby="signup-form"
         >
             <Title id="signup-form" disableTypography>Please enter your information in the form or use google to signup</Title>
+
             <Content>
 
                 <form onSubmit={handleSubmit}>
