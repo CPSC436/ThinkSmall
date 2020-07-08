@@ -33,7 +33,6 @@ import './App.css'
 import Maps from './components/Maps'
 import LoginByGoogle from './components/LoginByGoogle'
 
-
 library.add(
     fab,
     faAddressCard,
