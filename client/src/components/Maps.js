@@ -1,23 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import {
     GoogleMap, withGoogleMap, Marker, InfoWindow,
 } from 'react-google-maps'
 import { useGeolocation } from 'react-use'
-import { connect } from 'react-redux'
 import { LoadingIndicator } from './Form/components'
+import { getBusinesses } from '../actions'
 import classes from '../modules/maps.module.css'
 
-function Maps({ businesses }) {
-    const [selectedBusiness, setSelectedBusiness] = useState(null)
+function Maps({ loading, businesses }) {
     const geo = useGeolocation()
+    useEffect(() => {
+        async function loadBusinesses() {
+            await getBusinesses()
+        }
+        loadBusinesses()
+    }, [])
 
     const Map = () => {
+        const [selectedBusiness, setSelectedBusiness] = useState(null)
+
         const Markers = () => (
             <div>
                 {businesses.map(business => (business.requests?.length > 0
                     && (
                         <Marker
-                            key={business.id}
+                            key={business._id}
                             position={{ lat: business.lat, lng: business.lng }}
                             onClick={() => {
                                 setSelectedBusiness(business)
@@ -40,7 +48,7 @@ function Maps({ businesses }) {
                                 Address:&nbsp;
                                 {selectedBusiness.location}
                             </h4>
-                            <img className={classes.avatar} src={selectedBusiness.avatar} alt="" />
+                            <img className={classes.avatar} src={selectedBusiness.imageUrl} alt="" />
                         </div>
                     </InfoWindow>
                 )}
@@ -60,7 +68,7 @@ function Maps({ businesses }) {
 
     const DisplayMap = () => (
         <div style={{ width: '100vw', height: '100vh' }}>
-            {geo.loading
+            {loading || geo.loading
                 ? <LoadingIndicator />
                 : (
                     <WrappedMap
@@ -74,6 +82,8 @@ function Maps({ businesses }) {
 
     return <DisplayMap />
 }
-const mapStateToProps = ({ businesses }) => ({ businesses })
 
-export default connect(mapStateToProps)(Maps)
+export default connect(({ businesses }) => ({
+    loading: businesses.loading,
+    businesses: businesses.data
+}), { getBusinesses })(Maps)

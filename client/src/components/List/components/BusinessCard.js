@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useRef, useEffect } from 'react'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -10,7 +9,9 @@ import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/styles/withStyles'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import cx from 'classnames'
+import axios from 'axios'
 import Tags from '../../Tags/Tags'
+import { LoadingIndicator } from '../../Form/components'
 import classes from '../../../modules/card.module.css'
 import placeholder from '../../../assets/white-room.jpeg'
 
@@ -21,12 +22,21 @@ const Text = withStyles({
 })(Typography)
 
 const BusinessCard = ({
-    id, avatar, storeName, storeOwner, description, shortDescription, location, requests, tags = [],
+    _id, imageUrl, storeName, storeOwner,
+    description, shortDescription = description.slice(0, Math.min(100, description.length)),
+    location, requests, tags = [],
 }) => {
-    const [shorten, setShorten] = useState(true)
+    const [details, setDetails] = useState()
     const [hover, setHover] = useState(false)
     const requestIcon = useRef(null)
-
+    const getRequest = async id => {
+        try {
+            const res = await axios.get(`http://localhost:8080/request/${id}`)
+            return res.data.data
+        } catch (err) {
+            console.log(err)
+        }
+    }
     const RequestIcon = () => (
         <div
             ref={requestIcon}
@@ -40,6 +50,7 @@ const BusinessCard = ({
     )
     const RequestPanel = () => {
         const left = requestIcon?.current?.getBoundingClientRect()?.left + 40
+
         return (
             <div
                 className={classes.panel}
@@ -48,22 +59,33 @@ const BusinessCard = ({
                 style={{ left }}
             >
                 <div style={{ fontWeight: 'bold' }}>Pending requests</div>
-                {requests.map(({ details }, i) => (
-                    <div key={i} className={classes.request}>
-                        {details}
-                        <Button variant="contained" className={cx(classes.details, classes.button)}>See Details</Button>
-                    </div>
-                ))}
+                {details
+                    ? details.map(({ details }, i) => (
+                        <div key={i} className={classes.request}>
+                            {details}
+                            <Button variant="contained" className={cx(classes.details, classes.button)}>See Details</Button>
+                        </div>
+                    ))
+                    : <LoadingIndicator />}
             </div>
         )
     }
-    const toggle = () => setShorten(prev => !prev)
+    useEffect(() => {
+        async function loadDetails() {
+            setDetails([
+                ...await Promise.all(
+                    requests.map(request => getRequest(request)),
+                ),
+            ])
+        }
+        loadDetails()
+    }, [])
 
     return (
         <Card className={classes.root} style={{ overflow: 'visible' }}>
             <CardMedia
                 className={classes.media}
-                image={avatar || placeholder}
+                image={imageUrl || placeholder}
                 title="Business Picture"
             />
             <CardContent>
@@ -74,10 +96,10 @@ const BusinessCard = ({
                 </Text>
                 <Tags tags={tags} />
                 <Text gutterBottom variant="body2" color="textSecondary" component="p">
-                    {shorten ? shortDescription : description}
-                    {shorten && shortDescription.length < description.length && '...'}
+                    {shortDescription}
+                    {shortDescription.length < description.length && '...'}
                 </Text>
-                <a className={classes.link} onClick={toggle} style={{ fontSize: 'smaller' }}>Read more</a>
+                <a href="#" className={classes.link} style={{ fontSize: 'smaller' }}>Read more</a>
                 <Divider light style={{ margin: '10px auto' }} />
                 <div style={{ display: 'flex', alignItems: 'center', fontSize: 'small' }}>
                     <Icon icon="user" size="sm" style={{ margin: 'auto 10px auto 5px' }} />
@@ -112,9 +134,4 @@ const BusinessCard = ({
     )
 }
 
-const mapStateToProps = ({ requests = [] }, { requests: ownRequests = [], description }) => ({
-    requests: ownRequests.map(i => requests[i]),
-    shortDescription: description.slice(0, Math.min(100, description.length)),
-})
-
-export default connect(mapStateToProps)(BusinessCard)
+export default BusinessCard
