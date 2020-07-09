@@ -4,10 +4,6 @@ var express = require('express');
 var favicon = require('serve-favicon');
 var path = require('path');
 var cors = require('cors');
-<<<<<<< HEAD
-=======
-var db = require('./db');
->>>>>>> de1b3b1... OAuth-related code clean up
 var auth = require('./init/auth');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
