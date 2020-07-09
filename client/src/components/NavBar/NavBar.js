@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core'
 import AccountIcon from '@material-ui/icons/AccountCircleOutlined'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import Menu from '@material-ui/core/Menu'
 import { ButtonNavBar, Logo, Text } from './components'
 import classes from '../../modules/nav.module.css'
 import Switch from './components/Switch'
@@ -104,6 +105,7 @@ function NavBar({ userType, handleOpen }) {
                 {userType === 'business' && (
                     <Switch />
                 )}
+                <AccountInfo />
             </Drawer>
         </>
     )
