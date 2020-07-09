@@ -6,7 +6,6 @@ var path = require('path');
 var cors = require('cors');
 var auth = require('./init/auth');
 var cookieParser = require('cookie-parser');
-// var cookieSession = require('cookie-session');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -24,10 +23,6 @@ async function init() {
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser('anything'));
-  // app.use(cookieSession({
-  //   maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
-  //   keys: [process.env.COOKIE_KEY] // use to sign & verify cookie values
-  // }));
   app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
   await auth(app);

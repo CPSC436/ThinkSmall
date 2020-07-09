@@ -25,7 +25,6 @@ module.exports = (app) => {
 
   // Used to decode the received cookie and persist session
   passport.deserializeUser((id, done) => {
-    console.log('deserializing', id)
     User.findById(ObjectId(id)).then((user) => {
       done(null, user)
     })
@@ -55,11 +54,6 @@ module.exports = (app) => {
               .then((newUser) => done(null, { ...newUser, accessToken, refreshToken }))
           }
         })
-        // Where you verify user on your application 
-        // Find or Create a user in your DB and pass it.
-        // If you are not using googleapis, you don't need to keep access token anymore. 
-        // access token is already used to fetch profile info. 
-        // done(null, { accessToken, refreshToken, profile })
       }
     )
   )
