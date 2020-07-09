@@ -1,8 +1,9 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy
-const cookieSession = require('cookie-session')
 const passport = require('passport')
 const path = require('path')
+const session = require('express-session')
 const User = require('../models/user')
+const ObjectId = require('../controllers/helper')
 
 require('dotenv').config({ path: path.join(__dirname, '.env') })
 
@@ -10,15 +11,23 @@ const clientID = process.env.OAUTH_CLIENT_ID
 const clientSecret = process.env.OAUTH_CLIENT_SECRET
 
 module.exports = (app) => {
+  app.use(session({
+    cookie: { secure: false },
+    resave: true,
+    saveUninitialized: true,
+    secret: 'anything',
+  }))
+
   // Used to stuff a piece of information into a cookie
   passport.serializeUser((user, done) => {
-    done(null, user)
+    done(null, user._id)
   })
 
   // Used to decode the received cookie and persist session
-  passport.deserializeUser((user, done) => {
-    User.findById(user).then((u) => {
-      done(null, u)
+  passport.deserializeUser((id, done) => {
+    console.log('deserializing', id)
+    User.findById(ObjectId(id)).then((user) => {
+      done(null, user)
     })
   })
 
@@ -31,35 +40,28 @@ module.exports = (app) => {
         callbackURL: '/auth/google/callback'
       },
       (accessToken, refreshToken, profile, done) => {
-        User.findOne({ email: profile.emails[0]?.value }).then((existingUser) => {
+        const user = {
+          givenName: profile.name.givenName,
+          familyName: profile.name.familyName,
+          email: profile.emails[0]?.value,
+          imageUrl: profile.photos[0]?.value,
+        }
+        User.findOne({ email: user.email }).then((existingUser) => {
           if (existingUser) {
-            done(null, existingUser)
+            return done(null, existingUser)
           } else {
-            new User({
-              givenName: profile.name.givenName,
-              familyName: profile.name.familyName,
-              email: profile.emails[0]?.value,
-              imageUrl: profile.photos[0]?.value,
-            })
+            new User(user)
               .save()
-              .then((user) => done(null, user))
+              .then((newUser) => done(null, { ...newUser, accessToken, refreshToken }))
           }
         })
         // Where you verify user on your application 
         // Find or Create a user in your DB and pass it.
         // If you are not using googleapis, you don't need to keep access token anymore. 
         // access token is already used to fetch profile info. 
-        done(null, { accessToken, refreshToken, profile })
+        // done(null, { accessToken, refreshToken, profile })
       }
     )
-  )
-
-  // To use cookie session
-  app.use(
-    cookieSession({
-      maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
-      keys: [process.env.COOKIE_KEY] // use to sign & verify cookie values
-    })
   )
 
   app.use(passport.initialize())

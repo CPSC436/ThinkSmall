@@ -13,6 +13,5 @@ router.get('/auth/google/callback',
     successRedirect: '/',
   })
 )
-router.get('/account', (req, res) => res.send(req.user))
 
 module.exports = router
