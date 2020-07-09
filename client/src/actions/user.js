@@ -28,6 +28,8 @@ export function getUsers(force = false) {
     }
 }
 
+// need get userByID
+
 export function addUser(user) {
     return async dispatch => {
         try {

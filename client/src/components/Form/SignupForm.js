@@ -9,6 +9,7 @@ import {
     DialogTitle as Title,
     TextareaAutosize as Textarea,
 } from '@material-ui/core'
+import { text } from '@fortawesome/fontawesome-svg-core'
 import {
     Actions,
     Content,
@@ -19,9 +20,9 @@ import {
 import Tags from '../Tags/Tags'
 import { closeForm } from '../../actions'
 import LoginByGoogle from '../LoginByGoogle'
-import {text} from "@fortawesome/fontawesome-svg-core";
+import { addUser } from '../../actions/user'
 
-const SignupForm = ({ open = false, closeForm }) => {
+const SignupForm = ({ open = false, closeForm, addUser }) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')
@@ -42,7 +43,12 @@ const SignupForm = ({ open = false, closeForm }) => {
 
         if (password === confirmPassword) {
             setPasswordMatchState(false)
-            // dispatch
+            const payload = {
+                givenName: firstName,
+                familyName: lastName,
+                email,
+            }
+            addUser(payload)
             onClose()
         }
     }
@@ -96,4 +102,5 @@ const SignupForm = ({ open = false, closeForm }) => {
 }
 
 const mapStateToProps = ({ forms }) => ({ open: forms.sign_up })
-export default connect(mapStateToProps, { closeForm })(SignupForm)
+export default connect(mapStateToProps,
+    { closeForm, addUser: payload => addUser(payload) })(SignupForm)
