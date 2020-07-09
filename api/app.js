@@ -7,8 +7,20 @@ var cors = require('cors');
 var auth = require('./init/auth');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20");
+const cookieSession = require("cookie-session");
+const log = require("debug")("oauth");
+//var favicon = require('serve-favicon');
+
+const clientID = process.env.OAUTH_CLIENT_ID;
+const clientSecret = process.env.OAUTH_CLIENT_SECRET;
+const scope = ["email", "profile"];
+//const url = "http://localhost:3000"
 
 var indexRouter = require('./routes/index');
+const User = require('./models/user')
+const UserController = require('./controllers/user')
 
 var app = express();
 
