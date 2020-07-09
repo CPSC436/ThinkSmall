@@ -19,6 +19,7 @@ import {
 import Tags from '../Tags/Tags'
 import { closeForm } from '../../actions'
 import LoginByGoogle from '../LoginByGoogle'
+import {text} from "@fortawesome/fontawesome-svg-core";
 
 const SignupForm = ({ open = false, closeForm }) => {
     const [firstName, setFirstName] = useState('')
@@ -26,6 +27,7 @@ const SignupForm = ({ open = false, closeForm }) => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [passwordMatchState, setPasswordMatchState] = useState(false)
 
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
@@ -33,7 +35,16 @@ const SignupForm = ({ open = false, closeForm }) => {
 
     function handleSubmit(event) {
         event.preventDefault()
-        onClose()
+
+        if (password !== confirmPassword) {
+            setPasswordMatchState(true)
+        }
+
+        if (password === confirmPassword) {
+            setPasswordMatchState(false)
+            // dispatch
+            onClose()
+        }
     }
 
     return (
@@ -62,6 +73,7 @@ const SignupForm = ({ open = false, closeForm }) => {
 
                     <Text>Confirm Password</Text>
                     <Input autoFocus margin="dense" fullWidth placeholder="" type="password" id="confirm_password" onChange={e => setConfirmPassword(e.target.value)} required />
+                    { passwordMatchState && <Text>Your Password does not match</Text> }
 
                     <Actions>
 
