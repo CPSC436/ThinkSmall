@@ -1,32 +1,13 @@
 import React, { useState } from 'react'
 import GoogleLogin, { GoogleLogout } from 'react-google-login'
-import axios from 'axios'
 
 const LoginByGoogle = () => {
     const [userDetails, setUserDetails] = useState({})
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
-    const [newToken, setToken] = useState(null)
 
     const responseGoogle = response => {
-        return async () => {
-            const id_token = response.getAuthResponse().id_token;
-            console.log(id_token)
-            try {
-                await axios.post('http://localhost:8080/api/auth/google', id_token)
-                .then(res => {
-                    const token = res.headers.get('x-auth-token'); // need to change axios later 
-                    res.json().then(user => {
-                    if (token) {
-                        setUserDetails(user)
-                        setIsUserLoggedIn(true)
-                        setToken(newToken)
-                    }
-                    });
-                })
-            } catch (err) {
-                console.log(err)
-            }
-        } 
+        setUserDetails(response.profileObj)
+        setIsUserLoggedIn(true)
     }
 
     const logout = () => setIsUserLoggedIn(false)
