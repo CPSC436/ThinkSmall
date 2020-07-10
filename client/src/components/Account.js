@@ -18,6 +18,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import ReadMoreReact from 'read-more-react'
 import classes from '../modules/card.module.css'
 import NavBar from './NavBar/NavBar'
+import placeholder from '../assets/white-room.jpeg'
 
 const Text = withStyles({
     root: {
@@ -62,30 +63,16 @@ const Account = ({
         setPublic(!isPublic)
     }
 
-    useEffect(() => {
-        // if (this.props.match.params) {
-        // try {
-        //     const movies = await movieAPI.getMoviesByGenre(
-        //         this.props.match.params.genreId,
-        //     );
-        //     this.setState({movies, loading: false});
-        // } catch (err) {
-        //     this.setState({loading: false, error: true});
-        // }
-        // }
-    })
-
     return (
         <>
             <NavBar />
             <div
                 className={classes.accounts}
             >
-                {/* <UserTabs /> */}
                 <Card style={{
                     marginLeft: '1em',
                     marginTop: '3em',
-                    display: 'block',
+                    display: 'flex',
                     width: '20vw',
                     transitionDuration: '0.3s',
                     height: '20vw',
@@ -98,22 +85,23 @@ const Account = ({
                     borderRadius: '5px',
                 }}
                 >
-                    <CardMedia className={classes.media} image={avatar} />
+                    <CardMedia className={classes.media} image={placeholder} title="User Picture" />
                     <CardContent>
                         <Text>
-                            User Name
+                            John Doe
                             <CreateOutlinedIcon fontSize="small" />
                         </Text>
                         <Text>
-                            Role
+                            Hi! I run a small business in Vancouver.
+                            Looking forward to meeting you all!
                             <CreateOutlinedIcon fontSize="small" />
                         </Text>
                         <Text>
-                            Email
+                            johndoe@gmail.com
                             <CreateOutlinedIcon fontSize="small" />
                         </Text>
                         <Text>
-                            Phone
+                            (604)604-6040
                             <CreateOutlinedIcon fontSize="small" />
                         </Text>
                     </CardContent>

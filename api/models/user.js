@@ -11,6 +11,7 @@ const User = new Schema(
         supplementaryUrl: String,
         owns: [],
         tags: [],
+            tasks: [], // list of ids for the requests
         available: { type: Boolean, default: false },
     },
     { timestamps: true },
