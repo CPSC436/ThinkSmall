@@ -7,26 +7,24 @@ const LoginByGoogle = () => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
     const [newToken, setToken] = useState(null)
 
-    const responseGoogle = response => {
-        return async () => {
-            const id_token = response.getAuthResponse().id_token;
-            console.log(id_token)
-            try {
-                await axios.post('http://localhost:8080/api/auth/google', id_token)
+    const responseGoogle = response => async () => {
+        const { id_token } = response.getAuthResponse()
+        console.log(id_token)
+        try {
+            await axios.post('http://localhost:8080/api/auth/google', id_token)
                 .then(res => {
-                    const token = res.headers.get('x-auth-token'); // need to change axios later 
+                    const token = res.headers.get('x-auth-token') // need to change axios later
                     res.json().then(user => {
-                    if (token) {
-                        setUserDetails(user)
-                        setIsUserLoggedIn(true)
-                        setToken(newToken)
-                    }
-                    });
+                        if (token) {
+                            setUserDetails(user)
+                            setIsUserLoggedIn(true)
+                            setToken(newToken)
+                        }
+                    })
                 })
-            } catch (err) {
-                console.log(err)
-            }
-        } 
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     const logout = () => setIsUserLoggedIn(false)
@@ -36,7 +34,7 @@ const LoginByGoogle = () => {
             {!isUserLoggedIn && (
                 <GoogleLogin
                     clientId={process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_KEY}
-                    buttonText="Login"
+                    buttonText="Sign in with Google"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
                 />

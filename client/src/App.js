@@ -64,9 +64,11 @@ function App({ switchState }) {
                         <VolunteerForm />
                     </Route>
                     <Route path="/inbox">
+                        <NavBar />
                         <Inbox />
                     </Route>
                     <Route path="/account">
+                        <NavBar />
                         <Account />
                     </Route>
                     <Route path="*">

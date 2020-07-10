@@ -12,7 +12,7 @@ db.users.insertMany([
         imageUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
         supplementaryUrl: 'https://unsplash.com/photos/6W4F62sN_yI',
         description: 'Hi everyone! I\'m a photographer :)',
-        tags: ['Photographer'],
+        tags: [{ label: 'Photographer' }],
         available: true,
     }
 ]);

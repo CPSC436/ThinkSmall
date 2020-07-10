@@ -70,9 +70,10 @@
     z-index: 1;
 }
 
-.accounts{
+.accounts {
     display: flex;
     flex-direction: row;
+    margin: 3em 1em;
 }
 
 .accounts-card {
