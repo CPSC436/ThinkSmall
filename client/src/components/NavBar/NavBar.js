@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
     AppBar,
@@ -8,7 +9,6 @@ import {
 } from '@material-ui/core'
 import AccountIcon from '@material-ui/icons/AccountCircleOutlined'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import Menu from '@material-ui/core/Menu'
 import { ButtonNavBar, Logo, Text } from './components'
 import classes from '../../modules/nav.module.css'
 import Switch from './components/Switch'
@@ -28,11 +28,13 @@ const dropTabs = [
     { to: 'about', title: 'Logout' },
 ]
 
-function NavBar({ userType, handleOpen }) {
+function NavBar({ signedIn }) {
     const matches = useMediaQuery('(min-width:991.98px)')
     const [open, setOpen] = useState(false)
     const [drop, setDrop] = useState(false)
     const accountIcon = useRef(null)
+    const toggleDrop = () => setDrop(prev => !prev)
+    const handleClose = () => setDrop(false)
     const Links = () => (
         <>
             {tabs.map(({ to, title }) => (
@@ -43,7 +45,7 @@ function NavBar({ userType, handleOpen }) {
     const DropLinks = () => {
         const { top, left } = accountIcon?.current?.getBoundingClientRect() || {}
         return (
-            <div className={classes.drop} style={{ top: top + 30, left, display: top && left ? 'block' : 'none' }}>
+            <div className={classes.drop} style={{ top: top + 30, left, display: drop ? 'block' : 'none' }} onClick={handleClose}>
                 <div className={classes.flex}>
                     {dropTabs.map(({ to, title }) => (
                         <Link key={to} to={to} className={classes.link}>{title}</Link>
@@ -52,21 +54,15 @@ function NavBar({ userType, handleOpen }) {
             </div>
         )
     }
-    const handleClick = event => {
-        // This prevents ghost click.
-        event.preventDefault()
-        setDrop(true)
-    }
-    const handleClose = () => setDrop(false)
     const AccountInfo = () => (
         <>
             <AccountIcon
                 ref={accountIcon}
                 aria-controls="simple-menu"
                 aria-haspopup="true"
-                onClick={handleClick}
+                onClick={toggleDrop}
             />
-            {drop && <DropLinks onClick={handleClose} />}
+            {drop && <DropLinks />}
             <div className={classes.account}>
                 <Text>John Doe</Text>
             </div>
@@ -80,15 +76,10 @@ function NavBar({ userType, handleOpen }) {
                     {matches ? (
                         <>
                             <Links />
-                            {userType && (
-                                <>
-                                    <AccountInfo />
-                                    <ButtonNavBar userType={userType} handleOpen={handleOpen} />
-                                    {userType === 'business' && (
-                                        <Switch />
-                                    )}
-                                </>
-                            )}
+                            {signedIn
+                                ? <AccountInfo />
+                                : <ButtonNavBar userType='entry' />}
+                            <Switch />
                         </>
                     ) : <Icon icon="bars" onClick={() => setOpen(true)} />}
                 </Toolbar>
@@ -102,13 +93,11 @@ function NavBar({ userType, handleOpen }) {
                 }}
             >
                 <Links />
-                {userType === 'business' && (
-                    <Switch />
-                )}
+                <Switch />
                 <AccountInfo />
             </Drawer>
         </>
     )
 }
 
-export default NavBar
+export default connect(({ currentUser }) => ({ signedIn: currentUser.loaded }))(NavBar)

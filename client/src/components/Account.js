@@ -18,7 +18,7 @@ import IconButton from '@material-ui/core/IconButton'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import LoadingIndicator from './Form/components/LoadingIndicator'
-import ReadMoreReact from 'read-more-react'
+import ButtonNavBar from './NavBar/components/ButtonNavBar'
 import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined'
 import Tags from './Tags/Tags'
 import placeholder from '../assets/white-room.jpeg'
@@ -266,6 +266,7 @@ const Account = ({
                         <OutlinedButtons setAsVolunteer={setAsVolunteer} />
                         <Title title="Account" />
                     </div>
+                    <ButtonNavBar userType={asVolunteer ? 'volunteer' : 'business'} />
                     {asVolunteer && <VolunteerTab />}
                     {!asVolunteer && <BusinessTab />}
                 </div>

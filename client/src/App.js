@@ -51,33 +51,18 @@ function App({ switchState }) {
     return (
         <StylesProvider injectFirst>
             <Router>
+                <NavBar />
                 <Switch>
-                    <Route path="/businesses">
-                        <NavBar userType="business" />
-                        {switchState ? <Maps /> : <BusinessesList />}
-                        <BusinessForm />
-                        <RequestForm />
-                    </Route>
-                    <Route path="/volunteers">
-                        <NavBar userType="volunteer" />
-                        <VolunteersList />
-                        <VolunteerForm />
-                    </Route>
-                    <Route path="/inbox">
-                        <NavBar />
-                        <Inbox />
-                    </Route>
-                    <Route path="/account">
-                        <NavBar />
-                        <Account />
-                    </Route>
-                    <Route path="*">
-                        <NavBar userType="entry" />
-                        <Home />
-                        <SignupForm />
-                        <LoginForm />
-                    </Route>
+                    <Route path="/businesses" component={switchState ? Maps : BusinessesList} />
+                    <Route path="/volunteers" component={VolunteersList} />
+                    <Route path="/inbox" component={Inbox} />
+                    <Route path="/account" component={Account} />
+                    <Route path="*" component={Home} />
                 </Switch>
+                <BusinessForm />
+                <RequestForm />
+                <SignupForm />
+                <LoginForm />
             </Router>
         </StylesProvider>
     )
