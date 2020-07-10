@@ -16,6 +16,8 @@ import Button from '@material-ui/core/Button'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import ReadMoreReact from 'read-more-react'
+import AlternateEmailTwoToneIcon from '@material-ui/icons/AlternateEmailTwoTone'
+import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined'
 import classes from '../modules/card.module.css'
 import NavBar from './NavBar/NavBar'
 import placeholder from '../assets/white-room.jpeg'
@@ -87,22 +89,24 @@ const Account = ({
                 >
                     <CardMedia className={classes.media} image={placeholder} title="User Picture" />
                     <CardContent>
-                        <Text>
+                        <Text style={{ fontWeight: 'bold' }}>
                             John Doe
-                            <CreateOutlinedIcon fontSize="small" />
+                            <CreateOutlinedIcon fontSize="small" style={{ color: 'grey', width: '1em', height: '0.7em' }} />
                         </Text>
-                        <Text>
+                        <Text style={{ paddingTop: '0.5em' }}>
                             Hi! I run a small business in Vancouver.
                             Looking forward to meeting you all!
-                            <CreateOutlinedIcon fontSize="small" />
+                            <CreateOutlinedIcon fontSize="small" style={{ color: 'grey', width: '1em', height: '0.7em' }} />
                         </Text>
-                        <Text>
+                        <Text style={{ paddingTop: '1rem' }}>
+                            <AlternateEmailTwoToneIcon fontSize="small" style={{ color: 'grey', width: '1em', height: '0.7em' }} />
                             johndoe@gmail.com
-                            <CreateOutlinedIcon fontSize="small" />
+                            <CreateOutlinedIcon fontSize="small" style={{ color: 'grey', width: '1em', height: '0.7em' }} />
                         </Text>
                         <Text>
+                            <PhoneIphoneOutlinedIcon fontSize="small" style={{ color: 'grey', width: '1em', height: '0.7em' }} />
                             (604)604-6040
-                            <CreateOutlinedIcon fontSize="small" />
+                            <CreateOutlinedIcon fontSize="small" style={{ color: 'grey', width: '1em', height: '0.7em' }} />
                         </Text>
                     </CardContent>
                 </Card>
