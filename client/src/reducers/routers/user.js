@@ -16,7 +16,7 @@ const defaultUser = {
 export default (user = defaultUser, action) => {
     switch (action.type) {
     case LOAD_LOGIN_USER: {
-        console.log(action.data)
+        alert('you make it here')
         return {
             ...user,
             owns: action.data.owns,

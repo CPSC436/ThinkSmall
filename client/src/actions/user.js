@@ -50,15 +50,20 @@ export function userByID(id) {
 
 export function userByEmail(payload) {
     return async dispatch => {
-        axios.get(`http://localhost:8080/user/${payload.email}`)
-            .then(res => dispatch(loadLoginUser(res.data)))
-            .catch(err => console.log(err))
+        try {
+            alert('I made it here')
+            const res = await axios.get(`http://localhost:8080/user/${payload.email}`)
+            return dispatch(loadLoginUser(res.data))
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
 
 export function addUser(user) {
     return async dispatch => {
         try {
+            alert('user added')
             await axios.post('http://localhost:8080/user', user)
             return dispatch(getUsers(true))
         } catch (err) {
