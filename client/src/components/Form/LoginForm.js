@@ -18,7 +18,7 @@ import {
 } from './components'
 import Tags from '../Tags/Tags'
 import { addUser, closeForm } from '../../actions'
-import { userByEmail } from '../../actions/user'
+import { userByEmail, userByID } from '../../actions/user'
 import LoginByGoogle from '../LoginByGoogle'
 
 const LoginForm = ({ open = false, closeForm }) => {
@@ -35,7 +35,8 @@ const LoginForm = ({ open = false, closeForm }) => {
             password,
             email,
         }
-        userByEmail(payload)
+        userByID('1234')
+        // userByEmail(payload)
         onClose()
     }
 
@@ -81,4 +82,8 @@ const LoginForm = ({ open = false, closeForm }) => {
 const mapStateToProps = ({ forms }) => ({ open: forms.login })
 
 export default connect(mapStateToProps,
-    { closeForm, userByEmail: payload => userByEmail(payload) })(LoginForm)
+    {
+        closeForm,
+        userByEmail: payload => userByEmail(payload),
+        userByID: id => userByID(id),
+    })(LoginForm)

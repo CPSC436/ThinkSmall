@@ -37,9 +37,12 @@ export function getUsers(force = false) {
 // need get userByID
 
 export function userByID(id) {
+    console.log('i am out here')
     return async dispatch => {
         try {
-            const user = await axios.get(`http://localhost:8080/user/${id}`)
+            console.log('i am here')
+            const updatedUrl = `http://localhost:8080/user/${id}`
+            const user = await axios.get(updatedUrl)
             const userData = user.data
             return dispatch(loadLoginUser(userData))
         } catch (err) {

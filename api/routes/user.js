@@ -8,7 +8,6 @@ router.post('/user', UserCtrl.createUser)
 router.put('/user/:id', UserCtrl.updateUser)
 router.delete('/user/:id', UserCtrl.deleteUser)
 // router.get('/user/:id', UserCtrl.getUserByEmail)
-// for now do not use :id
 router.get('/user/:id', UserCtrl.getUserById)
 router.get('/users', UserCtrl.getUsers)
 
