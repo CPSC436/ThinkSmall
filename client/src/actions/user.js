@@ -40,10 +40,10 @@ export function userByID(id) {
     console.log('i am out here')
     return async dispatch => {
         try {
-            console.log('i am here')
             const updatedUrl = `http://localhost:8080/user/${id}`
             const user = await axios.get(updatedUrl)
             const userData = user.data
+            console.log(userData)
             return dispatch(loadLoginUser(userData))
         } catch (err) {
             console.log(err)

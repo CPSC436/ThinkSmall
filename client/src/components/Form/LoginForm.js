@@ -17,11 +17,11 @@ import {
     Text,
 } from './components'
 import Tags from '../Tags/Tags'
-import { addUser, closeForm } from '../../actions'
-import { userByEmail, userByID } from '../../actions/user'
+// import { closeForm } from '../../actions'
+import { userByEmail, userByID, closeForm } from '../../actions'
 import LoginByGoogle from '../LoginByGoogle'
 
-const LoginForm = ({ open = false, closeForm }) => {
+const LoginForm = ({ open = false, closeForm, userByID }) => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
@@ -29,13 +29,13 @@ const LoginForm = ({ open = false, closeForm }) => {
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
     const onClose = () => closeForm('login')
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
         const payload = {
             password,
             email,
         }
-        userByID('1234')
+        await userByID('5f0a449cb6b3c55480431d85')
         // userByEmail(payload)
         onClose()
     }
