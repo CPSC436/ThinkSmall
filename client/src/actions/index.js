@@ -28,11 +28,6 @@ export const switchView = () => ({
     type: SWITCH_VIEW,
 })
 
-export const deleteBusiness = id => ({
-    type: DELETE_BUSINESS,
-    id,
-})
-
 export const helpToggle = id => ({
     type: TOGGLE_HELP,
     id,
@@ -40,16 +35,16 @@ export const helpToggle = id => ({
 
 export const editBusiness = (id, storeName, imageUrl, storeOwner, location, description,
     needsHelp, tags) => ({
-    type: EDIT_BUSINESS,
-    id,
-    storeName,
-    imageUrl,
-    storeOwner,
-    location,
-    description,
-    needsHelp,
-    tags,
-})
+        type: EDIT_BUSINESS,
+        id,
+        storeName,
+        imageUrl,
+        storeOwner,
+        location,
+        description,
+        needsHelp,
+        tags,
+    })
 
 export const addVolunteer = (volunteerName, imageUrl, description, tags) => ({
     type: ADD_VOLUNTEER,

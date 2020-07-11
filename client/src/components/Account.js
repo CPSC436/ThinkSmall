@@ -89,29 +89,10 @@ const Account = ({
     deleteBusiness, deleteRequest, updateUser, getUserById
 }) => {
     const [asVolunteer, setAsVolunteer] = useState(false)
-    const [myBusinesses, setBusinesses] = useState([])
-    const [myRequests, setRequests] = useState([])
-    const [myTasks, setTasks] = useState([])
-    const getById = async (type, id) => {
-        try {
-            const res = await axios.get(`http://localhost:8080/${type}/${id}`)
-            return res.data.data
-        } catch (err) {
-            console.log(err)
-        }
-    }
     useEffect(() => {
         const loadCurrentUser = async () => await getUserById(_id)
         loadCurrentUser()
     }, [])
-    useEffect(() => {
-        const loadDetails = async () => {
-            setBusinesses([...await Promise.all(owns.map(business => getById('business', business)))])
-            setRequests([...await Promise.all(requests.map(request => getById('request', request)))])
-            setTasks([...await Promise.all(tasks.map(task => getById('request', task)))])
-        }
-        loadDetails()
-    }, [loading])
 
     const handleChange = () => updateUser({ _id, available: !available })
     const UserProfile = () => (
@@ -157,7 +138,7 @@ const Account = ({
         <>
             <Subtitle title="My Requests" />
             <List>
-                {myRequests.map(({
+                {requests.map(({
                     _id, business, details, status,
                 }) => (
                         <ListItem
@@ -183,7 +164,7 @@ const Account = ({
             </List>
             <Subtitle title="My Businesses" />
             <List>
-                {myBusinesses.map(({ _id, storeName, description }) => (
+                {owns.map(({ _id, storeName, description }) => (
                     <ListItem
                         key={_id}
                         style={{
@@ -220,7 +201,7 @@ const Account = ({
         <>
             <Subtitle title="My Tasks" />
             <List>
-                {myTasks.map(({
+                {tasks.map(({
                     _id, business, details, status,
                 }) => (
                         <ListItem
@@ -274,7 +255,7 @@ const Account = ({
     )
 }
 
-const mapStateToProps = ({ _id = '5f0679f17066fb7fe4dcbbcd', currentUser }) => ({ _id, loading: currentUser.loading, ...currentUser.data })
+const mapStateToProps = ({ _id = '5f0932a99eeb33d77955d15c', currentUser }) => ({ _id, loading: currentUser.loading, ...currentUser.data })
 
 const mapDispatchToProps = {
     deleteBusiness,

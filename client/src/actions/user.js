@@ -23,7 +23,7 @@ const setUsers = data => ({
     data,
 })
 
-export function getCurrentUser(id, force = false) {
+export function getCurrentUser(force = false) {
     return async (dispatch, getState) => {
         const { currentUser } = getState()
         if (!force && currentUser.loaded) return
