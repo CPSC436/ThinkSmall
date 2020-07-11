@@ -70,7 +70,7 @@ deleteBusiness = async (req, res) => {
             return res.status(404).json({ success: false, error: 'Business not found' })
         }
 
-        await User.updateMany({}, { '$pull': { owns: { _id: ObjectId(req.params.id) } } })
+        await User.updateMany({}, { $pull: { owns: { _id: ObjectId(req.params.id) } } })
 
         return res.status(200).json({ success: true, data: business })
     }).catch(err => console.log(err))

@@ -82,7 +82,7 @@ export function updateUser(user) {
     return async dispatch => {
         try {
             await axios.put(`http://localhost:8080/user/${_id}`, body)
-            return dispatch(getUsers(true))
+            return dispatch(getUserById(_id))
         } catch (err) {
             console.log(err)
         }

@@ -89,8 +89,9 @@ const Account = ({
     deleteBusiness, deleteRequest, updateUser, getUserById
 }) => {
     const [asVolunteer, setAsVolunteer] = useState(false)
+    const loadCurrentUser = async () => await getUserById(_id)
+
     useEffect(() => {
-        const loadCurrentUser = async () => await getUserById(_id)
         loadCurrentUser()
     }, [])
 
@@ -255,7 +256,11 @@ const Account = ({
     )
 }
 
-const mapStateToProps = ({ _id = '5f0932a99eeb33d77955d15c', currentUser }) => ({ _id, loading: currentUser.loading, ...currentUser.data })
+const mapStateToProps = ({ _id = '5f0932a99eeb33d77955d15c', currentUser }) => ({
+    _id,
+    loading: currentUser.loading,
+    ...currentUser.data,
+})
 
 const mapDispatchToProps = {
     deleteBusiness,
