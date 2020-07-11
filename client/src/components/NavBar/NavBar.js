@@ -78,7 +78,7 @@ function NavBar({ signedIn }) {
                             <Links />
                             {signedIn
                                 ? <AccountInfo />
-                                : <ButtonNavBar userType='entry' />}
+                                : <ButtonNavBar userType="entry" />}
                             <Switch />
                         </>
                     ) : <Icon icon="bars" onClick={() => setOpen(true)} />}

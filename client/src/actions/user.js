@@ -23,22 +23,6 @@ const setUsers = data => ({
     data,
 })
 
-export function getCurrentUser(force = false) {
-    return async (dispatch, getState) => {
-        const { currentUser } = getState()
-        if (!force && currentUser.loaded) return
-
-        dispatch(loadCurrentUser())
-
-        try {
-            const res = await axios.get('http://localhost:8080/me')
-            return dispatch(setCurrentUser(res.data))
-        } catch (err) {
-            console.log(err)
-        }
-    }
-}
-
 export function getUsers(force = false) {
     return async (dispatch, getState) => {
         const { users } = getState()
@@ -57,6 +41,8 @@ export function getUsers(force = false) {
 
 export function getUserById(id) {
     return async dispatch => {
+        dispatch(loadCurrentUser())
+
         try {
             const res = await axios.get(`http://localhost:8080/user/${id}`)
             return dispatch(setCurrentUser(res.data.data))

@@ -17,16 +17,15 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
+import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined'
 import LoadingIndicator from './Form/components/LoadingIndicator'
 import ButtonNavBar from './NavBar/components/ButtonNavBar'
-import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined'
 import Tags from './Tags/Tags'
 import placeholder from '../assets/white-room.jpeg'
 import {
-    deleteBusiness, deleteRequest, updateUser, getRequests, getUserById
+    deleteBusiness, deleteRequest, updateUser, getUserById,
 } from '../actions'
 import classes from '../modules/card.module.css'
-import axios from 'axios'
 
 const Text = withStyles({
     root: {
@@ -86,10 +85,10 @@ const Account = ({
     imageUrl,
     supplementaryUrl, // resume/portfolio link
     description,
-    deleteBusiness, deleteRequest, updateUser, getUserById
+    deleteBusiness, deleteRequest, updateUser, getUserById,
 }) => {
     const [asVolunteer, setAsVolunteer] = useState(false)
-    const loadCurrentUser = async () => await getUserById(_id)
+    const loadCurrentUser = async () => getUserById(_id)
 
     useEffect(() => {
         loadCurrentUser()
@@ -241,18 +240,20 @@ const Account = ({
     return (
         loading
             ? <LoadingIndicator />
-            : <div className={classes.accounts}>
-                <UserProfile />
-                <div style={{ marginLeft: '4em' }}>
-                    <div>
-                        <OutlinedButtons setAsVolunteer={setAsVolunteer} />
-                        <Title title="Account" />
+            : (
+                <div className={classes.accounts}>
+                    <UserProfile />
+                    <div style={{ marginLeft: '4em' }}>
+                        <div>
+                            <OutlinedButtons setAsVolunteer={setAsVolunteer} />
+                            <Title title="Account" />
+                        </div>
+                        <ButtonNavBar userType={asVolunteer ? 'volunteer' : 'business'} />
+                        {asVolunteer && <VolunteerTab />}
+                        {!asVolunteer && <BusinessTab />}
                     </div>
-                    <ButtonNavBar userType={asVolunteer ? 'volunteer' : 'business'} />
-                    {asVolunteer && <VolunteerTab />}
-                    {!asVolunteer && <BusinessTab />}
                 </div>
-            </div>
+            )
     )
 }
 

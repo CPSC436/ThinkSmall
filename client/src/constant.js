@@ -15,66 +15,6 @@ export const styles = {
     },
 }
 
-export const defaultUser = {
-    _id: '5f0679f17066fb7fe4dcbbcd',
-    owns: [
-        {
-            _id: '5f04d613ff0fd1d3c71b3664',
-            requests: [],
-            tags: [],
-            storeName: 'Mercante',
-            imageUrl: 'https://thinksmall.s3-ca-central-1.amazonaws.com/jaQxNBDzomgSB5yLbqJ4n2.jpeg',
-            storeOwner: 'Dummy Name',
-            location: 'Mercante, University Boulevard, UBC, Vancouver, BC, Canada',
-            lat: 49.263731,
-            lng: -123.255166,
-            description: 'Cozy, relaxed dining option at UBC offering artisanal pizzas, salads, pasta & desserts.',
-            createdAt: '2020-07-07T20:07:47.961Z',
-            updatedAt: '2020-07-07T20:07:47.961Z',
-            __v: 0,
-        },
-    ],
-    tags: [
-        { label: 'Photographer' },
-    ],
-    requests: [
-        {
-            _id: '5f04e72670a68be788efaf60',
-            business: 'Hunter & Hare',
-            details: 'We need a logo for our website!',
-            tags: [
-                {
-                    label: 'Call for Designers',
-                },
-            ],
-            status: 'todo',
-        },
-    ],
-    assigned: [
-        {
-            _id: '5f04e72670a68be788efaf60',
-            business: 'Hunter & Hare',
-            details: 'We need a logo for our website!',
-            tags: [
-                {
-                    label: 'Call for Designers',
-                },
-            ],
-            status: 'todo',
-        },
-    ],
-    available: true,
-    givenName: 'Jane',
-    familyName: 'Doe',
-    email: 'jdoe@mail.io',
-    imageUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-    supplementaryUrl: 'https://unsplash.com/photos/6W4F62sN_yI',
-    description: 'Hi everyone! I\'m a photographer :)',
-    createdAt: '2020-07-09T01:59:13.408Z',
-    updatedAt: '2020-07-09T01:59:13.408Z',
-    __v: 0,
-}
-
 export const defaultNeeds = [
     { label: 'Call for Designers' },
     { label: 'Clothing' },
@@ -168,24 +108,6 @@ export const defaultConversations = [
                 timestamp: '12:17 PM',
             },
         ],
-    },
-]
-
-export const defaultRequests = [
-    {
-        business: 'Tenth and Proper',
-        details: 'We need a logo for our website!',
-        tags: ['Call for Designers'],
-    },
-    {
-        business: 'Hunter & Hare',
-        details: 'We need a driver to pick up clothes!',
-        tags: ['Call for Drivers'],
-    },
-    {
-        business: 'Hunter & Hare',
-        details: 'We need a logo for our website!',
-        tags: ['Call for Designers'],
     },
 ]
 
