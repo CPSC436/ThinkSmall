@@ -17,7 +17,8 @@ import {
     Text,
 } from './components'
 import Tags from '../Tags/Tags'
-import { closeForm } from '../../actions'
+import { addUser, closeForm } from '../../actions'
+import { userByEmail } from '../../actions/user'
 import LoginByGoogle from '../LoginByGoogle'
 
 const LoginForm = ({ open = false, closeForm }) => {
@@ -30,6 +31,11 @@ const LoginForm = ({ open = false, closeForm }) => {
 
     function handleSubmit(event) {
         event.preventDefault()
+        const payload = {
+            password,
+            email,
+        }
+        userByEmail(payload)
         onClose()
     }
 
@@ -50,7 +56,7 @@ const LoginForm = ({ open = false, closeForm }) => {
                     <Input autoFocus margin="dense" fullWidth placeholder="" onChange={e => setEmail(e.target.value)} type="email" required />
 
                     <Text>Password</Text>
-                    <Input autoFocus margin="dense" fullWidth placeholder="" type="password" id="password" onChange={e => setPassword(e.target.value)} required />
+                    <Input autoFocus margin="dense" fullWidth placeholder="" onChange={e => setPassword(e.target.value)} type="password" id="password" required />
 
                     <Actions>
 
@@ -74,4 +80,5 @@ const LoginForm = ({ open = false, closeForm }) => {
 
 const mapStateToProps = ({ forms }) => ({ open: forms.login })
 
-export default connect(mapStateToProps, { closeForm })(LoginForm)
+export default connect(mapStateToProps,
+    { closeForm, userByEmail: payload => userByEmail(payload) })(LoginForm)

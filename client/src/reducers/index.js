@@ -3,6 +3,7 @@ import businesses from './routers/businesses'
 import conversations from './routers/conversations'
 import requests from './routers/requests'
 import users from './routers/users'
+import user from './routers/user'
 import {
     keyword, conversation, forms, switchState, filters,
 } from './routers/misc'
@@ -17,4 +18,5 @@ export default combineReducers({
     requests,
     switchState,
     users,
+    user,
 })
