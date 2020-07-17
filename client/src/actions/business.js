@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getCurrentUser } from './user'
 
 export const LOAD_BUSINESSES = 'LOAD_BUSINESSES'
 export const SET_BUSINESSES = 'SET_BUSINESSES'
@@ -32,7 +33,8 @@ export function addBusiness(business) {
     return async dispatch => {
         try {
             await axios.post('http://localhost:8080/business', business)
-            return dispatch(getBusinesses(true))
+            dispatch(getBusinesses(true))
+            dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)
         }
@@ -43,7 +45,8 @@ export function deleteBusiness(id) {
     return async dispatch => {
         try {
             await axios.delete(`http://localhost:8080/business/${id}`)
-            return dispatch(getBusinesses(true))
+            dispatch(getBusinesses(true))
+            dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)
         }

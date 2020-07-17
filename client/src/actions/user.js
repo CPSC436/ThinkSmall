@@ -74,3 +74,23 @@ export function updateUser(user) {
         }
     }
 }
+
+export function getCurrentUser() {
+    return async (dispatch, getState) => {
+        const { currentUser } = getState()
+        const id = currentUser.data._id
+
+        if (id) {
+            dispatch(getUserById(id))
+        } else {
+            dispatch(loadCurrentUser())
+
+            try {
+                const res = await axios.get('http://localhost:8080/me')
+                dispatch(getUserById(res.data._id))
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    }
+}

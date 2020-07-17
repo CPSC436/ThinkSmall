@@ -25,3 +25,16 @@
     border: 1px solid #ccc;
     border-top: none;
 }
+
+.inactive {
+    background-color: #ffffff;
+    cursor: pointer;
+    padding: 7.5px 10px;
+    font-size: small;
+    border-radius: 4px;
+}
+
+.active {
+    composes: inactive;
+    background-color: #fafafa;
+}

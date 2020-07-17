@@ -8,7 +8,8 @@ var user = require('./user')
 var isUserAuthenticated = require('../utils/isUserAuthenticated')
 
 router.get('/', (req, res) => res.render('index', { title: 'Express' }))
-router.get('/me', isUserAuthenticated, (req, res) => res.render('profile', { user: req.user }))
+router.get('/me', (req, res) => res.status(200).json({ _id: req.user?._id || '5f0932a99eeb33d77955d15c' }))
+router.get('/account', isUserAuthenticated)
 
 router.use('', auth)
 router.use('', business)

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getCurrentUser } from './user'
 
 export const LOAD_REQUESTS = 'LOAD_REQUESTS'
 export const SET_REQUESTS = 'SET_REQUESTS'
@@ -32,7 +33,8 @@ export function addRequest(request) {
     return async dispatch => {
         try {
             await axios.post('http://localhost:8080/request', request)
-            return dispatch(getRequests(true))
+            dispatch(getRequests(true))
+            dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)
         }
@@ -43,7 +45,8 @@ export function deleteRequest(id) {
     return async dispatch => {
         try {
             await axios.delete(`http://localhost:8080/request/${id}`)
-            return dispatch(getRequests(true))
+            dispatch(getRequests(true))
+            dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)
         }
