@@ -6,7 +6,7 @@ var business = require('./business')
 var request = require('./request')
 var tag = require('./tag')
 var user = require('./user')
-var isUserAuthenticated = require('../utils/isUserAuthenticated')
+// var isUserAuthenticated = require('../utils/isUserAuthenticated')
 
 router.get('/', (req, res) => res.render('index', { title: 'Express' }))
 router.get('/me', (req, res) => res.status(200).json({ _id: req.user?._id }))
