@@ -74,21 +74,21 @@ const AccountPage = ({
     const BusinessTab = () => (
         <>
             <Subtitle title="My Requests" />
-            <List>{requests.map(props => <RequestItem {...props} canDelete />)}</List>
+            <List>{requests.map((props, i) => <RequestItem key={i} {...props} canDelete />)}</List>
             <Subtitle title="My Businesses" />
-            <List>{owns.map(props => <BusinessItem {...props} canDelete />)}</List>
+            <List>{owns.map((props, i) => <BusinessItem key={i} {...props} canDelete />)}</List>
         </>
     )
 
     const VolunteerTab = () => (
         <>
             <Subtitle title="My Tasks" />
-            <List>{tasks.map(props => <RequestItem {...props} canDelete />)}</List>
+            <List>{tasks.map((props, i) => <RequestItem key={i} {...props} canDelete />)}</List>
             <Subtitle title="Privacy Preferences" />
             <List>
                 <ListItem style={{ alignItems: 'flex-start', fontFamily: '\'Baloo 2\', cursive' }}>
                     <FormControlLabel
-                        control={<Checkbox checked={available} onChange={() => updateUser({ _id, available: !available })} />}
+                        control={<Checkbox checked={available} onChange={() => updateUser(_id, { available: !available })} />}
                     />
                     <ListItemText
                         primary="Mark myself as available"

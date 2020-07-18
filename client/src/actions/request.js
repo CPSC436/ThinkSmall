@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getCurrentUser } from './user'
+import { getCurrentUser, updateUser } from './user'
 
 export const LOAD_REQUESTS = 'LOAD_REQUESTS'
 export const SET_REQUESTS = 'SET_REQUESTS'
@@ -30,10 +30,12 @@ export function getRequests(force = false) {
 }
 
 export function addRequest(request) {
-    return async dispatch => {
+    return async (dispatch, getState) => {
+        const { currentUser } = getState()
         try {
-            await axios.post('http://localhost:8080/request', request)
+            const res = await axios.post('http://localhost:8080/request', request)
             dispatch(getRequests(true))
+            dispatch(updateUser(currentUser.data._id, { $push: { requests: res.data.request } }))
             dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)

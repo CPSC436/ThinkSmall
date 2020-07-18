@@ -20,11 +20,13 @@ createRequest = (req, res) => {
 
     request
         .save()
-        .then(() => {
+        .then(request => {
+
             return res.status(201).json({
                 success: true,
                 id: request._id,
                 message: 'Request created!',
+                request,
             })
         })
         .catch(error => {

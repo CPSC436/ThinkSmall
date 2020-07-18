@@ -63,12 +63,11 @@ export function addUser(user) {
     }
 }
 
-export function updateUser(user) {
-    const { _id, ...body } = user
+export function updateUser(id, body) {
     return async dispatch => {
         try {
-            await axios.put(`http://localhost:8080/user/${_id}`, body)
-            return dispatch(getUserById(_id))
+            await axios.put(`http://localhost:8080/user/${id}`, body)
+            return dispatch(getUserById(id))
         } catch (err) {
             console.log(err)
         }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getCurrentUser } from './user'
+import { getCurrentUser, updateUser } from './user'
 
 export const LOAD_BUSINESSES = 'LOAD_BUSINESSES'
 export const SET_BUSINESSES = 'SET_BUSINESSES'
@@ -30,10 +30,12 @@ export function getBusinesses(force = false) {
 }
 
 export function addBusiness(business) {
-    return async dispatch => {
+    return async (dispatch, getState) => {
+        const { currentUser } = getState()
         try {
-            await axios.post('http://localhost:8080/business', business)
+            const res = await axios.post('http://localhost:8080/business', business)
             dispatch(getBusinesses(true))
+            dispatch(updateUser(currentUser.data._id, { $push: { owns: res.data.business } }))
             dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)

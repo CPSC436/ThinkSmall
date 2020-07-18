@@ -20,11 +20,12 @@ createBusiness = (req, res) => {
 
     business
         .save()
-        .then(() => {
+        .then(business => {
             return res.status(201).json({
                 success: true,
                 id: business._id,
                 message: 'Business created!',
+                business,
             })
         })
         .catch(error => {
