@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -12,6 +12,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { ButtonNavBar, Logo, Text } from './components'
 import classes from '../../modules/nav.module.css'
 import Switch from './components/Switch'
+import { getCurrentUser } from '../../actions'
 
 const tabs = [
     { to: 'about', title: 'About' },
@@ -28,13 +29,14 @@ const dropTabs = [
     { to: 'about', title: 'Logout' },
 ]
 
-function NavBar({ signedIn }) {
+function NavBar({ signedIn, getCurrentUser }) {
     const matches = useMediaQuery('(min-width:991.98px)')
     const [open, setOpen] = useState(false)
     const [drop, setDrop] = useState(false)
     const accountIcon = useRef(null)
     const toggleDrop = () => setDrop(prev => !prev)
     const handleClose = () => setDrop(false)
+
     const Links = () => (
         <>
             {tabs.map(({ to, title }) => (
@@ -42,6 +44,7 @@ function NavBar({ signedIn }) {
             ))}
         </>
     )
+
     const DropLinks = () => {
         const { top, left } = accountIcon?.current?.getBoundingClientRect() || {}
         return (
@@ -54,6 +57,7 @@ function NavBar({ signedIn }) {
             </div>
         )
     }
+
     const AccountInfo = () => (
         <>
             <AccountIcon
@@ -68,6 +72,12 @@ function NavBar({ signedIn }) {
             </div>
         </>
     )
+
+    useEffect(() => {
+        const loadCurrentUser = async () => getCurrentUser()
+        loadCurrentUser()
+    }, [])
+
     return (
         <>
             <AppBar position="static" color="transparent" className={classes.root}>
@@ -100,4 +110,4 @@ function NavBar({ signedIn }) {
     )
 }
 
-export default connect(({ currentUser }) => ({ signedIn: currentUser.loaded }))(NavBar)
+export default connect(({ currentUser }) => ({ signedIn: currentUser.loaded }), { getCurrentUser })(NavBar)
