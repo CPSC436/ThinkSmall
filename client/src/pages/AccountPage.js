@@ -88,7 +88,12 @@ const AccountPage = ({
             <List>
                 <ListItem style={{ alignItems: 'flex-start', fontFamily: '\'Baloo 2\', cursive' }}>
                     <FormControlLabel
-                        control={<Checkbox checked={available} onChange={() => updateUser(_id, { available: !available })} />}
+                        control={(
+                            <Checkbox
+                                checked={available}
+                                onChange={() => updateUser(_id, { available: !available })}
+                            />
+                        )}
                     />
                     <ListItemText
                         primary="Mark myself as available"

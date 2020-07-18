@@ -1,5 +1,7 @@
 import React from 'react'
-import { Card, CardContent, CardMedia, Typography } from '@material-ui/core'
+import {
+    Card, CardContent, CardMedia, Typography,
+} from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { EditIcon, PhoneIcon } from './Icons'
 import Tags from '../Tags/Tags'
@@ -12,7 +14,9 @@ const Text = withStyles({
     },
 })(Typography)
 
-const ProfileCard = ({ givenName, familyName, imageUrl, description, email, phone, supplementaryUrl, tags }) => (
+const ProfileCard = ({
+    givenName, familyName, imageUrl, description, email, phone, supplementaryUrl, tags,
+}) => (
     <Card className={classes.profile}>
         <CardMedia className={classes.media} image={imageUrl || placeholder} title="User Picture" />
         <CardContent>

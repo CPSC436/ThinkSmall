@@ -43,4 +43,6 @@ const PhoneIcon = () => (
     />
 )
 
-export { ArrowIcon, DeleteIcon, EditIcon, PhoneIcon }
+export {
+    ArrowIcon, DeleteIcon, EditIcon, PhoneIcon,
+}

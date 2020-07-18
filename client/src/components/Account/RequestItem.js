@@ -8,7 +8,9 @@ import { ArrowIcon, DeleteIcon } from './Icons'
 import { deleteRequest } from '../../actions'
 import { now } from '../../reducers/helper'
 
-const RequestItem = ({ _id, business, details, status, createdAt, deleteRequest, canDelete }) => {
+const RequestItem = ({
+    _id, business, details, status, createdAt, deleteRequest, canDelete,
+}) => {
     const [expanded, setExpanded] = useState(false)
     return (
         <ListItem
@@ -24,9 +26,13 @@ const RequestItem = ({ _id, business, details, status, createdAt, deleteRequest,
             <div>
                 <ListItemText primary={business} secondary={details} />
                 <Chip label={status} color="primary" variant="outlined" size="small" style={{ fontFamily: `'Baloo 2', cursive` }} />
-                {expanded && <p style={{ fontSize: 'small', marginBottom: 0 }}>
-                    Created at {now(createdAt)}
-                </p>}
+                {expanded && (
+                    <p style={{ fontSize: 'small', marginBottom: 0 }}>
+                        Created at
+                        {' '}
+                        {now(createdAt)}
+                    </p>
+                )}
             </div>
             <ArrowIcon expanded={expanded} onClick={() => setExpanded(prev => !prev)} />
         </ListItem>
