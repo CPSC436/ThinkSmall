@@ -116,8 +116,7 @@ const AccountPage = ({
                             <Title title="Account" />
                         </div>
                         <ButtonNavBar userType={asVolunteer ? 'volunteer' : 'business'} />
-                        {asVolunteer && <VolunteerTab />}
-                        {!asVolunteer && <BusinessTab />}
+                        {asVolunteer ? <VolunteerTab /> : <BusinessTab />}
                     </div>
                 </div>
             )

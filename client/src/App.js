@@ -47,8 +47,8 @@ function App({ switchState }) {
             <Router>
                 <NavBar />
                 <Switch>
-                    <Route path="/businesses" component={switchState ? Maps : BusinessesList} />
-                    <Route path="/volunteers" component={VolunteersList} />
+                    <Route path="/business" component={switchState ? Maps : BusinessesList} />
+                    <Route path="/volunteer" component={VolunteersList} />
                     <Route path="/inbox" component={Inbox} />
                     <Route path="/account" component={AccountPage} />
                     <Route path="*" component={HomePage} />

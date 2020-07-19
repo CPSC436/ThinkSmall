@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
 import {
@@ -16,8 +15,6 @@ import {
 } from './components'
 import { closeForm } from '../../actions'
 import classes from '../../modules/form.module.css'
-// import Google from '../../assets/Google.svg'
-// import LoginByGoogle from '../LoginByGoogle'
 
 const SignupForm = ({ open = false, closeForm }) => {
     const [firstName, setFirstName] = useState('')
@@ -25,7 +22,6 @@ const SignupForm = ({ open = false, closeForm }) => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [email, setEmail] = useState('')
-    let history = useHistory();
 
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
@@ -74,10 +70,12 @@ const SignupForm = ({ open = false, closeForm }) => {
                     <p style={{ textAlign: 'center' }}>or</p>
 
                     <div style={{ width: 'fit-content', margin: ' 0 auto 50px' }}>
-                        <Button className={classes.google} onClick={() => history.push('/auth/google')}>
-                            <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1004px-Google_%22G%22_Logo.svg.png'} width={18} height={18} />
-                            Sign in with Google
-                        </Button>
+                        <a href="/auth/google">
+                            <Button className={classes.google}>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1004px-Google_%22G%22_Logo.svg.png" width={18} height={18} />
+                                Sign in with Google
+                            </Button>
+                        </a>
                     </div>
 
                 </form>
