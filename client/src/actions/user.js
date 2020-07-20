@@ -1,14 +1,12 @@
-import axios from 'axios'
+import Axios from 'axios'
 
 export const LOAD_CURRENT_USER = 'LOAD_CURRENT_USER'
 export const LOAD_USERS = 'LOAD_USERS'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const SET_USERS = 'SET_USERS'
 
-const $ = axios.create({
-    baseURL: process.env.NODE_ENV === 'production'
-        ? process.env.REACT_APP_PRODUCTION_URL
-        : process.env.REACT_APP_DEVELOPMENT_URL,
+const axios = Axios.create({
+    baseURL: process.env.REACT_APP_WEBSITE_URL,
 })
 
 const loadCurrentUser = () => ({
@@ -37,7 +35,7 @@ export function getUsers(force = false) {
         dispatch(loadUsers())
 
         try {
-            const res = await $.get('/users')
+            const res = await axios.get('/users')
             return dispatch(setUsers(res.data.data))
         } catch (err) {
             console.log(err)
@@ -50,7 +48,7 @@ export function getUserById(id) {
         dispatch(loadCurrentUser())
 
         try {
-            const res = await $.get(`/user/${id}`)
+            const res = await axios.get(`/user/${id}`)
             return dispatch(setCurrentUser(res.data.data))
         } catch (err) {
             console.log(err)
@@ -61,7 +59,7 @@ export function getUserById(id) {
 export function addUser(user) {
     return async dispatch => {
         try {
-            await $.post('/user', user)
+            await axios.post('/user', user)
             return dispatch(getUsers(true))
         } catch (err) {
             console.log(err)
@@ -72,7 +70,7 @@ export function addUser(user) {
 export function updateUser(id, body) {
     return async dispatch => {
         try {
-            await $.put(`/user/${id}`, body)
+            await axios.put(`/user/${id}`, body)
             return dispatch(getUserById(id))
         } catch (err) {
             console.log(err)
@@ -91,7 +89,7 @@ export function getCurrentUser() {
             dispatch(loadCurrentUser())
 
             try {
-                const res = await $.get('/me')
+                const res = await axios.get('/me')
                 if (res.data._id) {
                     dispatch(getUserById(res.data._id))
                 }
