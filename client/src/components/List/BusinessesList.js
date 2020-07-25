@@ -54,6 +54,7 @@ const BusinessesList = ({
                         <div className={classes.container}>
                             <GridList cellHeight="auto" className={classes.gridList} cols={cols}>
                                 {businesses
+                                    .sort((a, b) => a.storeName.localeCompare(b.storeName))
                                     .slice((currentPage - 1) * 6, currentPage * 6)
                                     .map(({ _id, ...props }) => (
                                         <GridListTile key={_id} cols={1}>
