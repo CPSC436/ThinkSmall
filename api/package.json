@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "REACT_APP_WEBSITE_URL=https://thinksmall.herokuapp.com node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "REACT_APP_WEBSITE_URL=http://localhost:8080 nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
