@@ -47,7 +47,6 @@ const BusinessesList = ({
                         </div>
                         <div className={classes.container}>
                             {businesses
-                                .sort((a, b) => a.storeName.localeCompare(b.storeName))
                                 .slice((currentPage - 1) * 6, currentPage * 6)
                                 .map(({ _id, ...props }) => (
                                     <BusinessCard key={_id} id={_id} {...props} />
