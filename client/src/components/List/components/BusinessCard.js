@@ -33,7 +33,7 @@ const BusinessCard = ({
     const toggle = () => setShorten(prev => !prev)
     const getRequest = async id => {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_WEBSITE_URL}/request/${id}`)
+            const res = await axios.get(`/request/${id}`)
             return res.data.data
         } catch (err) {
             console.log(err)
