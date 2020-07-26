@@ -44,9 +44,10 @@ export default ({ type, color, user }) => (
     <>
         {user.imageUrl
             ? <img src={user.imageUrl} style={styles.square[type]} alt={user.givenName} />
-            : <div style={{ ...styles.square[type], background: color }}>
-                <p style={{ margin: 'auto' }}>{user.givenName.charAt(0)}</p>
-            </div>
-        }
+            : (
+                <div style={{ ...styles.square[type], background: color }}>
+                    <p style={{ margin: 'auto' }}>{user.givenName.charAt(0)}</p>
+                </div>
+            )}
     </>
 )

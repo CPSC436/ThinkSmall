@@ -9,7 +9,9 @@ import { getUsers } from '../../actions'
 import classes from '../../modules/inbox.module.css'
 import src from '../../assets/plant.svg'
 
-const Inbox = ({ inbox, users, loading, getUsers }) => {
+const Inbox = ({
+    inbox, users, loading, getUsers,
+}) => {
     const { title, messages } = inbox
 
     const Filler = () => (
@@ -30,28 +32,30 @@ const Inbox = ({ inbox, users, loading, getUsers }) => {
     return (
         loading
             ? <LoadingIndicator />
-            : <div className={classes.root}>
-                <Sidebar />
-                <div className={clsx(classes.container, classes.inbox)}>
-                    <div className={classes.chat}>
-                        <Text>{title}</Text>
-                        <div className={classes.messages}>
-                            {messages.length === 0
-                                ? <Filler />
-                                : messages.map(({ id, message, timestamp }, i) => (
-                                    <div key={i} className={classes.card}>
-                                        <Card
-                                            message={message}
-                                            timestamp={timestamp}
-                                            user={users.find(user => user._id === id)}
-                                        />
-                                    </div>
-                                ))}
+            : (
+                <div className={classes.root}>
+                    <Sidebar />
+                    <div className={clsx(classes.container, classes.inbox)}>
+                        <div className={classes.chat}>
+                            <Text>{title}</Text>
+                            <div className={classes.messages}>
+                                {messages.length === 0
+                                    ? <Filler />
+                                    : messages.map(({ id, message, timestamp }, i) => (
+                                        <div key={i} className={classes.card}>
+                                            <Card
+                                                message={message}
+                                                timestamp={timestamp}
+                                                user={users.find(user => user._id === id)}
+                                            />
+                                        </div>
+                                    ))}
+                            </div>
+                            <Input />
                         </div>
-                        <Input />
                     </div>
                 </div>
-            </div>
+            )
     )
 }
 
