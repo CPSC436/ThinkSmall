@@ -36,6 +36,20 @@ const Filler = ({ title, subtitle }) => (
     </div>
 )
 
+const Filler = ({ title, subtitle }) => {
+    return (
+        <div style={{ padding: 50, borderRadius: 5, background: '#fafafa' }}>
+            <img src={filler} style={{ width: 30, margin: '0 auto 20px', display: 'block' }} />
+            <p style={{ textAlign: 'center', margin: 0, fontSize: 'small', color: '#333' }}>
+                {title}
+            </p>
+            <p style={{ textAlign: 'center', margin: 0, fontSize: 'x-small', color: '#333' }}>
+                {subtitle}
+            </p>
+        </div>
+    )
+}
+
 const AccountPage = ({
     loading,
     _id,
