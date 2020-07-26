@@ -18,19 +18,23 @@ import filler from '../assets/plant.svg'
 
 const Title = ({ title }) => <Typography className={classes.title}>{title}</Typography>
 const Subtitle = ({ title }) => <Typography className={classes.subtitle}>{title}</Typography>
-const Filler = ({ title, subtitle }) => {
-    return (
-        <div style={{ padding: 50, borderRadius: 5, background: '#fafafa' }}>
-            <img src={filler} style={{ width: 30, margin: '0 auto 20px', display: 'block' }} />
-            <p style={{ textAlign: 'center', margin: 0, fontSize: 'small', color: '#333' }}>
-                {title}
-            </p>
-            <p style={{ textAlign: 'center', margin: 0, fontSize: 'x-small', color: '#333' }}>
-                {subtitle}
-            </p>
-        </div>
-    )
-}
+const Filler = ({ title, subtitle }) => (
+    <div style={{ padding: 50, borderRadius: 5, background: '#fafafa' }}>
+        <img src={filler} style={{ width: 30, margin: '0 auto 20px', display: 'block' }} />
+        <p style={{
+            textAlign: 'center', margin: 0, fontSize: 'small', color: '#333',
+        }}
+        >
+            {title}
+        </p>
+        <p style={{
+            textAlign: 'center', margin: 0, fontSize: 'x-small', color: '#333',
+        }}
+        >
+            {subtitle}
+        </p>
+    </div>
+)
 
 const AccountPage = ({
     loading,
@@ -57,18 +61,30 @@ const AccountPage = ({
         <>
             <Subtitle title="My Requests" />
             {requests.length > 0
-                ? <List>{requests.map((props, i) => <RequestItem key={i} {...props} canDelete />)}</List>
-                : <Filler
-                    title="No request"
-                    subtitle="Click 'Request Help' to submit a new request!"
-                />}
+                ? (
+                    <List>
+                        {requests.map((props, i) => <RequestItem key={i} {...props} canDelete />)}
+                    </List>
+                )
+                : (
+                    <Filler
+                        title="No request"
+                        subtitle="Click 'Request Help' to submit a new request!"
+                    />
+                )}
             <Subtitle title="My Businesses" />
             {owns.length > 0
-                ? <List>{owns.map((props, i) => <BusinessItem key={i} {...props} canDelete />)}</List>
-                : <Filler
-                    title="No business"
-                    subtitle="Click 'Register Store' to add your business!"
-                />}
+                ? (
+                    <List>
+                        {owns.map((props, i) => <BusinessItem key={i} {...props} canDelete />)}
+                    </List>
+                )
+                : (
+                    <Filler
+                        title="No business"
+                        subtitle="Click 'Register Store' to add your business!"
+                    />
+                )}
         </>
     )
 
@@ -76,11 +92,17 @@ const AccountPage = ({
         <>
             <Subtitle title="My Tasks" />
             {tasks.length > 0
-                ? <List>{tasks.map((props, i) => <RequestItem key={i} {...props} canDelete />)}</List>
-                : <Filler
-                    title="No task"
-                    subtitle="Start picking up on new tasks today!"
-                />}
+                ? (
+                    <List>
+                        {tasks.map((props, i) => <RequestItem key={i} {...props} canDelete />)}
+                    </List>
+                )
+                : (
+                    <Filler
+                        title="No task"
+                        subtitle="Start picking up on new tasks today!"
+                    />
+                )}
             <Subtitle title="Privacy Preferences" />
             <List>
                 <ListItem style={{ alignItems: 'flex-start', fontFamily: '\'Baloo 2\', cursive' }}>
@@ -102,40 +124,36 @@ const AccountPage = ({
         </>
     )
 
-    const OutlinedButtons = () => {
-        return (
-            <ButtonGroup className={classes.buttons} size="small" disableElevation>
-                <Button
-                    className={clsx(classes.button, asOwner && classes.selected)}
-                    onClick={() => { setAsOwner(true) }}
-                >
-                    Business Owner
-                    </Button>
-                <Button
-                    className={clsx(classes.button, !asOwner && classes.selected)}
-                    onClick={() => { setAsOwner(false) }}
-                >
-                    Volunteer
-                    </Button>
-            </ButtonGroup>
-        )
-    }
+    const OutlinedButtons = () => (
+        <ButtonGroup className={classes.buttons} size="small" disableElevation>
+            <Button
+                className={clsx(classes.button, asOwner && classes.selected)}
+                onClick={() => { setAsOwner(true) }}
+            >
+                Business Owner
+            </Button>
+            <Button
+                className={clsx(classes.button, !asOwner && classes.selected)}
+                onClick={() => { setAsOwner(false) }}
+            >
+                Volunteer
+            </Button>
+        </ButtonGroup>
+    )
 
-    const ActionButtons = () => {
-        return (
-            <div className={classes.actions}>
-                {actions.map(({ title, action }) => (
-                    <Button
-                        key={title}
-                        variant="outlined"
-                        onClick={action}
-                    >
-                        {title}
-                    </Button>
-                ))}
-            </div>
-        )
-    }
+    const ActionButtons = () => (
+        <div className={classes.actions}>
+            {actions.map(({ title, action }) => (
+                <Button
+                    key={title}
+                    variant="outlined"
+                    onClick={action}
+                >
+                    {title}
+                </Button>
+            ))}
+        </div>
+    )
 
     return (
         loading

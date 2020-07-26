@@ -17,22 +17,38 @@ const Text = withStyles({
 const ProfileCard = ({
     givenName, familyName, imageUrl, description, email, phone, supplementaryUrl, tags,
 }) => (
-        <Card className={classes.profile}>
-            <CardMedia className={classes.media} image={imageUrl || placeholder} title="User Picture" />
-            <CardContent>
-                <Text style={{ fontWeight: 'bold' }}>{`${givenName} ${familyName}`}</Text>
-                {description && <Text style={{ paddingTop: '0.5em' }}>{description}</Text>}
-                {email && <Text style={{ paddingTop: '1rem' }}>{`@ ${email}`}</Text>}
-                {phone && <Text><PhoneIcon /> {phone}</Text>}
-                {supplementaryUrl && <Text>
+    <Card className={classes.profile}>
+        <CardMedia className={classes.media} image={imageUrl || placeholder} title="User Picture" />
+        <CardContent>
+            <Text style={{ fontWeight: 'bold' }}>{`${givenName} ${familyName}`}</Text>
+            {description && <Text style={{ paddingTop: '0.5em' }}>{description}</Text>}
+            {email && <Text style={{ paddingTop: '1rem' }}>{`@ ${email}`}</Text>}
+            {phone && (
+                <Text>
+                    <PhoneIcon />
+                    {' '}
+                    {phone}
+                </Text>
+            )}
+            {supplementaryUrl && (
+                <Text>
                     <a href={supplementaryUrl}>{supplementaryUrl}</a>
-                </Text>}
-                {tags.length > 0 && <Tags tags={tags} />}
-                <Button style={{ textTransform: 'capitalize', width: '100%', borderColor: 'black', marginTop: '1rem' }} size="small" variant="outlined">
-                    Edit <EditIcon />
-                </Button>
-            </CardContent>
-        </Card>
-    )
+                </Text>
+            )}
+            {tags.length > 0 && <Tags tags={tags} />}
+            <Button
+                style={{
+                    textTransform: 'capitalize', width: '100%', borderColor: 'black', marginTop: '1rem',
+                }}
+                size="small"
+                variant="outlined"
+            >
+                Edit
+                {' '}
+                <EditIcon />
+            </Button>
+        </CardContent>
+    </Card>
+)
 
 export default ProfileCard

@@ -53,7 +53,7 @@ const theme = createMuiTheme({
             main: '#000',
         },
     },
-});
+})
 
 function App({ switchState }) {
     return (
