@@ -61,30 +61,32 @@ function NavBar({
     }
 
     const AccountInfo = () => (
-        <>
-            {imageUrl
-                ? (
-                    <Avatar
-                        ref={avatar}
-                        src={imageUrl}
-                        onClick={toggleDrop}
-                        style={{ width: 20, height: 20 }}
-                    />
-                )
-                : (
-                    <Avatar
-                        ref={avatar}
-                        onClick={toggleDrop}
-                        style={{ width: 20, height: 20 }}
-                    >
-                        {`${givenName?.charAt(0)}${familyName?.charAt(0)}`}
-                    </Avatar>
-                )}
-            {drop && <DropLinks />}
-            <div className={classes.account}>
-                <Text>{`${givenName} ${familyName}`}</Text>
-            </div>
-        </>
+        loaded
+            ? <>
+                {imageUrl
+                    ? (
+                        <Avatar
+                            ref={avatar}
+                            src={imageUrl}
+                            onClick={toggleDrop}
+                            style={{ width: 20, height: 20 }}
+                        />
+                    )
+                    : (
+                        <Avatar
+                            ref={avatar}
+                            onClick={toggleDrop}
+                            style={{ width: 20, height: 20 }}
+                        >
+                            {`${givenName?.charAt(0)}${familyName?.charAt(0)}`}
+                        </Avatar>
+                    )}
+                {drop && <DropLinks />}
+                <div className={classes.account}>
+                    <Text>{`${givenName} ${familyName}`}</Text>
+                </div>
+            </>
+            : <ButtonNavBar />
     )
 
     useEffect(() => {
@@ -102,9 +104,7 @@ function NavBar({
                     {matches ? (
                         <>
                             <Links />
-                            {loaded
-                                ? <AccountInfo />
-                                : <ButtonNavBar userType="entry" column />}
+                            <AccountInfo />
                             <Switch />
                         </>
                     ) : <Icon icon="bars" onClick={() => setOpen(true)} />}
