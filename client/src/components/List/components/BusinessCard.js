@@ -89,7 +89,7 @@ const BusinessCard = ({
     }, [])
 
     return (
-        <Card className={classes.root} style={{ overflow: 'visible' }}>
+        <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
                 image={imageUrl || placeholder}
