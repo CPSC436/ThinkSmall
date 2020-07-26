@@ -79,23 +79,12 @@
     margin: 3em 1em;
 }
 
-.accounts-card {
-    margin-left: 1em;
-    margin-top: 3em;
-    display: block;
-    width: 20vw;
-    transition-duration: 0.3s;
-    height: 20vw;
-    text-align: center;
-    box-shadow: none;
-    border: 1em black;
-}
-
 .profile {
     border: 1.5px solid grey;
     border-radius: 5px;
     box-shadow: none;
     color: black;
+    height: 0%;
     transition-duration: 0.3s;
     text-align: center;
 }

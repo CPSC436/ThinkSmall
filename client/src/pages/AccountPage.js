@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import clsx from 'clsx'
 import {
-    Button,
+    Button, ButtonGroup,
     Checkbox,
     FormControlLabel,
     List, ListItem, ListItemText,
@@ -34,26 +35,24 @@ const useStyles = makeStyles(theme => ({
             float: 'right',
         },
     },
-    buttons: {
-        marginLeft: 'auto',
+    button: {
+        background: 'black',
+        border: '1px solid transparent',
+        color: 'white',
         fontFamily: '\'Baloo 2\', cursive',
+        transition: '.25s',
+        '&:hover': {
+            background: 'transparent',
+            borderColor: 'black',
+            color: 'black',
+        },
+    },
+    selected: {
+        background: 'transparent',
+        borderColor: 'black',
+        color: 'black',
     },
 }))
-
-const OutlinedButtons = ({ setAsVolunteer }) => {
-    const classes = useStyles()
-
-    return (
-        <div className={classes.root}>
-            <Button onClick={() => { setAsVolunteer(true) }} variant="contained" color="secondary" size="small" className={classes.buttons}>
-                Volunteer
-            </Button>
-            <Button onClick={() => { setAsVolunteer(false) }} variant="contained" color="primary" size="small" className={classes.buttons}>
-                Business Owner
-            </Button>
-        </div>
-    )
-}
 
 const Filler = ({ title, subtitle }) => {
     return (
@@ -133,6 +132,31 @@ const AccountPage = ({
             </List>
         </>
     )
+
+    const OutlinedButtons = () => {
+        const classes = useStyles()
+
+        return (
+            <div className={classes.root}>
+                <ButtonGroup size="small" disableElevation>
+                    <Button
+                        className={clsx(classes.button, !asVolunteer && classes.selected)}
+                        onClick={() => { setAsVolunteer(false) }}
+                        variant="contained"
+                    >
+                        Business Owner
+                    </Button>
+                    <Button
+                        className={clsx(classes.button, asVolunteer && classes.selected)}
+                        onClick={() => { setAsVolunteer(true) }}
+                        variant="contained"
+                    >
+                        Volunteer
+                    </Button>
+                </ButtonGroup>
+            </div>
+        )
+    }
 
     return (
         loading
