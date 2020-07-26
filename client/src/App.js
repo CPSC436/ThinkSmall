@@ -42,6 +42,12 @@ library.add(
 )
 
 const theme = createMuiTheme({
+    typography: {
+        fontFamily: [
+            'Baloo 2',
+            'cursive',
+        ].join(','),
+    },
     palette: {
         primary: {
             main: '#000',
