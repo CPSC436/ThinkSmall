@@ -125,15 +125,6 @@ const BusinessCard = ({
                     target="_blank"
                     style={{ width: '100%', height: 36 }}
                 >
-                    See Details
-                </Button>
-                <Button
-                    className={classes.button}
-                    size="small"
-                    variant="contained"
-                    target="_blank"
-                    style={{ width: '100%', height: 36 }}
-                >
                     Contact Owner
                 </Button>
             </CardActions>
