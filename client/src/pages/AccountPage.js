@@ -8,52 +8,16 @@ import {
     List, ListItem, ListItemText,
     Typography,
 } from '@material-ui/core'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
 import LoadingIndicator from '../components/Form/components/LoadingIndicator'
-import ButtonNavBar from '../components/NavBar/components/ButtonNavBar'
 import ProfileCard from '../components/Account/ProfileCard'
 import RequestItem from '../components/Account/RequestItem'
 import BusinessItem from '../components/Account/BusinessItem'
-import { updateUser, getCurrentUser } from '../actions'
-import classes from '../modules/card.module.css'
+import { updateUser, getCurrentUser, openForm } from '../actions'
+import classes from '../modules/account.module.css'
 import filler from '../assets/plant.svg'
 
-const Text = withStyles({
-    root: {
-        fontFamily: '\'Baloo 2\', cursive',
-    },
-})(Typography)
-
-const Title = ({ title }) => <Text style={{ fontWeight: 'bold', marginBottom: '2em' }}>{title}</Text>
-
-const Subtitle = ({ title }) => <Text style={{ fontWeight: 'bold', marginTop: '2em', marginBottom: '1em' }}>{title}</Text>
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            float: 'right',
-        },
-    },
-    button: {
-        background: 'black',
-        border: '1px solid transparent',
-        color: 'white',
-        fontFamily: '\'Baloo 2\', cursive',
-        transition: '.25s',
-        '&:hover': {
-            background: 'transparent',
-            borderColor: 'black',
-            color: 'black',
-        },
-    },
-    selected: {
-        background: 'transparent',
-        borderColor: 'black',
-        color: 'black',
-    },
-}))
-
+const Title = ({ title }) => <Typography className={classes.title}>{title}</Typography>
+const Subtitle = ({ title }) => <Typography className={classes.subtitle}>{title}</Typography>
 const Filler = ({ title, subtitle }) => {
     return (
         <div style={{ padding: 50, borderRadius: 5, background: '#fafafa' }}>
@@ -75,10 +39,14 @@ const AccountPage = ({
     requests = [], // requests submitted by the user
     tasks = [], // requests assigned to the user
     available,
-    updateUser, getCurrentUser,
+    updateUser, getCurrentUser, openForm,
     ...props
 }) => {
-    const [asVolunteer, setAsVolunteer] = useState(false)
+    const [asOwner, setAsOwner] = useState(true)
+    const actions = [
+        { title: 'Request Help', action: () => openForm('request') },
+        { title: 'Register Store', action: () => openForm('business') },
+    ]
 
     useEffect(() => {
         const loadCurrentUser = async () => getCurrentUser()
@@ -134,26 +102,36 @@ const AccountPage = ({
     )
 
     const OutlinedButtons = () => {
-        const classes = useStyles()
-
         return (
-            <div className={classes.root}>
-                <ButtonGroup size="small" disableElevation>
-                    <Button
-                        className={clsx(classes.button, !asVolunteer && classes.selected)}
-                        onClick={() => { setAsVolunteer(false) }}
-                        variant="contained"
-                    >
-                        Business Owner
+            <ButtonGroup className={classes.buttons} size="small" disableElevation>
+                <Button
+                    className={clsx(classes.button, asOwner && classes.selected)}
+                    onClick={() => { setAsOwner(true) }}
+                >
+                    Business Owner
                     </Button>
-                    <Button
-                        className={clsx(classes.button, asVolunteer && classes.selected)}
-                        onClick={() => { setAsVolunteer(true) }}
-                        variant="contained"
-                    >
-                        Volunteer
+                <Button
+                    className={clsx(classes.button, !asOwner && classes.selected)}
+                    onClick={() => { setAsOwner(false) }}
+                >
+                    Volunteer
                     </Button>
-                </ButtonGroup>
+            </ButtonGroup>
+        )
+    }
+
+    const ActionButtons = () => {
+        return (
+            <div className={classes.actions}>
+                {actions.map(({ title, action }) => (
+                    <Button
+                        key={title}
+                        variant="outlined"
+                        onClick={action}
+                    >
+                        {title}
+                    </Button>
+                ))}
             </div>
         )
     }
@@ -162,15 +140,17 @@ const AccountPage = ({
         loading
             ? <LoadingIndicator />
             : (
-                <div className={classes.accounts}>
-                    <ProfileCard {...props} />
-                    <div style={{ marginLeft: '4em', flex: 1 }}>
+                <div className={classes.root}>
+                    <div>
+                        <ProfileCard {...props} />
+                        <ActionButtons />
+                    </div>
+                    <div className={classes.details}>
                         <div>
-                            <OutlinedButtons setAsVolunteer={setAsVolunteer} />
                             <Title title="Account" />
+                            <OutlinedButtons />
                         </div>
-                        <ButtonNavBar userType={asVolunteer ? 'volunteer' : 'business'} />
-                        {asVolunteer ? <VolunteerTab /> : <BusinessTab />}
+                        {asOwner ? <BusinessTab /> : <VolunteerTab />}
                     </div>
                 </div>
             )
@@ -186,6 +166,7 @@ const mapStateToProps = ({ _id = '5f0932a99eeb33d77955d15c', currentUser }) => (
 const mapDispatchToProps = {
     getCurrentUser,
     updateUser,
+    openForm,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage)
