@@ -15,6 +15,7 @@ import RequestItem from '../components/Account/RequestItem'
 import BusinessItem from '../components/Account/BusinessItem'
 import { updateUser, getCurrentUser } from '../actions'
 import classes from '../modules/card.module.css'
+import filler from '../assets/plant.svg'
 
 const Text = withStyles({
     root: {
@@ -54,6 +55,20 @@ const OutlinedButtons = ({ setAsVolunteer }) => {
     )
 }
 
+const Filler = ({ title, subtitle }) => {
+    return (
+        <div style={{ padding: 50, borderRadius: 5, background: '#fafafa' }}>
+            <img src={filler} style={{ width: 30, margin: '0 auto 20px', display: 'block' }} />
+            <p style={{ textAlign: 'center', margin: 0, fontSize: 'small', color: '#333' }}>
+                {title}
+            </p>
+            <p style={{ textAlign: 'center', margin: 0, fontSize: 'x-small', color: '#333' }}>
+                {subtitle}
+            </p>
+        </div>
+    )
+}
+
 const AccountPage = ({
     loading,
     _id,
@@ -74,16 +89,31 @@ const AccountPage = ({
     const BusinessTab = () => (
         <>
             <Subtitle title="My Requests" />
-            <List>{requests.map((props, i) => <RequestItem key={i} {...props} canDelete />)}</List>
+            {requests.length > 0
+                ? <List>{requests.map((props, i) => <RequestItem key={i} {...props} canDelete />)}</List>
+                : <Filler
+                    title="No request"
+                    subtitle="Click 'Request Help' to submit a new request!"
+                />}
             <Subtitle title="My Businesses" />
-            <List>{owns.map((props, i) => <BusinessItem key={i} {...props} canDelete />)}</List>
+            {owns.length > 0
+                ? <List>{owns.map((props, i) => <BusinessItem key={i} {...props} canDelete />)}</List>
+                : <Filler
+                    title="No business"
+                    subtitle="Click 'Register Store' to add your business!"
+                />}
         </>
     )
 
     const VolunteerTab = () => (
         <>
             <Subtitle title="My Tasks" />
-            <List>{tasks.map((props, i) => <RequestItem key={i} {...props} canDelete />)}</List>
+            {tasks.length > 0
+                ? <List>{tasks.map((props, i) => <RequestItem key={i} {...props} canDelete />)}</List>
+                : <Filler
+                    title="No task"
+                    subtitle="Start picking up on new tasks today!"
+                />}
             <Subtitle title="Privacy Preferences" />
             <List>
                 <ListItem style={{ alignItems: 'flex-start', fontFamily: '\'Baloo 2\', cursive' }}>
