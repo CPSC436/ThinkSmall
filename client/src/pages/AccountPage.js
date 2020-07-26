@@ -89,6 +89,7 @@ const AccountPage = ({
                             <Checkbox
                                 checked={available}
                                 onChange={() => updateUser(_id, { available: !available })}
+                                color="primary"
                             />
                         )}
                     />
