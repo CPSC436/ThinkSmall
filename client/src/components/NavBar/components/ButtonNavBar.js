@@ -9,13 +9,14 @@ const ButtonNavBar = ({ openForm }) => {
         { title: 'Sign Up', action: () => openForm('sign_up') },
         { title: 'Login', action: () => openForm('login') },
     ]
-    
+
     return (
         <div style={{
             display: 'flex',
             justifyContent: 'space-around',
             margin: '0 10px',
-        }}>
+        }}
+        >
             {actions.map(({ title, action }) => (
                 <Button
                     key={title}

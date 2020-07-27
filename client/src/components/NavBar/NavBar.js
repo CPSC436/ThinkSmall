@@ -62,30 +62,32 @@ function NavBar({
 
     const AccountInfo = () => (
         loaded
-            ? <>
-                {imageUrl
-                    ? (
-                        <Avatar
-                            ref={avatar}
-                            src={imageUrl}
-                            onClick={toggleDrop}
-                            style={{ width: 20, height: 20 }}
-                        />
-                    )
-                    : (
-                        <Avatar
-                            ref={avatar}
-                            onClick={toggleDrop}
-                            style={{ width: 20, height: 20 }}
-                        >
-                            {`${givenName?.charAt(0)}${familyName?.charAt(0)}`}
-                        </Avatar>
-                    )}
-                {drop && <DropLinks />}
-                <div className={classes.account}>
-                    <Text>{`${givenName} ${familyName}`}</Text>
-                </div>
-            </>
+            ? (
+                <>
+                    {imageUrl
+                        ? (
+                            <Avatar
+                                ref={avatar}
+                                src={imageUrl}
+                                onClick={toggleDrop}
+                                style={{ width: 20, height: 20 }}
+                            />
+                        )
+                        : (
+                            <Avatar
+                                ref={avatar}
+                                onClick={toggleDrop}
+                                style={{ width: 20, height: 20 }}
+                            >
+                                {`${givenName?.charAt(0)}${familyName?.charAt(0)}`}
+                            </Avatar>
+                        )}
+                    {drop && <DropLinks />}
+                    <div className={classes.account}>
+                        <Text>{`${givenName} ${familyName}`}</Text>
+                    </div>
+                </>
+            )
             : <ButtonNavBar />
     )
 
@@ -105,7 +107,6 @@ function NavBar({
                         <>
                             <Links />
                             <AccountInfo />
-                            <Switch />
                         </>
                     ) : <Icon icon="bars" onClick={() => setOpen(true)} />}
                 </Toolbar>
@@ -119,7 +120,6 @@ function NavBar({
                 }}
             >
                 <Links />
-                <Switch />
                 <AccountInfo />
             </Drawer>
         </>
