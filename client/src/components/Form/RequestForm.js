@@ -12,16 +12,17 @@ import {
     Select, MenuItem,
     Content, ContentText, Text,
 } from './components'
-import Tags from '../Tags/Tags'
+import { SelectedChip, UnselectedChip, DottedChip } from '../../components/Tags/components'
+import { defaultTags } from '../../constant'
 import classes from '../../modules/form.module.css'
-import { addRequest, closeForm } from '../../actions'
+import { addRequest, closeForm, addBusiness } from '../../actions'
 
 const Form = ({
     open = false, closeForm, addRequest, owns = [],
 }) => {
     const [business, setBusiness] = useState('')
     const [details, setDetails] = useState('')
-    const [tags, setTags] = useState([])
+    const [tags, setTags] = useState([defaultTags])
     const fullScreen = useMediaQuery(useTheme().breakpoints.down('sm'))
 
     const onClose = () => {
@@ -31,8 +32,14 @@ const Form = ({
     }
 
     const onSubmit = e => {
-        addRequest({ business, details, tags })
+        addRequest({ business, details, tags: tags.filter(({ selected }) => selected).map(({ label }) => ({ label })) })
+        addBusiness( { tags: tags.filter(({ selected }) => selected).map(({ label }) => ({ label })) })
         onClose()
+    }
+
+    const selectTag = i => {
+        tags[i].selected = !tags[i].selected
+        setTags([...tags]) 
     }
 
     return (
@@ -56,7 +63,16 @@ const Form = ({
                     ))}
                 </Select>
                 <Text>Request Details</Text>
-                <Tags canAdd />
+                <div className={classes.tags}>
+                    {tags.map(({ label, selected }, i) => (
+                    <div key={i}>
+                        {selected
+                            ? <SelectedChip label={label} onClick={() => selectTag(i)} />
+                            : <UnselectedChip label={label} onClick={() => selectTag(i)} />}
+                    </div>
+                    ))}
+                    {<DottedChip />}
+                </div>
                 <Textarea
                     aria-label="details"
                     className={classes.textarea}
