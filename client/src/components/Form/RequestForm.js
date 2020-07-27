@@ -5,7 +5,7 @@ import {
     TextareaAutosize as Textarea,
 } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { useTheme } from '@material-ui/core/styles'
+import { useTheme, makeStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
 import {
     Actions,
