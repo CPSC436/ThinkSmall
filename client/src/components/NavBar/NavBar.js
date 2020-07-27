@@ -10,7 +10,6 @@ import {
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { ButtonNavBar, Logo, Text } from './components'
 import classes from '../../modules/nav.module.css'
-import Switch from './components/Switch'
 import { getCurrentUser } from '../../actions'
 
 const tabs = [
