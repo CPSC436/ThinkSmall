@@ -15,7 +15,7 @@ import {
 import { SelectedChip, UnselectedChip, DottedChip } from '../Tags/components'
 import { defaultTags } from '../../constant'
 import classes from '../../modules/form.module.css'
-import { addRequest, closeForm } from '../../actions'
+import { addRequest, closeForm, addBusiness } from '../../actions'
 
 const Form = ({
     open = false, closeForm, addRequest, owns = [],
