@@ -14,7 +14,6 @@ import {
     faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { StylesProvider, ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import { connect } from 'react-redux'
 import BusinessForm from './components/Form/BusinessForm'
 import RequestForm from './components/Form/RequestForm'
 import SignupForm from './components/Form/SignupForm'
@@ -23,7 +22,6 @@ import Inbox from './components/Inbox/Inbox'
 import BusinessesList from './components/List/BusinessesList'
 import VolunteersList from './components/List/VolunteersList'
 import NavBar from './components/NavBar/NavBar'
-import Maps from './components/Maps'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import './App.css'
@@ -56,7 +54,7 @@ const theme = createMuiTheme({
     },
 })
 
-function App({ switchState }) {
+function App() {
     return (
         <ThemeProvider theme={theme}>
             <StylesProvider injectFirst>
@@ -64,7 +62,7 @@ function App({ switchState }) {
                     <NavBar />
                     <Switch>
                         <Route path="/about" component={About} />
-                        <Route path="/business" component={switchState ? Maps : BusinessesList} />
+                        <Route path="/business" component={BusinessesList} />
                         <Route path="/volunteer" component={VolunteersList} />
                         <Route path="/inbox" component={Inbox} />
                         <Route path="/account" component={AccountPage} />
@@ -80,6 +78,4 @@ function App({ switchState }) {
     )
 }
 
-const mapStateToProps = ({ switchState }) => ({ switchState })
-
-export default connect(mapStateToProps)(App)
+export default App
