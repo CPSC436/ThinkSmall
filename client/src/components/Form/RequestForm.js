@@ -33,7 +33,6 @@ const Form = ({
 
     const onSubmit = e => {
         addRequest({ business, details, tags: tags.filter(({ selected }) => selected).map(({ label }) => ({ label })) })
-        addBusiness({ tags: tags.filter(({ selected }) => selected).map(({ label }) => ({ label })) })
         onClose()
     }
 
@@ -65,13 +64,11 @@ const Form = ({
                 <Text>Request Details</Text>
                 <div className={classes.tags}>
                     {tags.map(({ label, selected }, i) => (
-                        <div key={i}>
-                            {selected
-                                ? <SelectedChip label={label} onClick={() => selectTag(i)} />
-                                : <UnselectedChip label={label} onClick={() => selectTag(i)} />}
-                        </div>
+                        selected
+                        ? <SelectedChip label={label} onClick={() => selectTag(i)} />
+                        : <UnselectedChip label={label} onClick={() => selectTag(i)} />
                     ))}
-                    { <DottedChip /> }
+                    <DottedChip />
                 </div>
                 <Textarea
                     aria-label="details"
