@@ -27,6 +27,7 @@ import Maps from './components/Maps'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import './App.css'
+import About from './pages/AboutPage'
 
 library.add(
     fab,
@@ -62,6 +63,7 @@ function App({ switchState }) {
                 <Router>
                     <NavBar />
                     <Switch>
+                        <Route path="/about" component={About} />
                         <Route path="/business" component={switchState ? Maps : BusinessesList} />
                         <Route path="/volunteer" component={VolunteersList} />
                         <Route path="/inbox" component={Inbox} />
