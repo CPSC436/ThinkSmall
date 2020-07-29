@@ -16,12 +16,11 @@ const BusinessItem = ({
     return (
         <ListItem
             style={{
-                borderWidth: '1.5px',
-                borderColor: 'grey',
-                borderStyle: 'solid',
-                borderRadius: '5px',
                 alignItems: 'flex-start',
+                border: '1px solid black',
+                borderRadius: '5px',
                 justifyContent: 'space-between',
+                margin: '5px auto',
             }}
         >
             <div>
@@ -36,7 +35,7 @@ const BusinessItem = ({
                             <Icon icon="map-marker-alt" size="sm" style={{ margin: 'auto 10px auto 5px' }} />
                             <span>{location}</span>
                         </div>
-                        <Tags tags={tags} />
+                        {tags.length > 0 && <Tags tags={tags} />}
                     </div>
                 )}
             </div>

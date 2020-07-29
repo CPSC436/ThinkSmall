@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -33,7 +34,7 @@ const BusinessCard = ({
     const toggle = () => setShorten(prev => !prev)
     const getRequest = async id => {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_WEBSITE_URL}/request/${id}`)
+            const res = await axios.get(`/request/${id}`)
             return res.data.data
         } catch (err) {
             console.log(err)
@@ -89,7 +90,7 @@ const BusinessCard = ({
     }, [])
 
     return (
-        <Card className={classes.root} style={{ overflow: 'visible' }}>
+        <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
                 image={imageUrl || placeholder}
@@ -125,16 +126,7 @@ const BusinessCard = ({
                     target="_blank"
                     style={{ width: '100%', height: 36 }}
                 >
-                    See Details
-                </Button>
-                <Button
-                    className={classes.button}
-                    size="small"
-                    variant="contained"
-                    target="_blank"
-                    style={{ width: '100%', height: 36 }}
-                >
-                    Contact Owner
+                    <Link to="/inbox">Contact Owner</Link>
                 </Button>
             </CardActions>
         </Card>
