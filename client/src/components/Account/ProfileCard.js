@@ -3,7 +3,7 @@ import {
     Button, Card, CardContent, CardMedia, Typography,
 } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
 import { connect } from 'react-redux'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
@@ -18,14 +18,14 @@ import { updateUser } from '../../actions'
 import { DottedChip } from '../Tags/components'
 import SelectedChip from '../Tags/components/SelectedChip'
 
-const Text = withStyles({
-    root: {
-        fontFamily: '\'Baloo 2\', cursive',
-    },
-})(Typography)
+// const Text = withStyles({
+//     root: {
+//         fontFamily: '\'Baloo 2\', cursive',
+//     },
+// })(Typography)
 
 const ProfileCard = ({
-    givenName, familyName, imageUrl, description, email, phone, supplementaryUrl, tags, _id,
+    givenName, familyName, imageUrl, description, email, phone, supplementaryUrl, tags, _id, updateUser,
 }) => {
     const [values, setValues] = useState({
         givenName,
@@ -74,7 +74,7 @@ const ProfileCard = ({
                 </label>
             </CardMedia>
             <CardContent>
-                <FormControl onSubmit={handleSubmit}>
+                <FormControl>
                     <TextField
                         style={{ fontWeight: 'bold' }}
                         defaultValue={`${givenName}`}
@@ -152,7 +152,7 @@ const ProfileCard = ({
                     )}
                     {tags.length > 0 && <Tags tags={tags} />}
                     <DottedChip />
-                    <Button type="submit" variant="contained" size="small" className={classes.buttons}>
+                    <Button type="button" variant="contained" size="small" className={classes.buttons} onClick={handleSubmit}>
                         Update Info
                     </Button>
                 </FormControl>
