@@ -14,6 +14,7 @@
     border-radius: 4px;
     height: 0;
     padding-top: 56.25%;
+    padding-bottom: 20px;
 }
 
 .actions {
@@ -94,4 +95,8 @@
     color: black;
     transition-duration: 0.3s;
     text-align: center;
+}
+
+input {
+    display: none;
 }
