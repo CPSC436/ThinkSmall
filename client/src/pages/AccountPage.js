@@ -76,7 +76,7 @@ const AccountPage = ({
             {owns.length > 0
                 ? (
                     <List>
-                        {owns.map((props, i) => <BusinessItem key={i} {...props} canDelete />)}
+                        {owns.map((props, i) => <BusinessItem key={i} {...props} index={i} owns={owns} canDelete actions />)}
                     </List>
                 )
                 : (

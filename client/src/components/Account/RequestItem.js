@@ -19,6 +19,7 @@ const RequestItem = ({
                 borderRadius: '5px',
                 alignItems: 'flex-start',
                 justifyContent: 'space-between',
+                margin: '5px auto',
             }}
         >
             <div>
