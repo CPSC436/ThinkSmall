@@ -7,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton'
 import { connect } from 'react-redux'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { AccountCircle, PhotoCamera } from '@material-ui/icons'
 import EmailSharpIcon from '@material-ui/icons/EmailSharp'
@@ -151,9 +150,7 @@ const ProfileCard = ({
                     {supplementaryUrl && (
                         <a href={supplementaryUrl}>{supplementaryUrl}</a>
                     )}
-                    {tags && (
-                        tags.map(tag => <SelectedChip key={Math.random()} style={{ paddingTop: '1rem' }} label={tag.label} />)
-                    )}
+                    {tags.length > 0 && <Tags tags={tags} />}
                     <DottedChip />
                     <Button type="submit" variant="contained" size="small" className={classes.buttons}>
                         Update Info
