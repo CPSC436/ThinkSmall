@@ -3,20 +3,22 @@ import {
     Button, Card, CardContent, CardMedia, Typography,
 } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-// import IconButton from '@material-ui/core/IconButton'
 import { connect } from 'react-redux'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { AccountCircle, PhotoCamera } from '@material-ui/icons'
 import EmailSharpIcon from '@material-ui/icons/EmailSharp'
+import S3 from 'react-aws-s3'
+import ImageUploader from 'react-images-upload'
 import { EditIcon, PhoneIcon } from './Icons'
 import Tags from '../Tags/Tags'
 import classes from '../../modules/card.module.css'
 import placeholder from '../../assets/white-room.jpeg'
-import { updateUser } from '../../actions'
+import {getBusinesses, updateUser} from '../../actions'
 import { DottedChip } from '../Tags/components'
-import SelectedChip from '../Tags/components/SelectedChip'
+import Form from '../Form/BusinessForm'
+import { Content } from '../Form/components'
 
 // const Text = withStyles({
 //     root: {
@@ -37,41 +39,69 @@ const ProfileCard = ({
         tags,
         imageUrl,
     })
-
+    const config = {
+        bucketName: 'thinksmall',
+        region: 'ca-central-1',
+        accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
+        secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
+    }
+    const Client = new S3(config)
+    const [image, setImage] = useState(imageUrl)
     useEffect(() => {
-        // force re-render on change of imageUrl
-    }, [imageUrl])
+
+    }, [image])
 
     const handleChange = field => event => {
         setValues({ ...values, [field]: event.target.value })
         console.log(`Values: ${values[field]}`)
     }
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        const imageUrl = await onSave(image)
         updateUser(_id, values)
     }
-    const onDrop = files => {
+    const handleImageChange = e => {
+        e.preventDefault()
         const reader = new FileReader()
-        reader.readAsDataURL(files[0])
-        setValues({ ...values, [imageUrl]: files[0] })
+        const file = e.target.files[0]
+        reader.onloadend = () => {
+            if (file) {
+                reader.readAsDataURL(file)
+                setValues({ ...values, [imageUrl]: file })
+                setImage(file)
+            }
+        }
         console.log('Updated image url;')
     }
+    async function onSave(file) {
+        if (file) {
+            try {
+                const res = await Client.uploadFile(file)
+                return res.location
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    }
+
     return (
         <Card className={classes.profile}>
-            <CardMedia className={classes.media} image={imageUrl || placeholder} title="User Picture">
-                <input
-                    accept="image/*"
-                    className={classes.input}
-                    id="contained-button-file"
-                    multiple
-                    type="file"
-                />
-                <label htmlFor="contained-button-file">
-                    <Button variant="contained" color="primary" component="span" onChange={onDrop}>
-                        Upload
-                        {'  '}
-                        <PhotoCamera />
-                    </Button>
-                </label>
+            <CardMedia className={classes.media} image={image || placeholder} title="User Picture">
+                <form onSubmit={handleSubmit}>
+                    <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="contained-button-file"
+                        type="file"
+                        onChange={e => handleImageChange(e)}
+                    />
+                    <label htmlFor="contained-button-file">
+                        <Button variant="contained" color="primary" component="span">
+                            Upload
+                            {'  '}
+                            <PhotoCamera />
+                        </Button>
+                    </label>
+                </form>
             </CardMedia>
             <CardContent>
                 <FormControl>
@@ -142,14 +172,11 @@ const ProfileCard = ({
                     />
                     <TextField
                         style={{ paddingTop: '1rem' }}
-                        // defaultValue={(<a href={supplementaryUrl}>{supplementaryUrl}</a>)}
                         defaultValue={supplementaryUrl}
+                        placeholder="Add additional URLs here"
                         label="Supplementary URLs"
                         onChange={handleChange('supplementaryUrl')}
                     />
-                    {supplementaryUrl && (
-                        <a href={supplementaryUrl}>{supplementaryUrl}</a>
-                    )}
                     {tags.length > 0 && <Tags tags={tags} />}
                     <DottedChip />
                     <Button type="button" variant="contained" size="small" className={classes.buttons} onClick={handleSubmit}>
