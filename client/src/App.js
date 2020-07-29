@@ -11,6 +11,7 @@ import {
     faMapMarkerAlt,
     faMeteor,
     faPaperPlane,
+    faSave,
     faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { StylesProvider, ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
@@ -38,6 +39,7 @@ library.add(
     faMapMarkerAlt,
     faMeteor,
     faPaperPlane,
+    faSave,
     faUser,
 )
 
