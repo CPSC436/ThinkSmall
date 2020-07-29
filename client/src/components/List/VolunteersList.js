@@ -41,20 +41,20 @@ const VolunteersList = ({
                             <Search />
                             <Tags tags={defaultSkills} canSelect />
                         </div>
-                        <div className={classes.page}>
-                            <Pagination
-                                onChange={handleChange}
-                                page={currentPage}
-                                count={Math.ceil(volunteers.length / 6)}
-                                renderItem={item => <PaginationItem {...item} />}
-                            />
-                        </div>
                         <div className={classes.container}>
-                            <GridList cellHeight="auto" className={classes.gridList} cols={cols}>
+                            <div className={classes.page}>
+                                <Pagination
+                                    onChange={handleChange}
+                                    page={currentPage}
+                                    count={Math.ceil(volunteers.length / 6)}
+                                    renderItem={item => <PaginationItem {...item} />}
+                                />
+                            </div>
+                            <GridList cellHeight="auto" cols={cols}>
                                 {volunteers
                                     .slice((currentPage - 1) * 6, currentPage * 6)
-                                    .map(({ _id, ...props }) => (
-                                        <GridListTile key={_id} cols={1}>
+                                    .map((props, i) => (
+                                        <GridListTile key={i} cols={1}>
                                             <VolunteerCard {...props} />
                                         </GridListTile>
                                     ))}
