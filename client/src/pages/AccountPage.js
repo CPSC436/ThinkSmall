@@ -161,7 +161,7 @@ const AccountPage = ({
             : (
                 <div className={classes.root}>
                     <div>
-                        <ProfileCard {...props} />
+                        <ProfileCard _id={_id} {...props} />
                         <ActionButtons />
                     </div>
                     <div className={classes.details}>
