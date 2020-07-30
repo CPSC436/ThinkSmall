@@ -23,18 +23,16 @@ const Square = ({
 const Contact = () => (
     <div className={classes.root}>
         
-        <div className={classes.container}>
+        <div className={classes.title}>
             <h2> Contact Developers </h2>
         </div>
-        
-        <div className={classes.container}>
-            <h3> Team DaeBak </h3>
+        <div className={classes.subtitle}> <h3> Team DaeBak </h3> </div>
+        <div className={classes.sub}>
             <p>DaeBak is Korean slang for “awesome”,” cool”, or “great success”. We want to make an awesome community for small businesses that will eventually bring them this great success. </p>
         </div>
-        <div className={classes.container}>
-            <p>We are 4th-year students who are looking for an internship and full-time opportunity. Please feel free to reach out to us. </p>
+        <div className={classes.sub}>
+            <p>We are 4th-year UBC students who are looking for an internship and full-time opportunity. Please feel free to reach out to us. </p>
         </div>
-
         <div className={classes.container}>
             <Square 
                 name="Yuree Jang"

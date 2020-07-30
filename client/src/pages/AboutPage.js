@@ -4,14 +4,14 @@ import classes from '../modules/about.module.css'
 const Square = ({
     title, subtitle, src,
 }) => (
-    <div className={classes.square}>
-        <div>
-            <img src={src} className={classes.img} alt={title} />
-            <h3>{title}</h3>
-            <p style={{ fontSize: 'small' }}>{subtitle}</p>
+        <div className={classes.square}>
+            <div>
+                <img src={src} className={classes.img} alt={title} />
+                <h3>{title}</h3>
+                <p style={{ fontSize: 'small' }}>{subtitle}</p>
+            </div>
         </div>
-    </div>
-)
+    )
 
 const About = () => (
     <div className={classes.root}>

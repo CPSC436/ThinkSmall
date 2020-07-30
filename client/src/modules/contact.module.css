@@ -5,10 +5,30 @@
     height: 100%;
 }
 
-.container {
+.title {
+    font-family: 'Baloo 2', cursive;
+    text-transform: uppercase;
+    width: 926px;
+    margin: auto;
+}
+
+.subtitle {
+    font-family: 'Baloo 2', cursive;
+    font-weight: bold;
     display: flex;
     width: 926px;
-    height: 75px;
+    margin: auto;
+}
+
+.sub {
+    display: flex;
+    width: 926px;
+    margin: auto;
+}
+
+.container {
+    display: flex;
+    max-width: 926px;
     margin: auto;
 }
 
@@ -25,14 +45,19 @@
     border-radius: 7.5px;
     display: flex;
     flex-direction: column-reverse;
-    height: 380px;
-    margin: 30px auto;
-    padding: 10px 10px 50px;
+    height: 300px;
+    margin: 20px auto;
+    padding: 10px 10px 10px;
     text-align: center;
     width: 380px;
 }
 
 @media (max-width: 768px) {
+    .sub {
+        display: block;
+        max-width: 100%;
+    }
+
     .container {
         display: block;
         width: 380px;
