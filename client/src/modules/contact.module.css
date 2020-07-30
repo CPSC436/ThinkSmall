@@ -17,8 +17,8 @@
     margin: auto;
     display: block;
     object-fit: cover;
-    height: 230px;
-    width: 230px;
+    height: 180px;
+    width: 180px;
 }
 
 .square {
@@ -28,7 +28,7 @@
     height: 380px;
     margin: 30px auto;
     padding: 10px 10px 50px;
-    text-align: left;
+    text-align: center;
     width: 380px;
 }
 
