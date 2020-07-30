@@ -26,7 +26,7 @@ import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import './App.css'
 import About from './pages/AboutPage'
-import Contact from './pages/ContactUsPage'
+import Contact from './pages/ContactPage'
 
 library.add(
     fab,
