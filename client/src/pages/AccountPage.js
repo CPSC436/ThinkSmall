@@ -94,7 +94,7 @@ const AccountPage = ({
             {tasks.length > 0
                 ? (
                     <List>
-                        {tasks.map((props, i) => <RequestItem key={i} {...props} canDelete />)}
+                        {tasks.map((props, i) => <RequestItem key={i} {...props} />)}
                     </List>
                 )
                 : (

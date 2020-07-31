@@ -108,7 +108,7 @@ const ProfileCard = ({
                     <TextField
                         style={{ fontWeight: 'bold' }}
                         defaultValue={`${givenName}`}
-                        label="Name"
+                        label="First Name"
                         onChange={handleChange('givenName')}
                         InputProps={{
                             startAdornment: (
@@ -121,7 +121,7 @@ const ProfileCard = ({
                     <TextField
                         style={{ fontWeight: 'bold' }}
                         defaultValue={`${familyName}`}
-                        label="Name"
+                        label="Last Name"
                         onChange={handleChange('familyName')}
                         InputProps={{
                             startAdornment: (
@@ -178,7 +178,6 @@ const ProfileCard = ({
                         onChange={handleChange('supplementaryUrl')}
                     />
                     {tags.length > 0 && <Tags tags={tags} />}
-                    <DottedChip />
                     <Button type="button" variant="contained" size="small" className={classes.buttons} onClick={handleSubmit}>
                         Update Info
                     </Button>

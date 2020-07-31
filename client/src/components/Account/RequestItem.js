@@ -4,7 +4,7 @@ import {
     Chip, IconButton,
     ListItem, ListItemText, ListItemIcon,
 } from '@material-ui/core'
-import { ArrowIcon, DeleteIcon } from './Icons'
+import {ArrowIcon, DeleteIcon, EditIcon} from './Icons'
 import { deleteRequest } from '../../actions'
 import { now } from '../../reducers/helper'
 
@@ -24,6 +24,14 @@ const RequestItem = ({
         >
             <div>
                 <ListItemText primary={business} secondary={details} />
+                <div>
+                    <IconButton>
+                        <EditIcon />
+                    </IconButton>
+                    <IconButton>
+                        <DeleteIcon />
+                    </IconButton>
+                </div>
                 <Chip label={status} color="primary" variant="outlined" size="small" style={{ fontFamily: `'Baloo 2', cursive` }} />
                 {expanded && (
                     <p style={{ fontSize: 'small', marginBottom: 0 }}>

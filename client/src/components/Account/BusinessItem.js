@@ -6,14 +6,14 @@ import {
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { ArrowIcon, DeleteIcon, EditIcon } from './Icons'
 import Tags from '../Tags/Tags'
-import { deleteBusiness, openForm } from '../../actions'
-import index from '../../reducers'
+import { deleteBusiness, openForm, updateBusiness } from '../../actions'
 
 const BusinessItem = ({
     storeName, storeOwner, location, tags, description,
     deleteBusiness, index, canDelete, owns, actions,
 }) => {
     const [expanded, setExpanded] = useState(false)
+    const [open, setOpen] = useState(false)
     return (
         <ListItem
             style={{
@@ -27,10 +27,16 @@ const BusinessItem = ({
             <div>
                 <ListItemText primary={storeName} secondary={description} />
                 <div>
-                    <IconButton onClick={actions[1]}>
+                    <IconButton
+                        hidden={open}
+                        onClick={() => {
+                            actions[1].action(); setOpen(!open)
+                        // updateBusiness(owns[index]._id, )
+                        }}
+                    >
                         <EditIcon />
                     </IconButton>
-                    <IconButton onClick={() => {deleteBusiness(owns[index]._id); console.log("HELLO")}}>
+                    <IconButton onClick={() => deleteBusiness(owns[index]._id)}>
                         <DeleteIcon />
                     </IconButton>
                 </div>
@@ -53,4 +59,4 @@ const BusinessItem = ({
     )
 }
 
-export default connect(null, { deleteBusiness })(BusinessItem)
+export default connect(null, { deleteBusiness, updateBusiness })(BusinessItem)

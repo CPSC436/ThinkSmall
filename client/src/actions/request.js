@@ -58,3 +58,15 @@ export function deleteRequest(id) {
         }
     }
 }
+
+export function updateRequest(id, body) {
+    return async dispatch => {
+        try {
+            await axios.put(`/request/${id}`, body)
+            dispatch(getRequests(true))
+            dispatch(getCurrentUser())
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}

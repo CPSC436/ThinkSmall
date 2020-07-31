@@ -56,3 +56,15 @@ export function deleteBusiness(id) {
         }
     }
 }
+
+export function updateBusiness(id, body) {
+    return async dispatch => {
+        try {
+            await axios.put(`/business/${id}`, body)
+            dispatch(getBusinesses(true))
+            dispatch(getCurrentUser())
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
