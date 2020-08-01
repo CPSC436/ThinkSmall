@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Baloo+2:wght@400;600;800&family=PT+Serif+Caption&display=swap');
 
+.tags {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin: 1px auto;
+}
+
+.tags > * {
+    margin: 1px
+}
+
 .input {
     width: 100%;
     padding: 7.5px 11px;
@@ -9,12 +20,12 @@
 }
 
 .textarea {
-    max-width: 100%;
-    min-width: 100%;
-    font-family: 'Baloo 2', cursive;
     border-radius: 4px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    font-family: 'Baloo 2', cursive;
+    max-width: 100%;
+    min-width: 100%;
     padding: 11.5px 11px;
 }
 
@@ -24,4 +35,36 @@
     border-radius: 4px;
     border: 1px solid #ccc;
     border-top: none;
+}
+
+.inactive {
+    background-color: #ffffff;
+    cursor: pointer;
+    padding: 7.5px 10px;
+    font-size: small;
+    border-radius: 4px;
+}
+
+.active {
+    composes: inactive;
+    background-color: #fafafa;
+}
+
+.google {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 2px;
+    border: 1px solid transparent;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    color: rgba(0, 0, 0, 0.54);
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+    padding: 7px 10px;
+    text-transform: none;
+}
+
+.google img {
+    margin-right: 10px;
 }

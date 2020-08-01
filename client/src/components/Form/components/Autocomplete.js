@@ -1,7 +1,6 @@
 import React from 'react'
 import PlacesAutocomplete from 'react-places-autocomplete'
 import LoadingIndicator from './LoadingIndicator'
-import { styles } from '../../../constant'
 import classes from '../../../modules/form.module.css'
 
 const Autocomplete = ({ value, onChange, onSelect }) => {
@@ -11,17 +10,12 @@ const Autocomplete = ({ value, onChange, onSelect }) => {
                 ? <LoadingIndicator />
                 : suggestions.map(suggestion => {
                     const className = suggestion.active
-                        ? 'suggestion-item--active'
-                        : 'suggestion-item'
-                    const style = suggestion.active
-                        ? styles.active
-                        : styles.inactive
+                        ? classes.active
+                        : classes.inactive
                     return (
                         <div
-                            {...getSuggestionItemProps(suggestion, {
-                                className,
-                                style,
-                            })}
+                            key={suggestion.id}
+                            {...getSuggestionItemProps(suggestion, { className })}
                         >
                             <span>{suggestion.description}</span>
                         </div>

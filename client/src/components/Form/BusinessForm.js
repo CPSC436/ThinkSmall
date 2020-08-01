@@ -27,7 +27,9 @@ const config = {
 
 const Client = new S3(config)
 
-const Form = ({ open = false, closeForm, addBusiness }) => {
+const Form = ({
+    open = false, closeForm, addBusiness, givenName, familyName,
+}) => {
     const [location, setLocation] = useState('')
     const [storeName, setStoreName] = useState('')
     const [description, setDescription] = useState('')
@@ -57,7 +59,7 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
         const business = {
             storeName,
             imageUrl,
-            storeOwner: 'Dummy Name',
+            storeOwner: `${givenName} ${familyName}`,
             location,
             ...geolocation,
             description,
@@ -69,8 +71,10 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
 
     const onDrop = files => {
         const reader = new FileReader()
-        reader.readAsDataURL(files[0])
-        setFile(files[0])
+        if (files[0]) {
+            reader.readAsDataURL(files[0])
+            setFile(files[0])
+        }
     }
 
     async function onSave(file) {
@@ -134,6 +138,6 @@ const Form = ({ open = false, closeForm, addBusiness }) => {
     )
 }
 
-const mapStateToProps = ({ forms }) => ({ open: forms.business })
+const mapStateToProps = ({ forms, currentUser }) => ({ open: forms.business, ...currentUser.data })
 
 export default connect(mapStateToProps, { addBusiness, closeForm })(Form)

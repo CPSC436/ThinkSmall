@@ -17,10 +17,6 @@ createUser = (req, res) => {
         return res.status(400).json({ success: false, error: err })
     }
 
-    // Check to see if user email is already in db User.findOne(email: body.email)
-    // return error and state username already exists
-    // most likely a state that is a boolean which you use to pop up an error message
-
     user
         .save()
         .then(() => {
@@ -38,7 +34,7 @@ createUser = (req, res) => {
         })
 }
 
-updateUser = async (req, res) => {
+updateUser = (req, res) => {
     const user = req.body
 
     if (!user) {
@@ -48,7 +44,7 @@ updateUser = async (req, res) => {
         })
     }
 
-    await User.findByIdAndUpdate(ObjectId(req.params.id), user, (err, user) => {
+    User.findByIdAndUpdate(ObjectId(req.params.id), user, (err, user) => {
         if (!user) {
             return res.status(404).json({
                 err,
@@ -63,8 +59,8 @@ updateUser = async (req, res) => {
     })
 }
 
-deleteUser = async (req, res) => {
-    await User.findByIdAndDelete(ObjectId(req.params.id), (err, user) => {
+deleteUser = (req, res) => {
+    User.findByIdAndDelete(ObjectId(req.params.id), (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -77,9 +73,8 @@ deleteUser = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-// for now not using getUserById but using getUserByEmail
-getUserById = async (req, res) => {
-    await User.findById(ObjectId(req.params.id), (err, user) => {
+getUserById = (req, res) => {
+    User.findById(ObjectId(req.params.id), (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -91,21 +86,8 @@ getUserById = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-getUserByEmail = async (req, res) => {
-    await User.findOne({email: req.params.id}, (err, user) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!user) {
-            return res.status(404).json({ success: false, error: `User not found` })
-        }
-        return res.status(200).json({ success: true, data: user })
-    }).catch(err => console.log(err))
-}
-
-getUsers = async (req, res) => {
-    await User.find({}, (err, users) => {
+getUsers = (req, res) => {
+    User.find({ available: true }, (err, users) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -122,5 +104,4 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById,
-    getUserByEmail
 }

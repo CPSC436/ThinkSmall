@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Pagination, PaginationItem } from '@material-ui/lab'
+import {
+    GridList, GridListTile, useMediaQuery, useTheme,
+} from '@material-ui/core'
 import Tags from '../Tags/Tags'
 import Search from '../Search'
 import VolunteerCard from './components/VolunteerCard'
@@ -13,9 +16,12 @@ const VolunteersList = ({
     loading, volunteers, setKeyword, setFilters, getUsers,
 }) => {
     const [currentPage, setPage] = useState(1)
-    const handleChange = (_, currentPage) => {
-        setPage(currentPage)
-    }
+    const theme = useTheme()
+    const sm = useMediaQuery(theme.breakpoints.down(600))
+    const md = useMediaQuery(theme.breakpoints.down(900))
+    const cols = sm ? 1 : (md ? 2 : 3)
+    const handleChange = (_, currentPage) => setPage(currentPage)
+
     useEffect(() => {
         async function loadUsers() {
             await getUsers()
@@ -35,18 +41,24 @@ const VolunteersList = ({
                             <Search />
                             <Tags tags={defaultSkills} canSelect />
                         </div>
-                        <div className={classes.page}>
-                            <Pagination
-                                onChange={handleChange}
-                                page={currentPage}
-                                count={Math.ceil(volunteers.length / 6)}
-                                renderItem={item => <PaginationItem {...item} />}
-                            />
-                        </div>
                         <div className={classes.container}>
-                            {volunteers
-                                .slice((currentPage - 1) * 6, currentPage * 6)
-                                .map(({ _id, ...props }) => <VolunteerCard key={_id} {...props} />)}
+                            <div className={classes.page}>
+                                <Pagination
+                                    onChange={handleChange}
+                                    page={currentPage}
+                                    count={Math.ceil(volunteers.length / 6)}
+                                    renderItem={item => <PaginationItem {...item} />}
+                                />
+                            </div>
+                            <GridList cellHeight="auto" cols={cols}>
+                                {volunteers
+                                    .slice((currentPage - 1) * 6, currentPage * 6)
+                                    .map((props, i) => (
+                                        <GridListTile key={i} cols={1}>
+                                            <VolunteerCard {...props} />
+                                        </GridListTile>
+                                    ))}
+                            </GridList>
                         </div>
                     </div>
                 )}
@@ -57,7 +69,6 @@ const VolunteersList = ({
 const mapStateToProps = ({ users, filters, keyword }) => ({
     loading: users.loading,
     volunteers: users.data
-        .filter(({ available }) => available)
         .filter(({ description }) => description.includes(keyword))
         .filter(({ tags }) => !filters.length
             || filters.every(tag => tags.some(({ label }) => label === tag))),

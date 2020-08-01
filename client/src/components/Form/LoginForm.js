@@ -2,26 +2,21 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
-import TextField from '@material-ui/core/TextField'
 import {
     Button,
     Dialog,
     DialogTitle as Title,
-    TextareaAutosize as Textarea,
 } from '@material-ui/core'
 import {
     Actions,
     Content,
-    ContentText,
     Input,
     Text,
 } from './components'
-import Tags from '../Tags/Tags'
-// import { closeForm } from '../../actions'
-import { userByEmail, userByID, closeForm } from '../../actions'
-import LoginByGoogle from '../LoginByGoogle'
+import { closeForm } from '../../actions'
+import classes from '../../modules/form.module.css'
 
-const LoginForm = ({ open = false, closeForm, userByID }) => {
+const LoginForm = ({ open = false, closeForm }) => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
@@ -29,14 +24,8 @@ const LoginForm = ({ open = false, closeForm, userByID }) => {
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
     const onClose = () => closeForm('login')
 
-    async function handleSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault()
-        const payload = {
-            password,
-            email,
-        }
-        await userByID('5f0a449cb6b3c55480431d85')
-        // userByEmail(payload)
         onClose()
     }
 
@@ -57,7 +46,7 @@ const LoginForm = ({ open = false, closeForm, userByID }) => {
                     <Input autoFocus margin="dense" fullWidth placeholder="" onChange={e => setEmail(e.target.value)} type="email" required />
 
                     <Text>Password</Text>
-                    <Input autoFocus margin="dense" fullWidth placeholder="" onChange={e => setPassword(e.target.value)} type="password" id="password" required />
+                    <Input autoFocus margin="dense" fullWidth placeholder="" type="password" id="password" onChange={e => setPassword(e.target.value)} required />
 
                     <Actions>
 
@@ -66,11 +55,16 @@ const LoginForm = ({ open = false, closeForm, userByID }) => {
 
                     </Actions>
 
-                    <hr />
+                    <p style={{ textAlign: 'center' }}>or</p>
 
-                    <LoginByGoogle />
-
-                    <br />
+                    <div style={{ width: 'fit-content', margin: ' 0 auto 50px' }}>
+                        <a href="/auth/google">
+                            <Button className={classes.google}>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1004px-Google_%22G%22_Logo.svg.png" width={18} height={18} />
+                                Sign in with Google
+                            </Button>
+                        </a>
+                    </div>
 
                 </form>
             </Content>
@@ -81,9 +75,4 @@ const LoginForm = ({ open = false, closeForm, userByID }) => {
 
 const mapStateToProps = ({ forms }) => ({ open: forms.login })
 
-export default connect(mapStateToProps,
-    {
-        closeForm,
-        userByEmail: payload => userByEmail(payload),
-        userByID: id => userByID(id),
-    })(LoginForm)
+export default connect(mapStateToProps, { closeForm })(LoginForm)

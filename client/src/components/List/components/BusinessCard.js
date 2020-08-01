@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -27,11 +28,13 @@ const BusinessCard = ({
     location, requests, tags = [],
 }) => {
     const [details, setDetails] = useState()
+    const [shorten, setShorten] = useState(true)
     const [hover, setHover] = useState(false)
     const requestIcon = useRef(null)
+    const toggle = () => setShorten(prev => !prev)
     const getRequest = async id => {
         try {
-            const res = await axios.get(`http://localhost:8080/request/${id}`)
+            const res = await axios.get(`/request/${id}`)
             return res.data.data
         } catch (err) {
             console.log(err)
@@ -70,6 +73,11 @@ const BusinessCard = ({
             </div>
         )
     }
+    const ReadMore = () => (
+        <a className={classes.link} onClick={toggle} style={{ fontSize: 'smaller' }}>
+            {shorten ? ' Read more' : ' Show less'}
+        </a>
+    )
     useEffect(() => {
         async function loadDetails() {
             setDetails([
@@ -82,7 +90,7 @@ const BusinessCard = ({
     }, [])
 
     return (
-        <Card className={classes.root} style={{ overflow: 'visible' }}>
+        <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
                 image={imageUrl || placeholder}
@@ -95,11 +103,11 @@ const BusinessCard = ({
                     {hover && requests.length > 0 && <RequestPanel />}
                 </Text>
                 <Tags tags={tags} />
-                <Text gutterBottom variant="body2" color="textSecondary" component="p">
-                    {shortDescription}
-                    {shortDescription.length < description.length && '...'}
+                <Text gutterBottom variant="body2" color="textSecondary" component="p" style={{ minHeight: 91 }}>
+                    {shorten ? shortDescription : description}
+                    {shorten && shortDescription.length < description.length && '...'}
+                    {shortDescription.length < description.length && <ReadMore />}
                 </Text>
-                <a href="#" className={classes.link} style={{ fontSize: 'smaller' }}>Read more</a>
                 <Divider light style={{ margin: '10px auto' }} />
                 <div style={{ display: 'flex', alignItems: 'center', fontSize: 'small' }}>
                     <Icon icon="user" size="sm" style={{ margin: 'auto 10px auto 5px' }} />
@@ -118,16 +126,7 @@ const BusinessCard = ({
                     target="_blank"
                     style={{ width: '100%', height: 36 }}
                 >
-                    See Details
-                </Button>
-                <Button
-                    className={classes.button}
-                    size="small"
-                    variant="contained"
-                    target="_blank"
-                    style={{ width: '100%', height: 36 }}
-                >
-                    Contact Owner
+                    <Link to="/inbox">Contact Owner</Link>
                 </Button>
             </CardActions>
         </Card>

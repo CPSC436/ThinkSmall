@@ -1,20 +1,29 @@
-import axios from 'axios'
+import Axios from 'axios'
 
+export const LOAD_CURRENT_USER = 'LOAD_CURRENT_USER'
 export const LOAD_USERS = 'LOAD_USERS'
+export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const SET_USERS = 'SET_USERS'
-export const LOAD_LOGIN_USER = 'LOAD_LOGIN_USER'
+
+const axios = Axios.create({
+    baseURL: process.env.REACT_APP_WEBSITE_URL,
+})
+
+const loadCurrentUser = () => ({
+    type: LOAD_CURRENT_USER,
+})
 
 const loadUsers = () => ({
     type: LOAD_USERS,
 })
 
-const setUsers = data => ({
-    type: SET_USERS,
+const setCurrentUser = data => ({
+    type: SET_CURRENT_USER,
     data,
 })
 
-const loadLoginUser = data => ({
-    type: LOAD_LOGIN_USER,
+const setUsers = data => ({
+    type: SET_USERS,
     data,
 })
 
@@ -26,7 +35,7 @@ export function getUsers(force = false) {
         dispatch(loadUsers())
 
         try {
-            const res = await axios.get('http://localhost:8080/users')
+            const res = await axios.get('/users')
             return dispatch(setUsers(res.data.data))
         } catch (err) {
             console.log(err)
@@ -34,29 +43,13 @@ export function getUsers(force = false) {
     }
 }
 
-// need get userByID
-
-export function userByID(id) {
-    console.log('i am out here')
+export function getUserById(id) {
     return async dispatch => {
-        try {
-            const updatedUrl = `http://localhost:8080/user/${id}`
-            const user = await axios.get(updatedUrl)
-            const userData = user.data
-            console.log(userData)
-            return dispatch(loadLoginUser(userData))
-        } catch (err) {
-            console.log(err)
-        }
-    }
-}
+        dispatch(loadCurrentUser())
 
-export function userByEmail(payload) {
-    return async dispatch => {
         try {
-            alert('I made it here')
-            const res = await axios.get(`http://localhost:8080/user/${payload.email}`)
-            return dispatch(loadLoginUser(res.data))
+            const res = await axios.get(`/user/${id}`)
+            return dispatch(setCurrentUser(res.data.data))
         } catch (err) {
             console.log(err)
         }
@@ -66,11 +59,43 @@ export function userByEmail(payload) {
 export function addUser(user) {
     return async dispatch => {
         try {
-            alert('user added')
-            await axios.post('http://localhost:8080/user', user)
+            await axios.post('/user', user)
             return dispatch(getUsers(true))
         } catch (err) {
             console.log(err)
+        }
+    }
+}
+
+export function updateUser(id, body) {
+    return async dispatch => {
+        try {
+            await axios.put(`/user/${id}`, body)
+            return dispatch(getUserById(id))
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export function getCurrentUser() {
+    return async (dispatch, getState) => {
+        const { currentUser } = getState()
+        const id = currentUser.data._id
+
+        if (id) {
+            dispatch(getUserById(id))
+        } else {
+            dispatch(loadCurrentUser())
+
+            try {
+                const res = await axios.get('/me')
+                if (res.data._id) {
+                    dispatch(getUserById(res.data._id))
+                }
+            } catch (err) {
+                console.log(err)
+            }
         }
     }
 }

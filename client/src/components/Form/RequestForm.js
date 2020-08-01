@@ -5,39 +5,41 @@ import {
     TextareaAutosize as Textarea,
 } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { useTheme } from '@material-ui/core/styles'
+import { useTheme, makeStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
 import {
     Actions,
     Select, MenuItem,
     Content, ContentText, Text,
 } from './components'
-import Tags from '../Tags/Tags'
+import { SelectedChip, UnselectedChip, DottedChip } from '../Tags/components'
+import { defaultTags } from '../../constant'
 import classes from '../../modules/form.module.css'
-import { addRequest, closeForm } from '../../actions'
+import { addRequest, closeForm, addBusiness } from '../../actions'
 
-const Form = ({ open = false, closeForm, addRequest }) => {
+const Form = ({
+    open = false, closeForm, addRequest, owns = [],
+}) => {
     const [business, setBusiness] = useState('')
     const [details, setDetails] = useState('')
-    const [tags, setTags] = useState([])
+    const [tags, setTags] = useState(defaultTags)
     const fullScreen = useMediaQuery(useTheme().breakpoints.down('sm'))
 
     const onClose = () => {
         setDetails('')
-        setTags([])
+        setTags(defaultTags)
         closeForm('request')
     }
 
     const onSubmit = e => {
-        addRequest({ business, details, tags })
+        addRequest({ business, details, tags: tags.filter(({ selected }) => selected).map(({ label }) => ({ label })) })
         onClose()
     }
 
-    // TODO: replace with actual list of businesses owned by the authenticated business owner
-    const businesses = [
-        { storeName: 'Hunter & Hare' },
-        { storeName: 'Tenth and Proper' },
-    ]
+    const selectTag = i => {
+        tags[i].selected = !tags[i].selected
+        setTags([...tags])
+    }
 
     return (
         <Dialog
@@ -53,14 +55,21 @@ const Form = ({ open = false, closeForm, addRequest }) => {
                 </ContentText>
                 <Text>Which business of yours do you need help with?</Text>
                 <Select variant="outlined" defaultValue="" value={business} onChange={e => setBusiness(e.target.value)}>
-                    {businesses.map(({ storeName }, i) => (
+                    {owns.map(({ storeName }, i) => (
                         <MenuItem key={i} value={storeName} dense>
                             {storeName}
                         </MenuItem>
                     ))}
                 </Select>
                 <Text>Request Details</Text>
-                <Tags canAdd />
+                <div className={classes.tags}>
+                    {tags.map(({ label, selected }, i) => (
+                        selected
+                            ? <SelectedChip label={label} onClick={() => selectTag(i)} />
+                            : <UnselectedChip label={label} onClick={() => selectTag(i)} />
+                    ))}
+                    <DottedChip />
+                </div>
                 <Textarea
                     aria-label="details"
                     className={classes.textarea}
@@ -77,6 +86,6 @@ const Form = ({ open = false, closeForm, addRequest }) => {
     )
 }
 
-const mapStateToProps = ({ forms }) => ({ open: forms.request })
+const mapStateToProps = ({ forms, currentUser }) => ({ open: forms.request, ...currentUser.data })
 
 export default connect(mapStateToProps, { addRequest, closeForm })(Form)
