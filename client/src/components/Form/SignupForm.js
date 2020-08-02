@@ -7,6 +7,7 @@ import {
     Dialog,
     DialogTitle as Title,
 } from '@material-ui/core'
+import Axios from 'axios'
 import {
     Actions,
     Content,
@@ -16,20 +17,37 @@ import {
 import { closeForm } from '../../actions'
 import classes from '../../modules/form.module.css'
 
+const axios = Axios.create({
+    baseURL: process.env.REACT_APP_WEBSITE_URL,
+})
+
 const SignupForm = ({ open = false, closeForm }) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [passwordMatchState, setPasswordMatchState] = useState(false)
+
 
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
     const onClose = () => closeForm('sign_up')
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
-        onClose()
+
+        if (password !== confirmPassword) {
+            setPasswordMatchState(true)
+        }
+
+        if (password === confirmPassword) {
+            setPasswordMatchState(false)
+            await axios.post('/register', {
+                email, password, givenName: firstName, familyName: lastName,
+            })
+            onClose()
+        }
     }
 
     return (
@@ -59,6 +77,8 @@ const SignupForm = ({ open = false, closeForm }) => {
 
                     <Text>Confirm Password</Text>
                     <Input autoFocus margin="dense" fullWidth placeholder="" type="password" id="confirm_password" onChange={e => setConfirmPassword(e.target.value)} required />
+
+                    { passwordMatchState && <Text>Your Password does not match</Text> }
 
                     <Actions style={{ padding: '16px 0' }}>
 
