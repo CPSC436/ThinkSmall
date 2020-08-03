@@ -63,7 +63,16 @@ const AccountPage = ({
             {requests.length > 0
                 ? (
                     <List>
-                        {requests.map((props, i) => <RequestItem key={i} {...props} canDelete />)}
+                        {requests.map((props, i) => (
+                            <RequestItem
+                                key={i}
+                                {...props}
+                                canDelete
+                                requests={requests}
+                                index={i}
+                                actions={actions}
+                            />
+                        ))}
                     </List>
                 )
                 : (

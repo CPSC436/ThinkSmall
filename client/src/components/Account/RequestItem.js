@@ -5,13 +5,14 @@ import {
     ListItem, ListItemText, ListItemIcon,
 } from '@material-ui/core'
 import {ArrowIcon, DeleteIcon, EditIcon} from './Icons'
-import { deleteRequest } from '../../actions'
+import {deleteRequest} from '../../actions'
 import { now } from '../../reducers/helper'
 
 const RequestItem = ({
-    _id, business, details, status, createdAt, deleteRequest, canDelete,
+    _id, business, details, status, createdAt, deleteRequest, canDelete, requests, index, actions,
 }) => {
     const [expanded, setExpanded] = useState(false)
+    const [open, setOpen] = useState(false)
     return (
         <ListItem
             style={{
@@ -25,10 +26,12 @@ const RequestItem = ({
             <div>
                 <ListItemText primary={business} secondary={details} />
                 <div>
-                    <IconButton>
+                    <IconButton  onClick={() => {
+                        actions[0].action(); setOpen(!open)
+                    }}>
                         <EditIcon />
                     </IconButton>
-                    <IconButton>
+                    <IconButton onClick={() => deleteRequest(requests[index]._id)}>
                         <DeleteIcon />
                     </IconButton>
                 </div>

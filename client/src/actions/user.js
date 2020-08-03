@@ -17,7 +17,7 @@ const loadUsers = () => ({
     type: LOAD_USERS,
 })
 
-const setCurrentUser = data => ({
+export const setCurrentUser = data => ({
     type: SET_CURRENT_USER,
     data,
 })

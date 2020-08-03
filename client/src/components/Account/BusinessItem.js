@@ -36,7 +36,7 @@ const BusinessItem = ({
                     >
                         <EditIcon />
                     </IconButton>
-                    <IconButton onClick={() => deleteBusiness(owns[index]._id)}>
+                    <IconButton onClick={() => {console.log(owns[index]._id); deleteBusiness(owns[index]._id)}}>
                         <DeleteIcon />
                     </IconButton>
                 </div>

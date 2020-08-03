@@ -11,6 +11,7 @@ export const CLOSE_FORM = 'CLOSE_FORM'
 export const TOGGLE_HELP = 'TOGGLE_HELP'
 export const SET_KEYWORD = 'SET_KEYWORD'
 export const SET_FILTERS = 'SET_FILTERS'
+export const DELETE_REQUEST = 'DELETE_REQUEST'
 
 export const push = (uid, iid, message) => ({
     type: PUSH_MESSAGE,
