@@ -4,9 +4,7 @@ import { getCurrentUser, updateUser } from './user'
 export const LOAD_REQUESTS = 'LOAD_REQUESTS'
 export const SET_REQUESTS = 'SET_REQUESTS'
 
-const axios = Axios.create({
-    baseURL: process.env.REACT_APP_WEBSITE_URL,
-})
+const axios = Axios.create()
 
 const loadRequests = () => ({
     type: LOAD_REQUESTS,
