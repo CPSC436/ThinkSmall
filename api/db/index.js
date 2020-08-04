@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
 const path = require('path')
-// Committ
-
 
 require('dotenv').config({ path: path.join(__dirname, '.env') })
 

@@ -28,7 +28,7 @@ const SignupForm = ({ open = false, closeForm }) => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [email, setEmail] = useState('')
     const [passwordMatchState, setPasswordMatchState] = useState(false)
-
+    const [registrationDuplicate, setRegistrationDuplicate] = useState(false)
 
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
@@ -62,6 +62,8 @@ const SignupForm = ({ open = false, closeForm }) => {
             <Content>
 
                 <form onSubmit={handleSubmit}>
+                    { registrationDuplicate && <Text>This email is already registered</Text> }
+
                     <Text>First Name</Text>
 
                     <Input autoFocus margin="dense" fullWidth placeholder="" className="input" onChange={e => setFirstName(e.target.value)} required />

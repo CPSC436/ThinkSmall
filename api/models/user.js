@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 const passportLocalMongoose = require("passport-local-mongoose")
-
+const bcrypt   = require('bcrypt');
 
 const User = new Schema(
     {
@@ -22,6 +22,13 @@ const User = new Schema(
     { timestamps: true },
 )
 
-User.plugin(passportLocalMongoose, {usernameField : 'email'})
+// generating a hash
+User.methods.generateHash = function(password) {
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
+// checking if password is valid
+User.methods.validPassword = function(password) {
+        return bcrypt.compareSync(password, this.password);
+};
 module.exports = mongoose.model('users', User)
