@@ -28,12 +28,12 @@ const config = {
 const Client = new S3(config)
 
 const Form = ({
-    open = false, closeForm, addBusiness, givenName, familyName,
+    open = false, closeForm, addBusiness, givenName, familyName, storeName1, storeOwner1, location1, tags1, description1,
 }) => {
-    const [location, setLocation] = useState('')
-    const [storeName, setStoreName] = useState('')
-    const [description, setDescription] = useState('')
-    const [tags, setTags] = useState([])
+    const [location, setLocation] = useState('' || location1)
+    const [storeName, setStoreName] = useState('' || storeName1)
+    const [description, setDescription] = useState('' || description1)
+    const [tags, setTags] = useState([] || tags1)
     const [file, setFile] = useState()
     const [geolocation, setGeolocation] = useState()
     const theme = useTheme()

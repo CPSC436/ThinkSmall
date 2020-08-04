@@ -30,13 +30,18 @@ const BusinessItem = ({
                     <IconButton
                         hidden={open}
                         onClick={() => {
-                            actions[1].action(); setOpen(!open)
+                            actions[1].action()
+                            setOpen(!open)
                         // updateBusiness(owns[index]._id, )
                         }}
                     >
                         <EditIcon />
                     </IconButton>
-                    <IconButton onClick={() => {console.log(owns[index]._id); deleteBusiness(owns[index]._id)}}>
+                    <IconButton onClick={() => {
+                        console.log(owns[index]._id)
+                        deleteBusiness(owns[index]._id)
+                    }}
+                    >
                         <DeleteIcon />
                     </IconButton>
                 </div>
