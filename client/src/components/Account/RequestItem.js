@@ -4,12 +4,12 @@ import {
     Chip, IconButton,
     ListItem, ListItemText, ListItemIcon,
 } from '@material-ui/core'
-import {ArrowIcon, DeleteIcon, EditIcon} from './Icons'
-import {deleteRequest} from '../../actions'
+import { ArrowIcon, DeleteIcon, EditIcon } from './Icons'
+import { deleteRequest, openForm } from '../../actions'
 import { now } from '../../reducers/helper'
 
 const RequestItem = ({
-    _id, business, details, status, createdAt, deleteRequest, canDelete, requests, index, actions,
+    _id, business, details, status, createdAt, deleteRequest, requests, index, setRid, openForm,
 }) => {
     const [expanded, setExpanded] = useState(false)
     const [open, setOpen] = useState(false)
@@ -26,9 +26,13 @@ const RequestItem = ({
             <div>
                 <ListItemText primary={business} secondary={details} />
                 <div>
-                    <IconButton  onClick={() => {
-                        actions[0].action(); setOpen(!open)
-                    }}>
+                    <IconButton onClick={() => {
+                        setRid(_id)
+                        console.log(`Request id: ${_id}`)
+                        openForm('request')
+                        setOpen(!open)
+                    }}
+                    >
                         <EditIcon />
                     </IconButton>
                     <IconButton onClick={() => deleteRequest(requests[index]._id)}>
@@ -49,4 +53,4 @@ const RequestItem = ({
     )
 }
 
-export default connect(null, { deleteRequest })(RequestItem)
+export default connect(null, { deleteRequest, openForm })(RequestItem)

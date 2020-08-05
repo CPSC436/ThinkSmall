@@ -15,6 +15,8 @@ import BusinessItem from '../components/Account/BusinessItem'
 import { updateUser, getCurrentUser, openForm } from '../actions'
 import classes from '../modules/account.module.css'
 import filler from '../assets/plant.svg'
+import BusinessForm from '../components/Form/BusinessForm'
+import RequestForm from '../components/Form/RequestForm'
 
 const Title = ({ title }) => <Typography className={classes.title}>{title}</Typography>
 const Subtitle = ({ title }) => <Typography className={classes.subtitle}>{title}</Typography>
@@ -47,6 +49,8 @@ const AccountPage = ({
     ...props
 }) => {
     const [asOwner, setAsOwner] = useState(true)
+    const [bid, setId] = useState(null)
+    const [rid, setRid] = useState(null)
     const actions = [
         { title: 'Request Help', action: () => openForm('request') },
         { title: 'Register Store', action: () => openForm('business') },
@@ -67,10 +71,9 @@ const AccountPage = ({
                             <RequestItem
                                 key={i}
                                 {...props}
-                                canDelete
                                 requests={requests}
                                 index={i}
-                                actions={actions}
+                                setRid={setRid}
                             />
                         ))}
                     </List>
@@ -91,8 +94,7 @@ const AccountPage = ({
                                 {...props}
                                 index={i}
                                 owns={owns}
-                                canDelete
-                                actions={actions}
+                                setId={setId}
                             />
                         ))}
                     </List>
@@ -141,6 +143,7 @@ const AccountPage = ({
             </List>
         </>
     )
+    console.log(`business id 3: ${bid}`)
 
     const OutlinedButtons = () => (
         <ButtonGroup className={classes.buttons} size="small" disableElevation>
@@ -189,6 +192,8 @@ const AccountPage = ({
                         </div>
                         {asOwner ? <BusinessTab /> : <VolunteerTab />}
                     </div>
+                    <BusinessForm businessId={bid} setId={setId} />
+                    <RequestForm requestId={rid} setRid={setRid} />
                 </div>
             )
     )

@@ -10,7 +10,7 @@ import { deleteBusiness, openForm, updateBusiness } from '../../actions'
 
 const BusinessItem = ({
     storeName, storeOwner, location, tags, description,
-    deleteBusiness, index, canDelete, owns, actions,
+    deleteBusiness, index, owns, _id, setId, openForm,
 }) => {
     const [expanded, setExpanded] = useState(false)
     const [open, setOpen] = useState(false)
@@ -30,9 +30,10 @@ const BusinessItem = ({
                     <IconButton
                         hidden={open}
                         onClick={() => {
-                            actions[1].action()
+                            setId(_id)
+                            console.log("Business id: " + _id)
+                            openForm('business')
                             setOpen(!open)
-                        // updateBusiness(owns[index]._id, )
                         }}
                     >
                         <EditIcon />
@@ -64,4 +65,4 @@ const BusinessItem = ({
     )
 }
 
-export default connect(null, { deleteBusiness, updateBusiness })(BusinessItem)
+export default connect(null, { deleteBusiness, updateBusiness, openForm })(BusinessItem)

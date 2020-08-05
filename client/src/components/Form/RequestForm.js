@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Button,
     Dialog, DialogTitle as Title,
@@ -7,6 +7,7 @@ import {
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
+import { AxiosInstance as axios } from 'axios'
 import {
     Actions,
     Select, MenuItem,
@@ -15,30 +16,57 @@ import {
 import { SelectedChip, UnselectedChip, DottedChip } from '../Tags/components'
 import { defaultTags } from '../../constant'
 import classes from '../../modules/form.module.css'
-import { addRequest, closeForm } from '../../actions'
+import { addRequest, closeForm, updateRequest } from '../../actions'
 
 const Form = ({
-    open = false, closeForm, addRequest, owns = [],
+    open = false, closeForm, addRequest, owns = [], requestId, setRid,
 }) => {
     const [business, setBusiness] = useState('')
     const [details, setDetails] = useState('')
     const [tags, setTags] = useState(defaultTags)
     const fullScreen = useMediaQuery(useTheme().breakpoints.down('sm'))
 
+    const getRequest = async id => {
+        try {
+            const request = await axios.get(`/request/${requestId}`)
+            return request.data
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        async function loadRequest() {
+            const request = await axios.get(`/request/${requestId}`)
+            return request.data
+        }
+        if (requestId !== null) {
+            const request = loadRequest()
+            console.log(`request data: ${request}`)
+            setDetails(request.details)
+            console.log(`INFO: : ${details}`)
+        }
+    }, [])
+
     const onClose = () => {
         setDetails('')
         setTags(defaultTags)
         closeForm('request')
+        setRid(null)
     }
 
     const onSubmit = e => {
-        addRequest({
-            business,
-            details,
-            tags: tags
-                .filter(({ selected }) => selected)
-                .map(({ label }) => ({ label })),
-        })
+        if (requestId === null) {
+            addRequest({
+                business,
+                details,
+                tags: tags
+                    .filter(({ selected }) => selected)
+                    .map(({ label }) => ({ label })),
+            })
+        } else {
+            updateRequest(requestId, business, details, tags)
+        }
         onClose()
     }
 

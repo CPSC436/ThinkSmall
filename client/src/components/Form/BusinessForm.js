@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { connect } from 'react-redux'
 import { useTheme } from '@material-ui/core/styles'
@@ -10,12 +10,13 @@ import {
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import ImageUploader from 'react-images-upload'
 import S3 from 'react-aws-s3'
+import { AxiosInstance as axios } from 'axios'
 import {
     Actions,
     Content, ContentText, Text,
     Input, Autocomplete,
 } from './components'
-import { addBusiness, closeForm } from '../../actions'
+import { addBusiness, closeForm, updateBusiness } from '../../actions'
 import classes from '../../modules/form.module.css'
 
 const config = {
@@ -28,16 +29,34 @@ const config = {
 const Client = new S3(config)
 
 const Form = ({
-    open = false, closeForm, addBusiness, givenName, familyName, email,
+    open = false, closeForm, addBusiness, givenName, familyName, email, businessId, setId,
 }) => {
     const [location, setLocation] = useState('')
     const [storeName, setStoreName] = useState('')
     const [description, setDescription] = useState('')
     const [tags, setTags] = useState([])
-    const [file, setFile] = useState()
+    const [file, setFile] = useState('')
     const [geolocation, setGeolocation] = useState()
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
+
+    useEffect(() => {
+        async function loadBusiness() {
+            const business = await axios.get(`/business/${businessId}`)
+            return business.data
+        }
+        console.log("hello: " + businessId)
+        if (businessId !== null) {
+            const business = loadBusiness()
+            console.log(`business data: ${business}`)
+            setLocation(business?.location)
+            setStoreName(business?.storeName)
+            setDescription(business?.description)
+            setTags(business?.tags)
+            setFile(business?.imageUrl)
+            console.log(`INFO: ${location} : ${storeName} : ${description} : ${tags} : ${file}`)
+        }
+    }, [])
 
     const onSelect = location => {
         geocodeByAddress(location)
@@ -52,7 +71,9 @@ const Form = ({
         setLocation('')
         setDescription('')
         closeForm('business')
+        setId(null)
     }
+    console.log(`business id 2: ${businessId}`)
 
     const onSubmit = async e => {
         const imageUrl = await onSave(file)
@@ -65,7 +86,11 @@ const Form = ({
             description,
             tags,
         }
-        addBusiness(business)
+        if (businessId === null) {
+            addBusiness(business)
+        } else {
+            updateBusiness(businessId, business)
+        }
         onClose()
     }
 
