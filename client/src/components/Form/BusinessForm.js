@@ -42,12 +42,8 @@ const Form = ({
 
     useEffect(() => {
         async function loadBusiness() {
-            const business = await axios.get(`/business/${businessId}`)
-            return business.data
-        }
-        console.log("hello: " + businessId)
-        if (businessId !== null) {
-            const business = loadBusiness()
+            const bus = await axios.get(`/business/${businessId}`)
+            const business = bus.data
             console.log(`business data: ${business}`)
             setLocation(business?.location)
             setStoreName(business?.storeName)
@@ -55,8 +51,12 @@ const Form = ({
             setTags(business?.tags)
             setFile(business?.imageUrl)
             console.log(`INFO: ${location} : ${storeName} : ${description} : ${tags} : ${file}`)
+            console.log("hello: " + businessId)
         }
-    }, [])
+        if (businessId !== null) {
+            loadBusiness()
+        }
+    }, [businessId])
 
     const onSelect = location => {
         geocodeByAddress(location)
