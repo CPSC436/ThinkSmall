@@ -14,8 +14,8 @@ import ImageUploader from 'react-images-upload'
 import { EditIcon, PhoneIcon } from './Icons'
 import classes from '../../modules/card.module.css'
 import placeholder from '../../assets/white-room.jpeg'
-import {getBusinesses, updateUser} from '../../actions'
-import {  SelectedChip, UnselectedChip } from '../Tags/components'
+import { getBusinesses, updateUser } from '../../actions'
+import { SelectedChip, UnselectedChip } from '../Tags/components'
 import { defaultSkillTags } from '../../constant'
 import Form from '../Form/BusinessForm'
 import { Content } from '../Form/components'
@@ -65,9 +65,11 @@ const ProfileCard = ({
     }
     const handleSubmit = async () => {
         const imageUrl = await onSave(image)
-        updateUser(_id, { ...values, 
+        updateUser(_id, {
+            ...values,
             tags: skillTags.filter(({ selected }) => selected)
-                           .map(({ label }) => ({ label }))})
+                .map(({ label }) => ({ label })),
+        })
     }
     const handleImageChange = e => {
         e.preventDefault()
