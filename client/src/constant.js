@@ -98,3 +98,4 @@ export const defaultSkillTags = [
     { label: 'Driver', selected: false },
     { label: 'Writer', selected: false },
 ]
+
