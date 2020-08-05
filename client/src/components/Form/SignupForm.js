@@ -69,16 +69,16 @@ const SignupForm = ({ open = false, closeForm }) => {
                     <Input autoFocus margin="dense" fullWidth placeholder="" className="input" onChange={e => setFirstName(e.target.value)} required />
 
                     <Text>Last Name</Text>
-                    <Input autoFocus margin="dense" fullWidth placeholder="" onChange={e => setLastName(e.target.value)} required />
+                    <Input margin="dense" fullWidth placeholder="" onChange={e => setLastName(e.target.value)} required />
 
                     <Text>Email</Text>
-                    <Input autoFocus margin="dense" fullWidth placeholder="" onChange={e => setEmail(e.target.value)} type="email" required />
+                    <Input margin="dense" fullWidth placeholder="" onChange={e => setEmail(e.target.value)} type="email" required />
 
                     <Text>Password</Text>
-                    <Input autoFocus margin="dense" fullWidth placeholder="" type="password" id="password" onChange={e => setPassword(e.target.value)} required />
+                    <Input margin="dense" fullWidth placeholder="" type="password" id="password" onChange={e => setPassword(e.target.value)} required />
 
                     <Text>Confirm Password</Text>
-                    <Input autoFocus margin="dense" fullWidth placeholder="" type="password" id="confirm_password" onChange={e => setConfirmPassword(e.target.value)} required />
+                    <Input margin="dense" fullWidth placeholder="" type="password" id="confirm_password" onChange={e => setConfirmPassword(e.target.value)} required />
 
                     { passwordMatchState && <Text>Your Password does not match</Text> }
 

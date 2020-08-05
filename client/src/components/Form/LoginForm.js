@@ -56,7 +56,7 @@ const LoginForm = ({ open = false, closeForm }) => {
                     <Input autoFocus margin="dense" fullWidth placeholder="" onChange={e => setEmail(e.target.value)} type="email" required />
 
                     <Text>Password</Text>
-                    <Input autoFocus margin="dense" fullWidth placeholder="" type="password" id="password" onChange={e => setPassword(e.target.value)} required />
+                    <Input margin="dense" fullWidth placeholder="" type="password" id="password" onChange={e => setPassword(e.target.value)} required />
 
                     { loginSuccess && <Text>Login Credentials Invalid</Text> }
 
