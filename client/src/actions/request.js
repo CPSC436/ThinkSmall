@@ -62,10 +62,12 @@ export function deleteRequest(id) {
 }
 
 export function updateRequest(id, body) {
-    return async dispatch => {
+    return async (dispatch, getState) => {
+        const { currentUser } = getState()
         try {
             await axios.put(`/request/${id}`, body)
             dispatch(getRequests(true))
+            dispatch(updateUser(currentUser.data._id, { $set: { requests: body } }))
             dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)

@@ -58,7 +58,13 @@ const Form = ({
                     .map(({ label }) => ({ label })),
             })
         } else {
-            updateRequest(requestId, business, details, tags)
+            updateRequest(requestId, {
+                business,
+                details,
+                tags: tags
+                    .filter(({ selected }) => selected)
+                    .map(({ label }) => ({ label })),
+            })
         }
         onClose()
     }

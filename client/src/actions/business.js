@@ -49,7 +49,7 @@ export function deleteBusiness(id) {
     return async (dispatch, getState) => {
         const { currentUser } = getState()
         try {
-            const res = await axios.delete(`/business/${id}`)
+            await axios.delete(`/business/${id}`)
             dispatch(getBusinesses(true))
             dispatch(updateUser(currentUser.data._id, { $pull: { owns: { _id: id } } }))
             dispatch(getCurrentUser())
@@ -63,9 +63,10 @@ export function updateBusiness(id, body) {
     return async (dispatch, getState) => {
         const { currentUser } = getState()
         try {
-            const res = await axios.put(`/business/${id}`, body)
+            await axios.put(`/business/${id}`, body)
             dispatch(getBusinesses(true))
-            dispatch(updateUser(currentUser.data._id, { $push: { owns: res.data.business } }))
+            // dispatch(updateUser(currentUser.data._id, { $set: { owns: currentUser.data.owns[id] = body } }))
+            dispatch(updateUser(currentUser.data._id, { $set: { owns: body } }))
             dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)
