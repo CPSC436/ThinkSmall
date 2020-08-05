@@ -71,10 +71,14 @@ const Form = ({
                 <div className={classes.tags}>
                     {tags.map(({ label, selected }, i) => (
                         <div key={i}>
-                        selected
-                            ? <SelectedChip label={label} onClick={() => selectTag(i)} />
-                            : <UnselectedChip label={label} onClick={() => selectTag(i)} />
-                        </div>    
+                            selected
+                            ?
+                            {' '}
+                            <SelectedChip label={label} onClick={() => selectTag(i)} />
+                            :
+                            {' '}
+                            <UnselectedChip label={label} onClick={() => selectTag(i)} />
+                        </div>
                     ))}
                     <DottedChip />
                 </div>
