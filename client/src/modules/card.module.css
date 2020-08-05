@@ -86,3 +86,14 @@
 input {
     display: none;
 }
+
+.skillTags {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin: 1px auto;
+}
+
+.skillTags > * {
+    margin: 1px
+}
