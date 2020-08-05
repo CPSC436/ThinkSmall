@@ -40,7 +40,7 @@ const BusinessItem = ({
                     </IconButton>
                     <IconButton onClick={() => {
                         console.log(owns[index]._id)
-                        deleteBusiness(owns[index]._id)
+                        deleteBusiness(_id)
                     }}
                     >
                         <DeleteIcon />

@@ -89,7 +89,7 @@ const Form = ({
         if (businessId === null) {
             addBusiness(business)
         } else {
-            updateBusiness(businessId, business)
+            updateBusiness(businessId, { ...business, _id: businessId })
         }
         onClose()
     }

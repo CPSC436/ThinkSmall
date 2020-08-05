@@ -61,12 +61,9 @@ export function deleteBusiness(id) {
 
 export function updateBusiness(id, body) {
     return async (dispatch, getState) => {
-        const { currentUser } = getState()
         try {
             await axios.put(`/business/${id}`, body)
             dispatch(getBusinesses(true))
-            // dispatch(updateUser(currentUser.data._id, { $set: { owns: currentUser.data.owns[id] = body } }))
-            dispatch(updateUser(currentUser.data._id, { $set: { owns: body } }))
             dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)

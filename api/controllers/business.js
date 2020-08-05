@@ -46,13 +46,16 @@ updateBusiness = (req, res) => {
         })
     }
 
-    Business.findByIdAndUpdate(ObjectId(req.params.id), business, (err, business) => {
+    Business.findByIdAndUpdate(ObjectId(req.params.id), business, async (err, business) => {
         if (!business) {
             return res.status(404).json({
                 err,
                 message: 'Business not found!',
             })
         }
+
+        await User.updateMany({ 'owns._id': ObjectId(req.params.id) }, { $set: { 'owns.$': business } })
+
         return res.status(200).json({
             success: true,
             id: business._id,
