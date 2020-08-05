@@ -1,4 +1,6 @@
-import {DELETE_BUSINESS, DELETE_REQUEST, LOAD_REQUESTS, SET_REQUESTS} from '../../actions'
+import {
+    DELETE_BUSINESS, DELETE_REQUEST, LOAD_REQUESTS, SET_REQUESTS,
+} from '../../actions'
 import { defaultState } from './misc'
 
 export default (requests = defaultState, action) => {

@@ -12,11 +12,11 @@ import EmailSharpIcon from '@material-ui/icons/EmailSharp'
 import S3 from 'react-aws-s3'
 import ImageUploader from 'react-images-upload'
 import { EditIcon, PhoneIcon } from './Icons'
-import Tags from '../Tags/Tags'
 import classes from '../../modules/card.module.css'
 import placeholder from '../../assets/white-room.jpeg'
-import {getBusinesses, updateUser} from '../../actions'
-import { DottedChip } from '../Tags/components'
+import { getBusinesses, updateUser } from '../../actions'
+import { SelectedChip, UnselectedChip } from '../Tags/components'
+import { defaultSkillTags } from '../../constant'
 import Form from '../Form/BusinessForm'
 import { Content } from '../Form/components'
 
@@ -35,8 +35,8 @@ const ProfileCard = ({
         description,
         email,
         phone,
-        supplementaryUrl,
         tags,
+        supplementaryUrl,
         imageUrl,
     })
     const config = {
@@ -46,10 +46,18 @@ const ProfileCard = ({
         secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
     }
     const Client = new S3(config)
+    const [skillTags, setSkillTags] = useState([...defaultSkillTags])
+
+    console.log(skillTags, tags, defaultSkillTags)
     const [image, setImage] = useState(imageUrl)
     useEffect(() => {
 
     }, [image])
+
+    const selectTag = i => {
+        skillTags[i].selected = !skillTags[i].selected
+        setSkillTags([...skillTags])
+    }
 
     const handleChange = field => event => {
         setValues({ ...values, [field]: event.target.value })
@@ -57,7 +65,11 @@ const ProfileCard = ({
     }
     const handleSubmit = async () => {
         const imageUrl = await onSave(image)
-        updateUser(_id, values)
+        updateUser(_id, {
+            ...values,
+            tags: skillTags.filter(({ selected }) => selected)
+                .map(({ label }) => ({ label })),
+        })
     }
     const handleImageChange = e => {
         e.preventDefault()
@@ -97,7 +109,6 @@ const ProfileCard = ({
                     <label htmlFor="contained-button-file">
                         <Button variant="contained" color="primary" component="span">
                             Upload
-                            {'  '}
                             <PhotoCamera />
                         </Button>
                     </label>
@@ -177,7 +188,13 @@ const ProfileCard = ({
                         label="Supplementary URLs"
                         onChange={handleChange('supplementaryUrl')}
                     />
-                    {tags.length > 0 && <Tags tags={tags} />}
+                    <div className={classes.skillTags}>
+                        {skillTags.map(({ label, selected }, i) => (
+                            selected
+                                ? <SelectedChip key={label} label={label} onClick={() => selectTag(i)} />
+                                : <UnselectedChip key={label} label={label} onClick={() => selectTag(i)} />
+                        ))}
+                    </div>
                     <Button type="button" variant="contained" size="small" className={classes.buttons} onClick={handleSubmit}>
                         Update Info
                     </Button>
