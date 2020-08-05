@@ -1,5 +1,5 @@
 import {
-    DELETE_BUSINESS, DELETE_REQUEST, LOAD_REQUESTS, SET_REQUESTS,
+    DELETE_REQUEST, LOAD_REQUESTS, SET_REQUESTS,
 } from '../../actions'
 import { defaultState } from './misc'
 

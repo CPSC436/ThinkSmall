@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
     Chip, IconButton,
-    ListItem, ListItemText, ListItemIcon,
+    ListItem, ListItemText,
 } from '@material-ui/core'
 import { ArrowIcon, DeleteIcon, EditIcon } from './Icons'
 import { deleteRequest, openForm } from '../../actions'
 import { now } from '../../reducers/helper'
 
 const RequestItem = ({
-    _id, business, details, status, createdAt, deleteRequest, requests, index, setRid, openForm,
+    _id, business, details, status, createdAt, deleteRequest, setRid, openForm,
 }) => {
     const [expanded, setExpanded] = useState(false)
     const [open, setOpen] = useState(false)
@@ -28,14 +28,13 @@ const RequestItem = ({
                 <div>
                     <IconButton onClick={() => {
                         setRid(_id)
-                        console.log(`Request id: ${_id}`)
                         openForm('request')
                         setOpen(!open)
                     }}
                     >
                         <EditIcon />
                     </IconButton>
-                    <IconButton onClick={() => deleteRequest(requests[index]._id)}>
+                    <IconButton onClick={() => deleteRequest(_id)}>
                         <DeleteIcon />
                     </IconButton>
                 </div>

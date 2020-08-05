@@ -1,13 +1,9 @@
-import Axios from 'axios'
+import axios from 'axios'
 
 export const LOAD_CURRENT_USER = 'LOAD_CURRENT_USER'
 export const LOAD_USERS = 'LOAD_USERS'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const SET_USERS = 'SET_USERS'
-
-const axios = Axios.create({
-    baseURL: process.env.REACT_APP_WEBSITE_URL,
-})
 
 const loadCurrentUser = () => ({
     type: LOAD_CURRENT_USER,
@@ -17,7 +13,7 @@ const loadUsers = () => ({
     type: LOAD_USERS,
 })
 
-export const setCurrentUser = data => ({
+const setCurrentUser = data => ({
     type: SET_CURRENT_USER,
     data,
 })
@@ -38,7 +34,7 @@ export function getUsers(force = false) {
             const res = await axios.get('/users')
             return dispatch(setUsers(res.data.data))
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -51,7 +47,7 @@ export function getUserById(id) {
             const res = await axios.get(`/user/${id}`)
             return dispatch(setCurrentUser(res.data.data))
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -62,7 +58,7 @@ export function addUser(user) {
             await axios.post('/user', user)
             return dispatch(getUsers(true))
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -73,7 +69,7 @@ export function updateUser(id, body) {
             await axios.put(`/user/${id}`, body)
             return dispatch(getUserById(id))
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -94,7 +90,7 @@ export function getCurrentUser() {
                     dispatch(getUserById(res.data._id))
                 }
             } catch (err) {
-                console.log(err)
+                console.error(err)
             }
         }
     }

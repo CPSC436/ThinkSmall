@@ -71,8 +71,6 @@ const AccountPage = ({
                             <RequestItem
                                 key={i}
                                 {...props}
-                                requests={requests}
-                                index={i}
                                 setRid={setRid}
                             />
                         ))}
@@ -92,8 +90,6 @@ const AccountPage = ({
                             <BusinessItem
                                 key={i}
                                 {...props}
-                                index={i}
-                                owns={owns}
                                 setId={setId}
                             />
                         ))}
@@ -143,7 +139,6 @@ const AccountPage = ({
             </List>
         </>
     )
-    console.log(`business id 3: ${bid}`)
 
     const OutlinedButtons = () => (
         <ButtonGroup className={classes.buttons} size="small" disableElevation>

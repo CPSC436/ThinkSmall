@@ -44,14 +44,11 @@ const Form = ({
         async function loadBusiness() {
             const res = await axios.get(`/business/${businessId}`)
             const business = res.data.data
-            console.log(`business data:`, business)
             setLocation(business?.location)
             setStoreName(business?.storeName)
             setDescription(business?.description)
             setTags(business?.tags)
             setFile(business?.imageUrl)
-            console.log(`INFO: ${location} : ${storeName} : ${description} : ${tags} : ${file}`)
-            console.log(`hello: ${businessId}`)
         }
         if (businessId !== null) {
             loadBusiness()
@@ -73,7 +70,6 @@ const Form = ({
         closeForm('business')
         setId(null)
     }
-    console.log(`business id 2: ${businessId}`)
 
     const onSubmit = async e => {
         const imageUrl = await onSave(file)
@@ -108,7 +104,7 @@ const Form = ({
                 const res = await Client.uploadFile(file)
                 return res.location
             } catch (err) {
-                console.log(err)
+                console.error(err)
             }
         }
     }

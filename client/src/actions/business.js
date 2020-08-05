@@ -1,10 +1,8 @@
-import Axios from 'axios'
-import { getCurrentUser, updateUser, setCurrentUser } from './user'
+import axios from 'axios'
+import { getCurrentUser, updateUser } from './user'
 
 export const LOAD_BUSINESSES = 'LOAD_BUSINESSES'
 export const SET_BUSINESSES = 'SET_BUSINESSES'
-
-const axios = Axios.create()
 
 const loadBusinesses = () => ({
     type: LOAD_BUSINESSES,
@@ -26,7 +24,7 @@ export function getBusinesses(force = false) {
             const res = await axios.get('/businesses')
             return dispatch(setBusinesses(res.data.data))
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -40,7 +38,7 @@ export function addBusiness(business) {
             dispatch(updateUser(currentUser.data._id, { $push: { owns: res.data.business } }))
             dispatch(getCurrentUser())
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -54,7 +52,7 @@ export function deleteBusiness(id) {
             dispatch(updateUser(currentUser.data._id, { $pull: { owns: { _id: id } } }))
             dispatch(getCurrentUser())
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -66,7 +64,7 @@ export function updateBusiness(id, body) {
             dispatch(getBusinesses(true))
             dispatch(getCurrentUser())
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }

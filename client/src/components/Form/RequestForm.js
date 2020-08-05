@@ -30,11 +30,9 @@ const Form = ({
         async function loadRequest() {
             const res = await axios.get(`/request/${requestId}`)
             const request = res.data.data
-            console.log(`request data: ${request}`)
             setDetails(request?.details)
             setTags(request?.tags)
             setBusiness(request?.business)
-            console.log(`INFO: : ${details}`)
         }
         if (requestId !== null) {
             loadRequest()

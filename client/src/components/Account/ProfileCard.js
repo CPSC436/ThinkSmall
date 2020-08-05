@@ -20,12 +20,6 @@ import { defaultSkillTags } from '../../constant'
 import Form from '../Form/BusinessForm'
 import { Content } from '../Form/components'
 
-// const Text = withStyles({
-//     root: {
-//         fontFamily: '\'Baloo 2\', cursive',
-//     },
-// })(Typography)
-
 const ProfileCard = ({
     givenName, familyName, imageUrl, description, email, phone, supplementaryUrl, tags, _id, updateUser,
 }) => {
@@ -48,7 +42,6 @@ const ProfileCard = ({
     const Client = new S3(config)
     const [skillTags, setSkillTags] = useState([...defaultSkillTags])
 
-    console.log(skillTags, tags, defaultSkillTags)
     const [image, setImage] = useState(imageUrl)
     useEffect(() => {
 
@@ -61,7 +54,6 @@ const ProfileCard = ({
 
     const handleChange = field => event => {
         setValues({ ...values, [field]: event.target.value })
-        console.log(`Values: ${values[field]}`)
     }
     const handleSubmit = async () => {
         const imageUrl = await onSave(image)
@@ -82,7 +74,6 @@ const ProfileCard = ({
                 setImage(file)
             }
         }
-        console.log('Updated image url;')
     }
     async function onSave(file) {
         if (file) {
@@ -90,7 +81,7 @@ const ProfileCard = ({
                 const res = await Client.uploadFile(file)
                 return res.location
             } catch (err) {
-                console.log(err)
+                console.error(err)
             }
         }
     }

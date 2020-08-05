@@ -1,12 +1,8 @@
-import Axios from 'axios'
+import axios from 'axios'
 import { getCurrentUser, updateUser } from './user'
 
 export const LOAD_REQUESTS = 'LOAD_REQUESTS'
 export const SET_REQUESTS = 'SET_REQUESTS'
-
-const axios = Axios.create({
-    baseURL: process.env.REACT_APP_WEBSITE_URL,
-})
 
 const loadRequests = () => ({
     type: LOAD_REQUESTS,
@@ -28,7 +24,7 @@ export function getRequests(force = false) {
             const res = await axios.get('/requests')
             return dispatch(setRequests(res.data.data))
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -42,7 +38,7 @@ export function addRequest(request) {
             dispatch(updateUser(currentUser.data._id, { $push: { requests: res.data.request } }))
             dispatch(getCurrentUser())
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -56,7 +52,7 @@ export function deleteRequest(id) {
             dispatch(updateUser(currentUser.data._id, { $pull: { requests: { _id: id } } }))
             dispatch(getCurrentUser())
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -70,7 +66,7 @@ export function updateRequest(id, body) {
             dispatch(updateUser(currentUser.data._id, { $set: { requests: body } }))
             dispatch(getCurrentUser())
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-    IconButton, ListItem, ListItemIcon, ListItemText,
+    IconButton, ListItem, ListItemText,
 } from '@material-ui/core'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { ArrowIcon, DeleteIcon, EditIcon } from './Icons'
@@ -10,7 +10,7 @@ import { deleteBusiness, openForm, updateBusiness } from '../../actions'
 
 const BusinessItem = ({
     storeName, storeOwner, location, tags, description,
-    deleteBusiness, index, owns, _id, setId, openForm,
+    deleteBusiness, _id, setId, openForm,
 }) => {
     const [expanded, setExpanded] = useState(false)
     const [open, setOpen] = useState(false)
@@ -31,18 +31,13 @@ const BusinessItem = ({
                         hidden={open}
                         onClick={() => {
                             setId(_id)
-                            console.log(`Business id: ${_id}`)
                             openForm('business')
                             setOpen(!open)
                         }}
                     >
                         <EditIcon />
                     </IconButton>
-                    <IconButton onClick={() => {
-                        console.log(owns[index]._id)
-                        deleteBusiness(_id)
-                    }}
-                    >
+                    <IconButton onClick={() => deleteBusiness(_id)}>
                         <DeleteIcon />
                     </IconButton>
                 </div>

@@ -76,7 +76,7 @@ deleteRequest = (req, res) => {
         await User.updateMany({}, { $pull: { tasks: { _id: ObjectId(req.params.id) } } })
 
         return res.status(200).json({ success: true, data: request })
-    }).catch(err => console.log(err))
+    }).catch(err => err)
 }
 
 getRequestById = (req, res) => {
@@ -89,7 +89,7 @@ getRequestById = (req, res) => {
             return res.status(404).json({ success: false, error: `Request not found` })
         }
         return res.status(200).json({ success: true, data: request })
-    }).catch(err => console.log(err))
+    }).catch(err => err)
 }
 
 getRequests = (req, res) => {
@@ -101,7 +101,7 @@ getRequests = (req, res) => {
             return res.status(404).json({ success: false, error: `Request not found` })
         }
         return res.status(200).json({ success: true, data: requests })
-    }).catch(err => console.log(err))
+    }).catch(err => err)
 }
 
 module.exports = {
