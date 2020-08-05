@@ -72,21 +72,17 @@ const Form = ({
     }
 
     const onSubmit = async e => {
-        const imageUrl = await onSave(file)
         const business = {
             storeName,
-            imageUrl,
+            imageUrl: await onSave(file),
             storeOwner: `${givenName} ${familyName}`,
             location,
             ...geolocation,
             description,
             tags,
         }
-        if (businessId === null) {
-            addBusiness(business)
-        } else {
-            updateBusiness(businessId, { ...business, _id: businessId })
-        }
+        if (businessId === null) addBusiness(business)
+        else updateBusiness(businessId, business)
         onClose()
     }
 

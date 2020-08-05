@@ -19,7 +19,7 @@ import classes from '../../modules/form.module.css'
 import { addRequest, closeForm, updateRequest } from '../../actions'
 
 const Form = ({
-    open = false, closeForm, addRequest, owns = [], requestId, setRid,
+    open = false, closeForm, addRequest, updateRequest, owns = [], requestId, setId,
 }) => {
     const [business, setBusiness] = useState('')
     const [details, setDetails] = useState('')
@@ -43,27 +43,19 @@ const Form = ({
         setDetails('')
         setTags(defaultTags)
         closeForm('request')
-        setRid(null)
+        setId(null)
     }
 
     const onSubmit = e => {
-        if (requestId === null) {
-            addRequest({
-                business,
-                details,
-                tags: tags
-                    .filter(({ selected }) => selected)
-                    .map(({ label }) => ({ label })),
-            })
-        } else {
-            updateRequest(requestId, {
-                business,
-                details,
-                tags: tags
-                    .filter(({ selected }) => selected)
-                    .map(({ label }) => ({ label })),
-            })
+        const request = {
+            business,
+            details,
+            tags: tags
+                .filter(({ selected }) => selected)
+                .map(({ label }) => ({ label })),
         }
+        if (requestId === null) addRequest(request)
+        else updateRequest(requestId, request)
         onClose()
     }
 
@@ -119,4 +111,4 @@ const Form = ({
 
 const mapStateToProps = ({ forms, currentUser }) => ({ open: forms.request, ...currentUser.data })
 
-export default connect(mapStateToProps, { addRequest, closeForm })(Form)
+export default connect(mapStateToProps, { addRequest, updateRequest, closeForm })(Form)

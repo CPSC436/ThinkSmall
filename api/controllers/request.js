@@ -47,13 +47,16 @@ updateRequest = (req, res) => {
         })
     }
 
-    Request.findByIdAndUpdate(ObjectId(req.params.id), request, (err, request) => {
+    Request.findByIdAndUpdate(ObjectId(req.params.id), request, { new: true }, async (err, request) => {
         if (!request) {
             return res.status(404).json({
                 err,
                 message: 'Request not found!',
             })
         }
+
+        await User.updateMany({ 'requests._id': ObjectId(req.params.id) }, { $set: { 'requests.$': request } })
+
         return res.status(200).json({
             success: true,
             id: request._id,

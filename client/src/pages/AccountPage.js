@@ -71,7 +71,7 @@ const AccountPage = ({
                             <RequestItem
                                 key={i}
                                 {...props}
-                                setRid={setRid}
+                                setId={setRid}
                             />
                         ))}
                     </List>
@@ -188,7 +188,7 @@ const AccountPage = ({
                         {asOwner ? <BusinessTab /> : <VolunteerTab />}
                     </div>
                     <BusinessForm businessId={bid} setId={setId} />
-                    <RequestForm requestId={rid} setRid={setRid} />
+                    <RequestForm requestId={rid} setId={setRid} />
                 </div>
             )
     )
