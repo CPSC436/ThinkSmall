@@ -40,10 +40,14 @@ As a business owner user, the app will need to store the following data: name of
 * [React](https://reactjs.org/)
 * [Redux](https://redux.js.org/)
 * [Node.js](https://nodejs.org/)
+* [Mongoose](https://mongoosejs.com/)
 * [Express](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/)
 * [AWS S3](https://aws.amazon.com/s3/)
 * [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2)
 * [Material UI](https://material-ui.com/)
+* [Heroku](https://herokuapp.com/)
+
 
 ## Getting Started
 
@@ -75,14 +79,14 @@ b) Standard requirements:
 - Authentication in place
 - Have the ability to locate small businesses in a map view
 - Filter via specific criteria (distance range, services, etc.)
-- Provide a communication channel between business owners and volunteers
 - Different colored flags for businesses that require a service
 - Users can upload images and documents when they request help
 
 c) Stretch requirements:
-
-- Volunteer currency - volunteers who volunteer can be given non-monetary currency (virtual points) by businesses which can then be traded for accomplishments (milestones, recognition badges, achievements, level up)
+- Provide a communication channel between business owners and volunteers
+- Users can upload their custom tags when they request help
 - Dashboard to show the progress of volunteer jobs 
+- Volunteer currency - volunteers who volunteer can be given non-monetary currency (virtual points) by businesses which can then be traded for accomplishments (milestones, recognition badges, achievements, level up)
 - Provide matching suggestions based on the needs and resources e.g. business owners who are looking for someone to design their logo receives a list of available designers who registered themselves as available
 
 ## Minimal Requirement Break Down
