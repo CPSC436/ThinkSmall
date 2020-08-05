@@ -29,7 +29,7 @@ const config = {
 const Client = new S3(config)
 
 const Form = ({
-    open = false, closeForm, addBusiness, givenName, familyName, email, businessId, setId,
+    open = false, closeForm, addBusiness, givenName, familyName, email, businessId, setId, updateBusiness
 }) => {
     const [location, setLocation] = useState('')
     const [storeName, setStoreName] = useState('')
@@ -51,7 +51,7 @@ const Form = ({
             setTags(business?.tags)
             setFile(business?.imageUrl)
             console.log(`INFO: ${location} : ${storeName} : ${description} : ${tags} : ${file}`)
-            console.log("hello: " + businessId)
+            console.log(`hello: ${businessId}`)
         }
         if (businessId !== null) {
             loadBusiness()
@@ -165,4 +165,4 @@ const Form = ({
 
 const mapStateToProps = ({ forms, currentUser }) => ({ open: forms.business, ...currentUser.data })
 
-export default connect(mapStateToProps, { addBusiness, closeForm })(Form)
+export default connect(mapStateToProps, { addBusiness, closeForm, updateBusiness })(Form)

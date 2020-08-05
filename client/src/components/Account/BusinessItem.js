@@ -31,7 +31,7 @@ const BusinessItem = ({
                         hidden={open}
                         onClick={() => {
                             setId(_id)
-                            console.log("Business id: " + _id)
+                            console.log(`Business id: ${_id}`)
                             openForm('business')
                             setOpen(!open)
                         }}

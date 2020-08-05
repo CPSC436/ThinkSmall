@@ -7,7 +7,7 @@ import {
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
-import { AxiosInstance as axios } from 'axios'
+import axios from 'axios'
 import {
     Actions,
     Select, MenuItem,
@@ -26,27 +26,20 @@ const Form = ({
     const [tags, setTags] = useState(defaultTags)
     const fullScreen = useMediaQuery(useTheme().breakpoints.down('sm'))
 
-    const getRequest = async id => {
-        try {
-            const request = await axios.get(`/request/${requestId}`)
-            return request.data
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     useEffect(() => {
         async function loadRequest() {
-            const request = await axios.get(`/request/${requestId}`)
-            return request.data
-        }
-        if (requestId !== null) {
-            const request = loadRequest()
+            const res = await axios.get(`/request/${requestId}`)
+            const request = res.data.data
             console.log(`request data: ${request}`)
-            setDetails(request.details)
+            setDetails(request?.details)
+            setTags(request?.tags)
+            setBusiness(request?.business)
             console.log(`INFO: : ${details}`)
         }
-    }, [])
+        if (requestId !== null) {
+            loadRequest()
+        }
+    }, [requestId])
 
     const onClose = () => {
         setDetails('')
