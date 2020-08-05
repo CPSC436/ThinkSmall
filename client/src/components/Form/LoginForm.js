@@ -32,10 +32,10 @@ const LoginForm = ({ open = false, closeForm }) => {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        console.log(password)
         await axios.post('/login', {
             email, password,
         })
+        window.location.reload(true)
         onClose()
     }
 
