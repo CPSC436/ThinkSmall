@@ -10,7 +10,7 @@ import {
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import ImageUploader from 'react-images-upload'
 import S3 from 'react-aws-s3'
-import { AxiosInstance as axios } from 'axios'
+import axios from 'axios'
 import {
     Actions,
     Content, ContentText, Text,
@@ -42,9 +42,9 @@ const Form = ({
 
     useEffect(() => {
         async function loadBusiness() {
-            const bus = await axios.get(`/business/${businessId}`)
-            const business = bus.data
-            console.log(`business data: ${business}`)
+            const res = await axios.get(`/business/${businessId}`)
+            const business = res.data.data
+            console.log(`business data:`, business)
             setLocation(business?.location)
             setStoreName(business?.storeName)
             setDescription(business?.description)
