@@ -48,10 +48,12 @@ export function addRequest(request) {
 }
 
 export function deleteRequest(id) {
-    return async dispatch => {
+    return async (dispatch, getState) => {
+        const { currentUser } = getState()
         try {
             await axios.delete(`/request/${id}`)
             dispatch(getRequests(true))
+            dispatch(updateUser(currentUser.data._id, { $pull: { requests: { _id: id } } }))
             dispatch(getCurrentUser())
         } catch (err) {
             console.log(err)
