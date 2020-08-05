@@ -86,7 +86,7 @@ const BusinessCard = ({
             ])
         }
         loadDetails()
-    }, [])
+    }, [_id])
 
     return (
         <Card className={classes.root}>
