@@ -24,6 +24,7 @@ import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import './App.css'
 import About from './pages/AboutPage'
+import Contact from './pages/ContactPage'
 
 library.add(
     fab,
@@ -62,6 +63,7 @@ function App() {
                         <Route path="/about" component={About} />
                         <Route path="/business" component={BusinessesList} />
                         <Route path="/volunteer" component={VolunteersList} />
+                        <Route path="/contact" component={Contact} />
                         <Route path="/inbox" component={Inbox} />
                         <Route path="/account" component={AccountPage} />
                         <Route path="*" component={HomePage} />
