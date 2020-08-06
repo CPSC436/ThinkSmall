@@ -9,7 +9,7 @@ import { deleteRequest, openForm } from '../../actions'
 import { now } from '../../reducers/helper'
 
 const RequestItem = ({
-    _id, business, details, status, createdAt, deleteRequest, setId, openForm,
+    _id, storeName, details, status, createdAt, deleteRequest, setId, openForm,
 }) => {
     const [expanded, setExpanded] = useState(false)
     const [open, setOpen] = useState(false)
@@ -24,7 +24,7 @@ const RequestItem = ({
             }}
         >
             <div>
-                <ListItemText primary={business} secondary={details} />
+                <ListItemText primary={storeName} secondary={details} />
                 <div>
                     <IconButton onClick={() => {
                         setId(_id)

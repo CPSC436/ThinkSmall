@@ -49,6 +49,7 @@ const Form = ({
     const onSubmit = e => {
         const request = {
             business,
+            storeName: owns.find(({ _id }) => _id === business)?.storeName,
             details,
             tags: tags
                 .filter(({ selected }) => selected)
@@ -78,8 +79,8 @@ const Form = ({
                 </ContentText>
                 <Text>Which business of yours do you need help with?</Text>
                 <Select variant="outlined" defaultValue="" value={business} onChange={e => setBusiness(e.target.value)}>
-                    {owns.map(({ storeName }, i) => (
-                        <MenuItem key={i} value={storeName} dense>
+                    {owns.map(({ _id, storeName }, i) => (
+                        <MenuItem key={i} value={_id} dense>
                             {storeName}
                         </MenuItem>
                     ))}
