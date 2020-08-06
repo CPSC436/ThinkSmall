@@ -1,6 +1,4 @@
-import {
-    DELETE_REQUEST, LOAD_REQUESTS, SET_REQUESTS,
-} from '../../actions'
+import { LOAD_REQUESTS, SET_REQUESTS } from '../../actions'
 import { defaultState } from './misc'
 
 export default (requests = defaultState, action) => {
@@ -19,9 +17,6 @@ export default (requests = defaultState, action) => {
             loaded: true,
             data: action.data,
         }
-    }
-    case DELETE_REQUEST: {
-        return [...requests.filter(({ id }) => id !== action.id)]
     }
     default:
         return requests

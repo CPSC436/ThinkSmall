@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "REACT_APP_WEBSITE_URL=https://thinksmall.herokuapp.com node ./bin/www",
+    "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {

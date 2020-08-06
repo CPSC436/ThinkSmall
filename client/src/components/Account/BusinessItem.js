@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { ArrowIcon, DeleteIcon, EditIcon } from './Icons'
 import Tags from '../Tags/Tags'
-import { deleteBusiness, openForm, updateBusiness } from '../../actions'
+import { deleteBusiness, openForm } from '../../actions'
 
 const BusinessItem = ({
     storeName, storeOwner, location, tags, description,
@@ -60,4 +60,4 @@ const BusinessItem = ({
     )
 }
 
-export default connect(null, { deleteBusiness, updateBusiness, openForm })(BusinessItem)
+export default connect(null, { deleteBusiness, openForm })(BusinessItem)
