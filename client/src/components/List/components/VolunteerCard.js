@@ -42,8 +42,7 @@ const VolunteerCard = ({
                 style={{ width: '100%', height: 36 }}
             >
                 <a href={`mailto:${email}?subject=Hello from ThinkSmall&body=Dear ${`${givenName} ${familyName}`},`}>
-                    Contact
-                    {givenName}
+                    {`Contact ${givenName}`}
                 </a>
             </Button>
         </CardActions>

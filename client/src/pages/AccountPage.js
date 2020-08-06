@@ -46,7 +46,6 @@ const AccountPage = ({
     tasks = [], // requests assigned to the user
     available,
     updateUser, getCurrentUser, openForm,
-    imageUrl,
     ...props
 }) => {
     const [asOwner, setAsOwner] = useState(true)
@@ -195,8 +194,7 @@ const AccountPage = ({
     )
 }
 
-const mapStateToProps = ({ _id = '5f0932a99eeb33d77955d15c', currentUser }) => ({
-    _id,
+const mapStateToProps = ({ currentUser }) => ({
     loading: currentUser.loading,
     ...currentUser.data,
 })
