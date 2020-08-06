@@ -29,7 +29,8 @@ const config = {
 const Client = new S3(config)
 
 const Form = ({
-    open = false, closeForm, addBusiness, givenName, familyName, email, businessId, setId, updateBusiness
+    open = false, closeForm, addBusiness, updateBusiness,
+    givenName, familyName, email, businessId, setId,
 }) => {
     const [location, setLocation] = useState('')
     const [storeName, setStoreName] = useState('')
