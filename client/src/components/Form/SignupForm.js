@@ -7,7 +7,7 @@ import {
     Dialog,
     DialogTitle as Title,
 } from '@material-ui/core'
-import Axios from 'axios'
+import axios from 'axios'
 import {
     Actions,
     Content,
@@ -16,10 +16,6 @@ import {
 } from './components'
 import { closeForm } from '../../actions'
 import classes from '../../modules/form.module.css'
-
-const axios = Axios.create({
-    baseURL: process.env.REACT_APP_WEBSITE_URL,
-})
 
 const SignupForm = ({ open = false, closeForm }) => {
     const [firstName, setFirstName] = useState('')
@@ -62,7 +58,7 @@ const SignupForm = ({ open = false, closeForm }) => {
             <Content>
 
                 <form onSubmit={handleSubmit}>
-                    { registrationDuplicate && <Text>This email is already registered</Text> }
+                    {registrationDuplicate && <Text>This email is already registered</Text>}
 
                     <Text>First Name</Text>
 
@@ -80,7 +76,7 @@ const SignupForm = ({ open = false, closeForm }) => {
                     <Text>Confirm Password</Text>
                     <Input margin="dense" fullWidth placeholder="" type="password" id="confirm_password" onChange={e => setConfirmPassword(e.target.value)} required />
 
-                    { passwordMatchState && <Text>Your Password does not match</Text> }
+                    {passwordMatchState && <Text>Your Password does not match</Text>}
 
                     <Actions style={{ padding: '16px 0' }}>
 
