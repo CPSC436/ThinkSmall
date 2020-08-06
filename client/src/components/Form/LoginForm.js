@@ -7,7 +7,7 @@ import {
     Dialog,
     DialogTitle as Title,
 } from '@material-ui/core'
-import Axios from 'axios'
+import axios from 'axios'
 import {
     Actions,
     Content,
@@ -25,10 +25,6 @@ const LoginForm = ({ open = false, closeForm }) => {
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
     const onClose = () => closeForm('login')
-
-    const axios = Axios.create({
-        baseURL: process.env.REACT_APP_WEBSITE_URL,
-    })
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -58,7 +54,7 @@ const LoginForm = ({ open = false, closeForm }) => {
                     <Text>Password</Text>
                     <Input margin="dense" fullWidth placeholder="" type="password" id="password" onChange={e => setPassword(e.target.value)} required />
 
-                    { loginSuccess && <Text>Login Credentials Invalid</Text> }
+                    {loginSuccess && <Text>Login Credentials Invalid</Text>}
 
                     <Actions>
 
