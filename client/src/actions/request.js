@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getCurrentUser, updateUser } from './user'
+import { getBusinesses } from './business'
 
 export const LOAD_REQUESTS = 'LOAD_REQUESTS'
 export const SET_REQUESTS = 'SET_REQUESTS'
@@ -35,6 +36,7 @@ export function addRequest(request) {
         try {
             const res = await axios.post('/request', request)
             dispatch(getRequests(true))
+            dispatch(getBusinesses(true))
             dispatch(updateUser(currentUser.data._id, { $push: { requests: res.data.request } }))
             dispatch(getCurrentUser())
         } catch (err) {
@@ -45,11 +47,10 @@ export function addRequest(request) {
 
 export function deleteRequest(id) {
     return async (dispatch, getState) => {
-        const { currentUser } = getState()
         try {
             await axios.delete(`/request/${id}`)
             dispatch(getRequests(true))
-            dispatch(updateUser(currentUser.data._id, { $pull: { requests: { _id: id } } }))
+            dispatch(getBusinesses(true))
             dispatch(getCurrentUser())
         } catch (err) {
             console.error(err)
@@ -62,6 +63,7 @@ export function updateRequest(id, body) {
         try {
             await axios.put(`/request/${id}`, body)
             dispatch(getRequests(true))
+            dispatch(getBusinesses(true))
             dispatch(getCurrentUser())
         } catch (err) {
             console.error(err)
