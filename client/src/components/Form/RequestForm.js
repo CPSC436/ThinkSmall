@@ -91,7 +91,6 @@ const Form = ({
                             ? <SelectedChip key={label} label={label} onClick={() => selectTag(i)} />
                             : <UnselectedChip key={label} label={label} onClick={() => selectTag(i)} />
                     ))}
-                    <DottedChip />
                 </div>
                 <Textarea
                     aria-label="details"
