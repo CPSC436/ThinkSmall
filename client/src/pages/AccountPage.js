@@ -46,6 +46,7 @@ const AccountPage = ({
     tasks = [], // requests assigned to the user
     available,
     updateUser, getCurrentUser, openForm,
+    imageUrl,
     ...props
 }) => {
     const [asOwner, setAsOwner] = useState(true)

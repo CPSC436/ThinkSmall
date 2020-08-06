@@ -2,23 +2,20 @@ import React, { useEffect, useState } from 'react'
 import {
     Button, Card, CardContent, CardMedia, Typography,
 } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import { AccountCircle, PhotoCamera } from '@material-ui/icons'
+import { AccountCircle } from '@material-ui/icons'
 import EmailSharpIcon from '@material-ui/icons/EmailSharp'
 import S3 from 'react-aws-s3'
 import ImageUploader from 'react-images-upload'
 import { EditIcon, PhoneIcon } from './Icons'
 import classes from '../../modules/card.module.css'
 import placeholder from '../../assets/white-room.jpeg'
-import { getBusinesses, updateUser } from '../../actions'
+import { updateUser } from '../../actions'
 import { SelectedChip, UnselectedChip } from '../Tags/components'
 import { defaultSkillTags } from '../../constant'
-import Form from '../Form/BusinessForm'
-import { Content } from '../Form/components'
 
 const ProfileCard = ({
     givenName, familyName, imageUrl, description, email, phone, supplementaryUrl, tags, _id, updateUser,
@@ -41,10 +38,13 @@ const ProfileCard = ({
     }
     const Client = new S3(config)
     const [skillTags, setSkillTags] = useState([...defaultSkillTags])
-
     const [image, setImage] = useState(imageUrl)
-    useEffect(() => {
 
+    useEffect(() => {
+        async function updateImage() {
+            setValues({ ...values, [imageUrl]: await onSave(image) })
+        }
+        updateImage()
     }, [image])
 
     const selectTag = i => {
@@ -56,23 +56,22 @@ const ProfileCard = ({
         setValues({ ...values, [field]: event.target.value })
     }
     const handleSubmit = async () => {
-        const imageUrl = await onSave(image)
+        // setValues({ ...values, [imageUrl]: await onSave(image) })
         updateUser(_id, {
             ...values,
             tags: skillTags.filter(({ selected }) => selected)
                 .map(({ label }) => ({ label })),
+            imageUrl: image,
         })
+        console.log(`Image updated submit: ${image}`)
     }
-    const handleImageChange = e => {
-        e.preventDefault()
+
+    const onDrop = files => {
         const reader = new FileReader()
-        const file = e.target.files[0]
-        reader.onloadend = () => {
-            if (file) {
-                reader.readAsDataURL(file)
-                setValues({ ...values, [imageUrl]: file })
-                setImage(file)
-            }
+        if (files[0]) {
+            reader.readAsDataURL(files[0])
+            setImage(files[0])
+            console.log(`Image updated: ${image}`)
         }
     }
     async function onSave(file) {
@@ -88,25 +87,19 @@ const ProfileCard = ({
 
     return (
         <Card className={classes.profile}>
-            <CardMedia className={classes.media} image={image || placeholder} title="User Picture">
-                <form onSubmit={handleSubmit}>
-                    <input
-                        accept="image/*"
-                        className={classes.input}
-                        id="contained-button-file"
-                        type="file"
-                        onChange={e => handleImageChange(e)}
-                    />
-                    <label htmlFor="contained-button-file">
-                        <Button variant="contained" color="primary" component="span">
-                            Upload
-                            <PhotoCamera />
-                        </Button>
-                    </label>
-                </form>
-            </CardMedia>
+            <CardMedia className={classes.media} image={imageUrl || placeholder} title="User Picture" />
             <CardContent>
                 <FormControl>
+                    <ImageUploader
+                        buttonText="Update Profile Picture"
+                        onChange={onDrop}
+                        imgExtension={['.jpg', '.jpeg', '.gif', '.png', '.gif']}
+                        maxFileSize={5242880}
+                        singleImage
+                        withIcon
+                        withPreview
+                        fileSizeError="file size is too big"
+                    />
                     <TextField
                         style={{ fontWeight: 'bold' }}
                         defaultValue={`${givenName}`}
@@ -195,8 +188,10 @@ const ProfileCard = ({
     )
 }
 
+const mapStateToProps = ({ currentUser }) => ({ ...currentUser.data })
+
 const mapDispatchToProps = {
     updateUser,
 }
 
-export default connect(null, mapDispatchToProps)(ProfileCard)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileCard)
