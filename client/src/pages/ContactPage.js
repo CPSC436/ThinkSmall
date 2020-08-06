@@ -53,27 +53,19 @@ const Square = ({
 
 const Contact = () => (
     <div className={classes.root}>
-        <div className={classes.title}>
-            <h2> Contact Developers </h2>
-        </div>
-        <div className={classes.subtitle}>
-            <h3> Team DaeBak </h3>
-        </div>
-        <div className={classes.sub}>
-            <p>DaeBak is Korean slang for “awesome”,” cool”, or “great success”. We want to make an awesome community for small businesses that will eventually bring them this great success. </p>
-        </div>
-        <div className={classes.sub}>
-            <p>We are 4th-year UBC students who are looking for internship and full-time opportunity. Please feel free to reach out to us. </p>
-        </div>
+        <h2> Contact Developers </h2>
+        <h3> Team DaeBak </h3>
+        <p>
+            DaeBak is Korean slang for “awesome”,” cool”, or “great success”.
+            We want to make an awesome community for small businesses that
+            will eventually bring them this great success.
+        </p>
+        <p>
+            We are 4th-year UBC students who are looking for internship and full-time opportunity.
+            Please feel free to reach out to us.
+        </p>
         <div className={classes.container}>
-            {profile.map(i => (
-                <Square
-                    name={i.name}
-                    github={i.github}
-                    linkedin={i.linkedin}
-                    src={i.src}
-                />
-            ))}
+            {profile.map(props => <Square {...props} />)}
         </div>
     </div>
 )

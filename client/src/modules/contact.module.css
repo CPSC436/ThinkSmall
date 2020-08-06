@@ -1,29 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Baloo+2:wght@400;600;800&family=PT+Serif+Caption&display=swap');
 
 .root {
-    display: inline;
-    height: 100%;
-}
-
-.title {
-    font-family: 'Baloo 2', cursive;
-    text-transform: uppercase;
-    max-width: 926px;
-    margin: auto;
-}
-
-.subtitle {
-    font-family: 'Baloo 2', cursive;
-    font-weight: bold;
-    display: flex;
-    max-width: 926px;
-    margin: auto;
-}
-
-.sub {
-    display: flex;
-    max-width: 926px;
-    margin: auto;
+    margin: 2em;
 }
 
 .container {
@@ -53,23 +31,8 @@
 }
 
 @media (max-width: 768px) {
-    .title{
-        margin: 10px;
-    }
-
-    .subtitle{
-        margin: 10px;
-    }
-
-    .sub {
-        display: block;
-        width: 100%;
-        margin: 10px;
-    }
-
     .container {
         display: block;
-        width: 380px;
     }
 
     .img {
