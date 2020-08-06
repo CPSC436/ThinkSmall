@@ -79,8 +79,8 @@ deleteRequest = (req, res) => {
         }
 
         await Business.update({ requests: req.params.id }, { $pull: { requests: req.params.id } })
-        await User.updateMany({}, { $pull: { requests: { _id: ObjectId(req.params.id) } } })
-        await User.updateMany({}, { $pull: { tasks: { _id: ObjectId(req.params.id) } } })
+        await User.updateMany({}, { $pull: { requests: { _id: req.params.id } } })
+        await User.updateMany({}, { $pull: { tasks: { _id: req.params.id } } })
 
         return res.status(200).json({ success: true, data: request })
     }).catch(err => err)
