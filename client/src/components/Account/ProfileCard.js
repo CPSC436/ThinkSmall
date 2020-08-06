@@ -188,10 +188,8 @@ const ProfileCard = ({
     )
 }
 
-const mapStateToProps = ({ currentUser }) => ({ ...currentUser.data })
-
 const mapDispatchToProps = {
     updateUser,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileCard)
+export default connect(null, mapDispatchToProps)(ProfileCard)
