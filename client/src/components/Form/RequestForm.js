@@ -104,7 +104,6 @@ const Form = ({
                                 />
                             )
                     ))}
-                    <DottedChip />
                 </div>
                 <Textarea
                     aria-label="details"
