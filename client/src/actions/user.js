@@ -1,11 +1,9 @@
-import Axios from 'axios'
+import axios from 'axios'
 
 export const LOAD_CURRENT_USER = 'LOAD_CURRENT_USER'
 export const LOAD_USERS = 'LOAD_USERS'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const SET_USERS = 'SET_USERS'
-
-const axios = Axios.create()
 
 const loadCurrentUser = () => ({
     type: LOAD_CURRENT_USER,
