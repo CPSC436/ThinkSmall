@@ -1,3 +1,4 @@
+const Business = require('../models/business')
 const Request = require('../models/request')
 const User = require('../models/user')
 const ObjectId = require('./helper')
@@ -20,7 +21,9 @@ createRequest = (req, res) => {
 
     request
         .save()
-        .then(request => {
+        .then(async request => {
+            await Business.update({ _id: ObjectId(body.business) }, { $push: { requests: request } })
+            await User.updateMany({ 'owns._id': ObjectId(body.business) }, { $push: { 'owns.$.requests': request } })
 
             return res.status(201).json({
                 success: true,
@@ -55,6 +58,7 @@ updateRequest = (req, res) => {
             })
         }
 
+        await Business.update({ _id: ObjectId(body.business), 'requests._id': ObjectId(req.params.id) }, { $set: { 'requests.$': request } })
         await User.updateMany({ 'requests._id': ObjectId(req.params.id) }, { $set: { 'requests.$': request } })
 
         return res.status(200).json({
@@ -75,6 +79,7 @@ deleteRequest = (req, res) => {
             return res.status(404).json({ success: false, error: `Request not found` })
         }
 
+        await Business.update({ 'requests._id': ObjectId(req.params.id) }, { $pull: { requests: { _id: req.params.id } } })
         await User.updateMany({}, { $pull: { requests: { _id: ObjectId(req.params.id) } } })
         await User.updateMany({}, { $pull: { tasks: { _id: ObjectId(req.params.id) } } })
 

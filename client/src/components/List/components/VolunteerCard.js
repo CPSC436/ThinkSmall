@@ -41,7 +41,10 @@ const VolunteerCard = ({
                 target="_blank"
                 style={{ width: '100%', height: 36 }}
             >
-                <a href={`mailto:${email}?subject=Hello from ThinkSmall&body=Dear ${`${givenName} ${familyName}`},`}>Contact Volunteer</a>
+                <a href={`mailto:${email}?subject=Hello from ThinkSmall&body=Dear ${`${givenName} ${familyName}`},`}>
+                    Contact
+                    {givenName}
+                </a>
             </Button>
         </CardActions>
     </Card>
