@@ -63,6 +63,34 @@ yarn install
 yarn start
 ```
 
+## Environment Variables
+
+`./api/db/.env` for database credentials:
+
+```
+DB_NAME=
+DB_USER=
+DB_PASS=
+```
+
+`./api/init/.env` for [Google OAuth credentials](https://developers.google.com/identity/sign-in/web/sign-in):
+
+```
+OAUTH_CLIENT_ID=
+OAUTH_CLIENT_SECRET=
+```
+
+`./client/.env.local` for [Google Maps API key](https://developers.google.com/maps/documentation/javascript/get-api-key?utm_source=google&utm_medium=cpc&utm_campaign=FY20-Q3-global-demandgen-displayonnetworkhouseads-cs-GMP_maps_contactsal_saf_v2&utm_content=text-ad-none-none-DEV_c-CRE_460848633529-ADGP_Hybrid%20%7C%20AW%20SEM%20%7C%20BKWS%20~%20Google%20Maps%20API%20Key-KWID_43700035216023629-kwd-298247230705-userloc_1001962&utm_term=KW_google%20maps%20api%20key-ST_google%20maps%20api%20key&gclid=Cj0KCQiA0-6ABhDMARIsAFVdQv8l6354f5PkDSQKmcnwJHfPEHxC8pdpWANiKIXUqplYHYfSQXN_OZIaArYPEALw_wcB) and [AWS credentials](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html):
+
+```
+// Google Maps API key
+REACT_APP_API_KEY=
+
+// AWS credentials
+REACT_APP_ACCESS_KEY_ID=
+REACT_APP_SECRET_ACCESS_KEY=
+```
+
 ## Project Requirements
 
 a) Minimal requirements:
